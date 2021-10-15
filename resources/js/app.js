@@ -1,1 +1,1 @@
-import '../sass/variable.sass'
+import '../sass/app.sass'
