@@ -3,6 +3,7 @@
   select
     background: $bg-color-body !important
     color: $font-color !important
+    border: 1px solid $font-color !important
     option
       font-size: 1.3em
 
@@ -15,6 +16,7 @@
     font-size: 0.8em
     span
       margin: 0 0 0 5px
+      cursor: pointer
   nav
     ul
       display: flex
@@ -22,3 +24,10 @@
       align-items: center
     li
       margin: 0 15px 0 0
+      a
+        color: $font-color-preview !important
+        font-size: 0.7em
+        text-decoration: underline
+        &:hover
+          text-decoration: none
+          color: $font-color-preview !important
