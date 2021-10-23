@@ -4,18 +4,33 @@
 .game
   .buy
     position: absolute !important
+    display: none
+    margin: 150px 0
+    transform: translate(22%, 25%)
     background-color: $bg-color-body
-    padding: 3px 4px
-    color: $font-color
+    padding: 5px 10px
+    color: $font-color-preview
+    font-size: 0.8em
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-weight: 700
+    z-index: 9999
+    border-radius: 3px
+    box-shadow: 0 0 10px $bg-color-body
   .game-cover
-    img
-      border-radius: 10px
-      height: 350px
-      object-fit: cover
-      &:hover
+    &:hover
+      .buy
+        display: flex
+        align-items: center
         cursor: pointer
+      img
         filter: blur(2px)
         transition: 500ms ease-in-out
+    figure
+      img
+        border-radius: 10px
+        height: 350px
+        object-fit: cover
   .game-description
     margin: 8px 0
     .game-title,
