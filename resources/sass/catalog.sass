@@ -17,6 +17,38 @@
     z-index: 9999
     border-radius: 3px
     box-shadow: 0 0 10px $bg-color-body
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s
+    &:active
+      background-color: $button
+      box-shadow: 0 2px 25px $button
+    &:before,
+    &:after
+      position: absolute
+      content: ''
+      display: block
+      width: 140%
+      height: 100%
+      left: -20%
+      z-index: -1000
+      transition: all ease-in-out 0.5s
+      background-repeat: no-repeat
+    &:before
+      display: none
+      top: -75%
+      background-image: radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, transparent 20%, $bg-color-body 20%, transparent 30%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, transparent 10%, $bg-color-body 15%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%)
+      background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%
+    &:after
+      display: none
+      bottom: -75%
+      background-image: radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, transparent 10%, $bg-color-body 15%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%), radial-gradient(circle, $bg-color-body 20%, transparent 20%)
+      background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%
+    &.animate
+      &:before
+        display: block
+        animation: topBubbles ease-in-out 0.75s forwards
+      &:after
+        display: block
+        animation: bottomBubbles ease-in-out 0.75s forwards
   .game-cover
     &:hover
       .buy
