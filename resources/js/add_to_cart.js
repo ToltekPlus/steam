@@ -1,9 +1,8 @@
-// TODO исправить добавление в корзину
+document.querySelectorAll(".buy").forEach(btn =>
+    btn.addEventListener("click", () => addGameToCart(btn.id))
+);
 
-var addToCart = document.getElementById("game-1");
-addToCart.onclick = function() {
-    alert('Номер заказа ' + addToCart.dataset.indexNumber);
-
+function addGameToCart(id) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -17,7 +16,7 @@ addToCart.onclick = function() {
     });
 
     Toast.fire({
-        icon: 'success',
-        title: 'Товар в корзине'
+        icon: "success",
+        title: "Товар под номером " + id + " в корзине"
     })
-};
+}
