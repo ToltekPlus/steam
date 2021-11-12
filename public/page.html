@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Магазин игр Steam</title>
+        <link rel='stylesheet' href='styles/style.css'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    </head>
+    <body>
+        <header class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                        <span class="steam">
+                            Steam
+                        </span>
+                        </span>
+                    </div>
+
+                    <div class="column is-6">
+                        <nav>
+                            <ul class="menu-list">
+                                <li>
+                                    <a href="">Магазин</a>
+                                </li>
+                                <li>Новости</li>
+                                <li>Поддержка</li>
+                                <li>Сообщество</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="heart-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="basket-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="login">
+                            <div class="dropdown">
+                              <div class="dropdown-trigger userpic">
+                                  <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                              </div>
+                              <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+                                <div class="dropdown-content">
+                                  <a href="#" class="dropdown-item">
+                                    Мои игры
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Кошелек
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Архив
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Выход
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="columns is-full is-centered is-vertical catalog-block">
+            <div class="column is-8">
+                <div class="columns is-multiline">
+                    <div class="column is-full product-title">
+                        <h1>Red Dead Redemption 2</h1>
+                    </div>
+
+                    <div class="column is-two-thirds">
+                        <div class="product">
+                            <div class="product-preview">
+                                <img src="images/preview/rdr2.jpg" alt="Превью">
+                            </div>
+
+                            <div class="product-description">
+                                <h2>Об игре</h2>
+                                <div>
+                                    Америка, 1899 год. <br><br>
+
+                                    Артур Морган и другие подручные Датча ван дер Линде вынуждены пуститься в бега. Их банде предстоит участвовать в кражах, грабежах и перестрелках в самом сердце Америки. За ними по пятам идут федеральные агенты и лучшие в стране охотники за головами, а саму банду разрывают внутренние противоречия. Артуру предстоит выбрать, что для него важнее: его собственные идеалы или же верность людям, которые его взрастили.<br><br>
+
+                                    В комплекте новый контент для сюжетного режима, полноценный фоторежим и доступ к совместной игре в мире Red Dead Online, позволяющие игрокам найти свое место на Диком Западе. Вы можете выслеживать опасных преступников в роли охотника за головами, развивать собственное дело в роли торговца, разыскивать уникальные сокровища в роли коллекционера и открыть подпольное производство алкоголя в роли самогонщика, а также многое другое.<br><br>
+
+                                    Red Dead Redemption 2 для PC задействует всю мощь современных компьютеров, чтобы максимально правдоподобно представить каждый уголок этого огромного, насыщенного деталями мира. В числе графических и технических усовершенствований – увеличенная дальность прорисовки; улучшения в системе глобального освещения и рассеянного затенения, обеспечивающие более реалистичную смену времени суток; улучшенные отражения и тени более высокого разрешения на всех расстояниях; тесселяция текстур древесной коры и более качественные текстуры травы и меха, за счет чего животные и растения смотрятся еще натуралистичнее.<br>
+
+                                    Кроме того, Red Dead Redemption 2 для PC поддерживает режим HDR, разрешение 4K и выше, конфигурации с несколькими мониторами, широкоэкранные мониторы, более высокую частоту кадров и не только.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="other-products">
+                            <h2>Похожие игры</h2>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <aside class="product-data">
+                            <div class="product-logo">
+                                <img src="images/logos/rdr2.png" alt="Логотип">
+                            </div>
+
+                            <div class="product-categories">
+                                <ul class="column is-12">
+                                    <li>
+                                        Шутер
+                                    </li>
+                                    <li>
+                                        Приключения
+                                    </li>
+                                    <li>
+                                        От одного лица
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="product-price">
+                                1675 &#x20bd <span class="discount-price">2800 &#x20bd</span><span class="discount">55 %</span>
+                            </div>
+
+                            <div class="to-cart">
+                                <button>Добавить в корзину</button>
+                            </div>
+
+                            <div class="product-data-information">
+                                <div>
+                                    <h3>Разработчик</h3>
+                                    Rockstar Games
+                                </div>
+
+                                <div>
+                                    <h3>Дата выхода</h3>
+                                    5 декабря 2019 года
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Что такое Steam</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Сообщество</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Пресс-релизы</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </body>
+</html>
