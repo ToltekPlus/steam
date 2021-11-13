@@ -17,6 +17,7 @@ function addGameToCart(id) {
 
     Toast.fire({
         icon: "success",
-        title: "Товар под номером " + id + " в корзине"
+        //title: "Товар под номером " + id + " в корзине"
+        text: "Товар под номером " + id + " в корзине"
     })
 }
