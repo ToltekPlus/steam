@@ -1,0 +1,55 @@
+.product-in-cart
+  display: flex
+  justify-content: flex-start
+  align-items: start
+  padding: 15px 0
+  border-bottom: 1px solid $bg-color-header
+  &:last-child
+    border: none
+  .product-in-cart__image,
+  .product-in-cart__description
+    width: 50%
+    padding-right: 15px
+    .product-in-cart__company-information
+      color: $discount
+      font-size: 1em
+    .product-in-cart__price-information
+      margin: 8px 0
+      font-family: $font-family-base
+      font-size: 1.2em
+      color: $font-color
+      span
+        margin: 0 0 0 15px
+        font-size: 0.7em
+        font-weight: $font-base
+      .discount-price
+        color: $font-color-preview
+        border-radius: 3px
+        text-decoration: line-through
+      .discount
+        font-size: 0.7em
+    .product-in-cart__product-categories
+      ul
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        margin: 0 !important
+        padding: 0 !important
+      li
+        margin: 0 5px 0 0
+        padding: 5px 10px
+        background-color: $font-color-preview
+        border-radius: 5px
+        font-size: 0.7em
+.cart
+  background-color: rgba(107, 155, 187, 0.3)
+  padding: 25px
+  border-radius: 5px
+  .cart-information
+    margin: 15px 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    font-size: 1em
+    line-height: 1.5
+    color: $font-color

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Магазин игр Steam - Корзина</title>
+        <link rel='stylesheet' href='styles/style.css'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    </head>
+    <body>
+        <header class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                        <span class="steam">
+                            Steam
+                        </span>
+                        </span>
+                    </div>
+
+                    <div class="column is-6">
+                        <nav>
+                            <ul class="menu-list">
+                                <li>
+                                    <a href="">Магазин</a>
+                                </li>
+                                <li>Новости</li>
+                                <li>Поддержка</li>
+                                <li>Сообщество</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="heart-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="basket-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="login">
+                            <div class="dropdown">
+                              <div class="dropdown-trigger userpic">
+                                  <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                              </div>
+                              <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+                                <div class="dropdown-content">
+                                  <a href="#" class="dropdown-item">
+                                    Мои игры
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Кошелек
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Архив
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Выход
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="columns is-full is-centered is-vertical catalog-block">
+            <div class="column is-8">
+                <div class="columns is-multiline">
+                    <div class="column is-full">
+                        <h1>Корзина</h1>
+                    </div>
+
+                    <div class="column is-two-thirds">
+                        <div class="product-in-cart">
+                            <div class="product-in-cart__image">
+                                <img src="images/preview/rdr2.jpg" alt="Обложка">
+                            </div>
+                            <div class="product-in-cart__description">
+                                <h2>Red Dead Redemption 2</h2>
+                                <div class="product-in-cart__company-information">
+                                    RockStart Games
+                                </div>
+                                <div class="product-in-cart__price-information">
+                                    1675 &#x20bd <span class="discount-price">2800 &#x20bd</span><span class="discount">55 %</span>
+                                </div>
+                                <div class="product-in-cart__product-categories">
+                                    <ul class="column is-12">
+                                        <li>
+                                            Шутер
+                                        </li>
+                                        <li>
+                                            Приключения
+                                        </li>
+                                        <li>
+                                            От одного лица
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-in-cart">
+                            <div class="product-in-cart__image">
+                                <img src="images/preview/rdr2.jpg" alt="Обложка">
+                            </div>
+                            <div class="product-in-cart__description">
+                                <h2>Red Dead Redemption 2</h2>
+                                <div class="product-in-cart__company-information">
+                                    RockStart Games
+                                </div>
+                                <div class="product-in-cart__price-information">
+                                    1675 &#x20bd <span class="discount-price">2800 &#x20bd</span><span class="discount">55 %</span>
+                                </div>
+                                <div class="product-in-cart__product-categories">
+                                    <ul class="column is-12">
+                                        <li>
+                                            Шутер
+                                        </li>
+                                        <li>
+                                            Приключения
+                                        </li>
+                                        <li>
+                                            От одного лица
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <aside class="cart">
+                            <div>
+                                <h2>Информация о покупке</h2>
+                            </div>
+                            <div class="cart-information">
+                                <div>
+                                    <h3>Количество</h3>
+                                    <h3>Скидка</h3>
+                                    <h3>Итого</h3>
+                                </div>
+                                <div>
+                                    2<br>
+                                    55 %<br>
+                                    3580 &#x20bd <br>
+                                </div>
+                            </div>
+                            <div class="to-pay">
+                                <button>Оформить</button>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Что такое Steam</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Сообщество</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Пресс-релизы</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </body>
+</html>
