@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Магазин игр Steam - UI формы</title>
+        <link rel='stylesheet' href='styles/style.css'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    </head>
+    <body>
+        <header class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                        <span class="steam">
+                            Steam
+                        </span>
+                        </span>
+                    </div>
+
+                    <div class="column is-6">
+                        <nav>
+                            <ul class="menu-list">
+                                <li>
+                                    <a href="">Магазин</a>
+                                </li>
+                                <li>Новости</li>
+                                <li>Поддержка</li>
+                                <li>Сообщество</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="heart-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="basket-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="login">
+                            <div class="dropdown">
+                              <div class="dropdown-trigger userpic">
+                                  <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                              </div>
+                              <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+                                <div class="dropdown-content">
+                                  <a href="#" class="dropdown-item">
+                                    Мои игры
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Кошелек
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Архив
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Выход
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns is-multiline">
+                    <div class="column is-full form-title">
+                        <h1>Формы</h1>
+                    </div>
+
+                    <div class="column is-two-thirds form">
+                        <div class="form-control">
+                            <label for="name_game">Название игры</label>
+                            <input type="text" name="name_game" id="name_game" placeholder="Введите название">
+                        </div>
+
+                        <div class="form-control">
+                            <label for="category_game">Жанр игры</label>
+                            <select name="category_game" id="category_game">
+                                <option value="0">Шутер</option>
+                                <option value="1">РПГ</option>
+                                <option value="2">ММОРПГ</option>
+                            </select>
+                            <div class="add-form-control">
+                                <span>добавить жанр</span>
+                            </div>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="description_game">Описание игры</label>
+                            <textarea type="text" name="description_game" id="description_game" placeholder="Описание игры"></textarea>
+                        </div>
+
+                        <div class="form-control">
+                            <div class="file is-info is-small has-name"  id="file-js-example">
+                                <label class="file-label">
+                                    <input class="file-input" type="file" name="resume">
+                                    <span class="file-cta">
+                                      <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                      </span>
+                                      <span class="file-label">
+                                        Выбрать файл
+                                      </span>
+                                    </span>
+                                    <span class="file-name">
+                                      Обложка игры
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="checkbox">Добавить в каталог</label>
+                            <input type="checkbox" id="checkbox">
+                        </div>
+
+                        <div class="form-control">
+                            <div class="buttons">
+                                <button class="button is-success is-light">Добавить</button>
+                                <button class="button is-danger is-light">Удалить</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <aside class="statistics">
+                            <h2>Статистика Steam</h2>
+
+                            <div class="statistics-information">
+                                <div>
+                                    <h3>Количество покупок</h3>
+                                    <h3>Средний чек</h3>
+                                    <h3>Количество совершенных операций</h3>
+                                    <h3>Средняя стоимость корзины</h3>
+                                </div>
+                                <div>
+                                    35<br>
+                                    3580 &#x20bd<br>
+                                    35 <br>
+                                    3580 &#x20bd <br>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Что такое Steam</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Сообщество</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Пресс-релизы</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </body>
+</html>
