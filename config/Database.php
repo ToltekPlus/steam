@@ -7,10 +7,6 @@ use PDOException;
 
 class Database
 {
-    private $host = "localhost";
-    private $dbname = "steam";
-    private $user = "root";
-    private $password = "";
     public $connect;
 
     /**
@@ -19,7 +15,7 @@ class Database
     public function __construct()
     {
         try {
-            $this->connect = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";", $this->user, $this->password);
+            $this->connect = new PDO("mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"] . ";", $_ENV["DB_USER"], $_ENV["DB_PASSWORD"]);
             $this->connect->exec("set names utf8");
         }catch (PDOException $e) {
             echo "Произошла ошибка следующего типа: " . $e->getMessage();
