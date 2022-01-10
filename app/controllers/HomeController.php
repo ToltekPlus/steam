@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
+use App\Model\UserRoleModel;
+use Core\View;
+
 class HomeController
 {
     /**
-     * HomeController constructor.
+     * @throws \Exception
      */
-    public function __construct()
+    public function index()
     {
+        $roles = UserRoleModel::all();
 
+        View::render('index/index.php', ['roles' => $roles]);
     }
-
 }
