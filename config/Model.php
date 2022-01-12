@@ -69,4 +69,16 @@ class Model {
 
         return $result;
     }
+
+    /**
+     * @param $field
+     * @param $table
+     * @param $sid
+     * @return array
+     */
+    public function getAuthRole(string $field, string $table, int $sid) : array
+    {
+        $sql = "SELECT " . $field . " FROM " . $table . " WHERE user_id = " . $sid;
+        return $this->connect->query($sql);
+    }
 }

@@ -38,4 +38,15 @@ class UserRoleModel extends Model {
         $selected_tables = $users_role->selected_tables($users_role->table, $users_role->pivot_tables);
         return $users_role->getById($selected_tables, $id);
     }
+
+
+    /**
+     * Возвращаем роль пользователя
+     *
+     * @return array
+     */
+    public function getByAuthId()
+    {
+        return $this->getAuthRole('role_id', $this->table, (int)$_SESSION['sid'])[0]->role_id;
+    }
 }

@@ -3,10 +3,16 @@
 namespace App\Controller;
 
 use App\Model\UserRoleModel;
+use App\Policy\HomePolicy;
 use Core\View;
 
-class HomeController
+class HomeController extends HomePolicy
 {
+    public function __construct()
+    {
+        //parent::__construct();
+    }
+
     /**
      * @throws \Exception
      */
@@ -14,6 +20,6 @@ class HomeController
     {
         $roles = UserRoleModel::all();
 
-        View::render('index/index.php', ['roles' => $roles]);
+        View::render('dashboard/index.php', ['roles' => $roles]);
     }
 }

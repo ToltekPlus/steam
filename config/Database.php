@@ -43,7 +43,7 @@ class Database
      */
     public function execute(string $sql, ?array $arguments) : array
     {
-        $query = $this->connect-prepare($sql);
+        $query = $this->connect->prepare($sql);
         $query->execute($arguments);
         return $query->fetch(PDO::FETCH_ASSOC);
     }

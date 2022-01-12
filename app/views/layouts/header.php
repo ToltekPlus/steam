@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Магазин игр Steam</title>
-    <link rel='stylesheet' href='styles/style.css'>
+    <link rel='stylesheet' href='/styles/style.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
@@ -32,6 +32,23 @@
                         <li>Новости</li>
                         <li>Поддержка</li>
                         <li>Сообщество</li>
+                        <li>
+                            <a href="/auth">
+                                Псевдоаккаунт <?=$_SESSION['sid']?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout">
+                                Выйти
+                            </a>
+                        </li>
+                        <?php if ($_SESSION['sid']):?>
+                        <li>
+                            <a href="/roles">
+                                Роли
+                            </a>
+                        </li>
+                        <?php endif;?>
                     </ul>
                 </nav>
             </div>
@@ -56,8 +73,8 @@
                         </span>
 
                 <span class="login">
-                            <button class="button is-small" id="enterToAccount">Войти</button>
-                        </span>
+                    <button class="button is-small" id="enterToAccount">Войти</button>
+                </span>
             </div>
         </div>
     </div>

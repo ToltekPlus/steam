@@ -23,7 +23,6 @@ trait QueryBuilder {
                 $selected_table .= $table['table'] . ', ';
             }
         }
-
         $where = $this->queryConditionWhereBuilder($tables, $id);
 
         return "SELECT * FROM " . $selected_table . $where;
@@ -36,7 +35,7 @@ trait QueryBuilder {
      * @param int|null $id
      * @return string
      */
-    public function queryConditionWhereBuilder(array $tables, ?int $id) : string
+    public function queryConditionWhereBuilder(array $tables, ?int $id) : ?string
     {
         // TODO изменить условие для достоверной выборки
         $count = count($tables);
