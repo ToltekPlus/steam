@@ -37,18 +37,6 @@
                                 Псевдоаккаунт <?=$_SESSION['sid']?>
                             </a>
                         </li>
-                        <li>
-                            <a href="/logout">
-                                Выйти
-                            </a>
-                        </li>
-                        <?php if ($_SESSION['sid']):?>
-                        <li>
-                            <a href="/roles">
-                                Роли
-                            </a>
-                        </li>
-                        <?php endif;?>
                     </ul>
                 </nav>
             </div>
@@ -71,10 +59,41 @@
                             <ion-icon name="basket-outline"></ion-icon>
                           </span>
                         </span>
-
+                <?php if ($_SESSION['sid']):?>
+                <span class="login">
+                    <div class="dropdown">
+                      <div class="dropdown-trigger userpic">
+                          <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                      </div>
+                      <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+                        <div class="dropdown-content">
+                          <a href="#" class="dropdown-item">
+                            Мои игры
+                          </a>
+                          <a href="#" class="dropdown-item">
+                            Кошелек
+                          </a>
+                          <a href="#" class="dropdown-item">
+                            Архив
+                          </a>
+                            <a href="/roles" class="dropdown-item">
+                                Роли
+                            </a>
+                            <a href="/companies" class="dropdown-item">
+                                Компании
+                            </a>
+                          <a href="/logout" class="dropdown-item">
+                            Выход
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                </span>
+                <?php else:?>
                 <span class="login">
                     <button class="button is-small" id="enterToAccount">Войти</button>
                 </span>
+                <?php endif;?>
             </div>
         </div>
     </div>

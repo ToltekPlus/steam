@@ -35,7 +35,7 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
         // TODO реализовать более удобный вывод одной записи
         $user = UserRoleModel::find($_GET['id'])[0];
 
-        View::render('administrator/roles/get.php', ['user' => $user]);
+        View::render('administrator/roles/index.php', ['user' => $user]);
     }
 
     public function show()

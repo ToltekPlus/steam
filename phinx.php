@@ -5,14 +5,14 @@
  *
  * vendor\bin\phinx create NameTable            => создаем новую миграцию, где Name - название таблицы
  * vendor\bin\phinx migrate                     => выполняем работу всех миграций
- * vendor\bin\phinx seed-run -s NameSeeder      => создаем новый сидер, где Name - название сидера
- * vendor\bin\phinx seed-run -s UserSeeder      => выполняем работу сидера
+ * vendor\bin\phinx seed:create NameSeeder      => создаем новый сидер, где Name - название сидера
+ * vendor\bin\phinx seed:run -s UserSeeder      => выполняем работу сидера
  *
  */
 
 
 $pdo = new PDO(
-    'mysql:host=127.0.0.1;dbname=steam;charset=utf8', 'root', '',
+    'mysql:host=127.0.0.1;dbname=steam;charset=utf8', 'root', 'root',
     array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_PERSISTENT => false,

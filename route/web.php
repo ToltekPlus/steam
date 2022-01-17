@@ -13,4 +13,7 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('roles', ['controller' => 'UserRoleController', 'action' => 'index']);
 $router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' => 'get']);
 
+/*=== РАБОТА С КОМПАНИЯМИ ===*/
+$router->add('companies', ['controller' => 'CompanyController', 'action' => 'index']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);

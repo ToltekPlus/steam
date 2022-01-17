@@ -5,10 +5,11 @@ namespace App\Policy;
 use App\Model\UserRoleModel;
 use Core\View;
 
-class HomePolicy {
+class CompanyPolicy {
     protected $role;
 
     /**
+     * UserRolePolicy constructor.
      * @throws \Exception
      */
     public function __construct()
