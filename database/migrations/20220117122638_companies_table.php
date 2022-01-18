@@ -20,6 +20,8 @@ final class CompaniesTable extends AbstractMigration
     {
         $table = $this->table('companies');
         $table->addColumn('name_company', 'string')
+            ->addColumn('description_company', 'string')
+            ->addColumn('logotype_company', 'string')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->create();

@@ -31,6 +31,17 @@ class Model {
     }
 
     /**
+     * @param string $table
+     * @return object
+     */
+    public function countRecords(string $table) : object
+    {
+        $sql = "SELECT count('id') as count FROM {$table}";
+        $result = $this->connect->query($sql);
+        return reset($result);
+    }
+
+    /**
      * @param array $tables
      * @return array
      */
@@ -80,5 +91,34 @@ class Model {
     {
         $sql = "SELECT " . $field . " FROM " . $table . " WHERE user_id = " . $sid;
         return $this->connect->query($sql);
+    }
+
+    /**
+     * @param $table
+     * @param $fields
+     * @return void
+     */
+    public function storeToTable($table, $fields)
+    {
+        // TODO декомпозировать и исправить недочеты
+        $set = '';
+        $values = '';
+
+        $array = array_keys($fields);
+        $last_key = end($array);
+
+        foreach ($fields as $key => $value) {
+            if ($key == $last_key) {
+                $values .= ':' . $key;
+                $set .= $key;
+            }else {
+                $values .= ':' . $key . ',';
+                $set .= $key . ',';
+            }
+        }
+
+        $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
+
+        $this->connect->execute($sql, $fields);
     }
 }

@@ -17,4 +17,21 @@ class CompanyModel extends Model {
     {
         return $this->getAll($this->table);
     }
+
+    /**
+     * @return object
+     */
+    public function count() : object
+    {
+        return $this->countRecords($this->table);
+    }
+
+    /**
+     * @param $args
+     * @return void
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
+    }
 }

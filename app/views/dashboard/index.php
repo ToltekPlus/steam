@@ -7,7 +7,7 @@
                 <option>Уровни доступа</option>
                 <?php foreach ($roles as $role): ?>
                     <option value="<?=$role->role_id; ?>" name="<?=$role->role_id; ?>">
-                        <?=$role->role; ?>
+                        <?=$role->name_role; ?>
                     </option>
                 <?php endforeach; ?>
             </select>

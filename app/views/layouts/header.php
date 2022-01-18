@@ -34,7 +34,7 @@
                         <li>Сообщество</li>
                         <li>
                             <a href="/auth">
-                                Псевдоаккаунт <?=$_SESSION['sid']?>
+                                Псевдоаккаунт
                             </a>
                         </li>
                     </ul>
@@ -59,11 +59,11 @@
                             <ion-icon name="basket-outline"></ion-icon>
                           </span>
                         </span>
-                <?php if ($_SESSION['sid']):?>
+                <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                          <img src="../images/userpic/userpic.jpg" alt="Юзерпик" >
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">

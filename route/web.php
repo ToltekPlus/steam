@@ -15,5 +15,8 @@ $router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' 
 
 /*=== РАБОТА С КОМПАНИЯМИ ===*/
 $router->add('companies', ['controller' => 'CompanyController', 'action' => 'index']);
+$router->add('companies/add', ['controller' => 'CompanyController', 'action' => 'show']);
+$router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
+$router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'get']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

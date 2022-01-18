@@ -13,7 +13,7 @@
                 <?php foreach ($users as $item): ?>
                     <tr>
                         <td><?=$item->phone?></td>
-                        <td><?=$item->role?></td>
+                        <td><?=$item->name_role?></td>
                         <td><?=$item->level?></td>
                         <td>
                             <a href="/roles/role?id=<?=$item->id?>">
