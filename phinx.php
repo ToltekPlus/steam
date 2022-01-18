@@ -10,9 +10,10 @@
  *
  */
 
+require_once 'env.php';
 
 $pdo = new PDO(
-    'mysql:host=127.0.0.1;dbname=steam;charset=utf8', 'root', 'root',
+    "mysql:host=" . $_ENV["DB_HOST"] . ";dbname=" . $_ENV["DB_NAME"] . ";", $_ENV["DB_USER"], $_ENV["DB_PASSWORD"],
     array(
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_PERSISTENT => false,
