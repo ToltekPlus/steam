@@ -19,4 +19,9 @@ $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'get']);
 
+/*=== РАБОТА С ЖАНРАМИ ===*/
+$router->add('genres', ['controller' => 'GenreController', 'action' => 'index']);
+$router->add('genres/add', ['controller' => 'GenreController', 'action' => 'show']);
+$router->add('genres/store', ['controller' => 'GenreController', 'action' => 'store']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);

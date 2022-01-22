@@ -3,7 +3,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class CompanySeeder extends AbstractSeed
+class GenreSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -17,22 +17,26 @@ class CompanySeeder extends AbstractSeed
     {
         $data = [
             [
-                'name_company' => 'EA',
-                'description_company' => 'Все о еа',
-                'logotype_company' => '',
+                'name_genre' => 'Хоррор',
+                'icon_genre' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'name_company' => 'Blizzard',
-                'description_company' => 'Все о близах',
-                'logotype_company' => '',
+                'name_genre' => 'RTC',
+                'icon_genre' => '',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name_genre' => 'BattleRoyal',
+                'icon_genre' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
 
-        $company = $this->table('companies');
-        $company->insert($data)->save();
+        $genre = $this->table('genres');
+        $genre->insert($data)->save();
     }
 }

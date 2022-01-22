@@ -3,6 +3,7 @@
 namespace App\Service;
 
 trait UploadFile {
+    // TODO разобраться с косяком загрузки png-изображений
     //параметры загружаемых изображений
     private $valid_types = ['image/png', 'image/jpg', 'image/jpeg'];
     private $max_size = 1000000 * 1024;
@@ -41,7 +42,7 @@ trait UploadFile {
      * @param string $image
      * @return array|false
      */
-    protected function getImageType(string $image) : array|false
+    protected function getImageType(string $image) : ?array
     {
         if (empty($image)) return false; else return getimagesize($image);
     }
@@ -83,7 +84,7 @@ trait UploadFile {
     {
         if (!$type) return false;
 
-        $result = array_search($type['mime'], $this->valid_types);
+        $result = array_search($type['mime'], $this->valid_types, true);
         if (!empty($result)) return true;
 
         return false;

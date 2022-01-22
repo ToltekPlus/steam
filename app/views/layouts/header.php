@@ -82,6 +82,9 @@
                             <a href="/companies" class="dropdown-item">
                                 Компании
                             </a>
+                            <a href="/genres" class="dropdown-item">
+                                Жанры
+                            </a>
                           <a href="/logout" class="dropdown-item">
                             Выход
                           </a>
