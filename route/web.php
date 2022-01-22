@@ -23,5 +23,7 @@ $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'actio
 $router->add('genres', ['controller' => 'GenreController', 'action' => 'index']);
 $router->add('genres/add', ['controller' => 'GenreController', 'action' => 'show']);
 $router->add('genres/store', ['controller' => 'GenreController', 'action' => 'store']);
+$router->add('genres/edit?{id}', ['controller' => 'GenreController', 'action' => 'edit']);
+$router->add('genres/update', ['controller' => 'GenreController', 'action' => 'update']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

@@ -52,6 +52,19 @@ class Model {
     }
 
     /**
+     * Выборка из одной таблице по id
+     *
+     * @param string $table
+     * @param int $id
+     * @return array
+     */
+    public function getByIdFromTable(string $table, int $id) : array
+    {
+        $sql = "SELECT * FROM " . $table . " WHERE id = " . $id;
+        return $this->connect->query($sql);
+    }
+
+    /**
      * @param array $tables
      * @param int $id
      * @return array
@@ -120,5 +133,42 @@ class Model {
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
 
         $this->connect->execute($sql, $fields);
+    }
+
+    /**
+     * @param $table
+     * @param $id
+     * @param $args
+     */
+    public function updateForTable($table, $id, $args)
+    {
+        $sql = $this->builderForUpdate($id, $table, $args);
+
+        $this->connect->execute($sql, $args);
+    }
+
+    /**
+     * @param $id
+     * @param $table
+     * @param $fields
+     * @return string
+     */
+    public function builderForUpdate($id, $table, $fields)
+    {
+        $set = ' SET ';
+        $array = array_keys($fields);
+        $last_key = end($array);
+
+        foreach ($fields as $key => $value) {
+            if ($key == $last_key) {
+                $set .= $key . ' = :' . $key;
+            }else {
+                $set .= $key . '= :' . $key . ', ';
+            }
+        }
+
+        $sql = 'UPDATE ' . $table . $set . ' WHERE id=' . $id;
+
+        return $sql;
     }
 }

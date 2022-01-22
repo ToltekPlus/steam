@@ -23,8 +23,14 @@ class GenreController extends GenrePolicy implements ControllerInterface {
 
         View::render('administrator/genres/index.php', ['genres' => $result]);
     }
-    public function get(){
 
+    /**
+     * @return array
+     */
+    public function get()
+    {
+        $genre = new GenreModel();
+        return $genre->find($_GET['id']);
     }
 
     /**
@@ -52,12 +58,35 @@ class GenreController extends GenrePolicy implements ControllerInterface {
         $genre->store($args);
     }
 
-    public function edit(){
+    /**
+     * @throws \Exception
+     */
+    public function edit()
+    {
+        $genre = $this->get();
 
+        View::render('administrator/genres/edit.php', ['genre' => $genre]);
     }
-    public function update(){
 
+    /**
+     * Обновление информации о жанрах
+     */
+    public function update()
+    {
+        // TODO реализовать проверку наличия изображения
+        $icon = $this->upload($_FILES['icon'], $this->icon_path);
+
+        $args = [
+            'name_genre' => $_POST['name_genre'],
+            'icon_genre' => $icon,
+            'created_at' => date('Y-m-d H:i:s', time()),
+            'updated_at' => date('Y-m-d H:i:s', time())
+        ];
+
+        $genre = new GenreModel();
+        $genre->update($args, $_POST['id']);
     }
+
     public function delete(){
 
     }
