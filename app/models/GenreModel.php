@@ -2,9 +2,10 @@
 
 namespace App\Model;
 
+use App\Rule\ModelInterface;
 use Core\Model;
 
-class GenreModel extends Model {
+class GenreModel extends Model implements ModelInterface {
     /**
      * @var string
      */
@@ -36,9 +37,22 @@ class GenreModel extends Model {
         return array_shift($genre);
     }
 
-
+    /**
+     * @param $args
+     * @param $id
+     */
     public function update($args, $id)
     {
         return $this->updateForTable($this->table, $id, $args);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function delete($id)
+    {
+        $args = ['id' => $id];
+        return $this->deleteFromTable($this->table, $args);
     }
 }

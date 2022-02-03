@@ -25,5 +25,6 @@ $router->add('genres/add', ['controller' => 'GenreController', 'action' => 'show
 $router->add('genres/store', ['controller' => 'GenreController', 'action' => 'store']);
 $router->add('genres/edit?{id}', ['controller' => 'GenreController', 'action' => 'edit']);
 $router->add('genres/update', ['controller' => 'GenreController', 'action' => 'update']);
+$router->add('genres/delete?{id}', ['controller' => 'GenreController', 'action' => 'delete']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

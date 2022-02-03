@@ -171,7 +171,6 @@ class Router {
      *
      * @return string урл с удаленными параметрами запроса
      */
-    // TODO решить проблему с ? в роуте
     protected function removeQueryStringVariables($url)
     {
         if ($url != '') {

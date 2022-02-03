@@ -11,6 +11,7 @@
                 <tr>
                     <th>Жанры</th>
                     <th></th>
+                    <th></th>
                 </tr>
 
                 <?php foreach ($genres as $genre) : ?>
@@ -18,6 +19,9 @@
                         <td><?=$genre->name_genre;?></td>
                         <td>
                             <a href="/genres/edit?id=<?=$genre->id?>">Редактировать</a>
+                        </td>
+                        <td style="width: 80px; text-align: center;">
+                            <a href="/genres/delete?id=<?=$genre->id?>">X</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

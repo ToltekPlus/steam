@@ -5,18 +5,20 @@ namespace App\Controller;
 use App\Model\GenreModel;
 use App\Policy\GenrePolicy;
 use App\Rule\ControllerInterface;
+use App\Service\DataBuilder;
 use App\Service\UploadFile;
 use Core\View;
 
 class GenreController extends GenrePolicy implements ControllerInterface {
     use UploadFile;
+    use DataBuilder;
 
     protected $icon_path = '/resources/images/administrator/genres/';
 
     /**
      * @throws \Exception
      */
-    public function index()
+    public function index() : void
     {
         $genres = new GenreModel();
         $result = $genres->all();
@@ -25,34 +27,30 @@ class GenreController extends GenrePolicy implements ControllerInterface {
     }
 
     /**
-     * @return array
+     * @param $id
+     * @return object
      */
-    public function get()
+    public function get($id) : object
     {
         $genre = new GenreModel();
-        return $genre->find($_GET['id']);
+        return $genre->find($id);
     }
 
     /**
      * @throws \Exception
      */
-    public function show(){
+    public function show() : void
+    {
         View::render('administrator/genres/show.php');
     }
 
     /**
      * Добавление нового жанра
      */
-    public function store()
+    public function store() : void
     {
         $icon = $this->upload($_FILES['icon'], $this->icon_path);
-
-        $args = [
-            'name_genre' => $_POST['name_genre'],
-            'icon_genre' => $icon,
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
-        ];
+        $args = $this->dataBuilder($_POST, ['icon_genre' => $icon]);
 
         $genre = new GenreModel();
         $genre->store($args);
@@ -61,9 +59,9 @@ class GenreController extends GenrePolicy implements ControllerInterface {
     /**
      * @throws \Exception
      */
-    public function edit()
+    public function edit() : void
     {
-        $genre = $this->get();
+        $genre = $this->get($_GET['id']);
 
         View::render('administrator/genres/edit.php', ['genre' => $genre]);
     }
@@ -71,23 +69,33 @@ class GenreController extends GenrePolicy implements ControllerInterface {
     /**
      * Обновление информации о жанрах
      */
-    public function update()
+    public function update() : void
     {
         // TODO реализовать проверку наличия изображения
         $icon = $this->upload($_FILES['icon'], $this->icon_path);
-
-        $args = [
-            'name_genre' => $_POST['name_genre'],
-            'icon_genre' => $icon,
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
-        ];
+        $args = $this->dataBuilder($_POST, ['icon_genre' => $icon]);
 
         $genre = new GenreModel();
         $genre->update($args, $_POST['id']);
     }
 
-    public function delete(){
+    /**
+     * Удаление жанра и изображения из таблицы
+     */
+    public function delete() : void
+    {
+        $this->deleteImageFromDirectory($_GET['id']);
 
+        $genre = new GenreModel();
+        $genre->delete($_GET['id']);
+    }
+
+    /**
+     * @param $id
+     */
+    public function deleteImageFromDirectory($id)
+    {
+        $genre = $this->get($id);
+        $this->deleteImage($genre->icon_genre);
     }
 }

@@ -171,4 +171,18 @@ class Model {
 
         return $sql;
     }
+
+    /**
+     * @param $table
+     * @param $args
+     * @return bool
+     */
+    public function deleteFromTable($table, $args)
+    {
+        $sql = 'DELETE FROM ' . $table . ' WHERE id = :id';
+
+        $this->connect->execute($sql, $args);
+
+        return true;
+    }
 }
