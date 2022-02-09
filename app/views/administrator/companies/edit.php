@@ -17,7 +17,7 @@
 
                         <div class="form-control">
                             <label for="description_game">Описание компании</label>
-                            <textarea type="text" name="description_company" id="description_company" placeholder="История компании"></textarea>
+                            <textarea type="text" name="description_company" id="description_company" placeholder="История компании"><?=$company->description_company?></textarea>
                         </div>
 
                         <div class="form-control">

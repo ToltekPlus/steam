@@ -22,11 +22,11 @@ $router->add('companies/update', ['controller' => 'CompanyController', 'action' 
 $router->add('companies/delete?{id}', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/
-$router->add('genres', ['controller' => 'GenreController', 'action' => 'index']);
+$router->add('genres/list', ['controller' => 'GenreController', 'action' => 'index']);
 $router->add('genres/add', ['controller' => 'GenreController', 'action' => 'show']);
 $router->add('genres/store', ['controller' => 'GenreController', 'action' => 'store']);
 $router->add('genres/edit?{id}', ['controller' => 'GenreController', 'action' => 'edit']);
 $router->add('genres/update', ['controller' => 'GenreController', 'action' => 'update']);
-$router->add('genres/delete?{id}', ['controller' => 'GenreController', 'action' => 'delete']);
+$router->add('genres/delete', ['controller' => 'GenreController', 'action' => 'delete']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

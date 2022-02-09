@@ -1,7 +1,8 @@
 import '../sass/app.sass'
 
-import '../js/auth_form'
-import '../js/add_to_cart'
-import '../js/dropdown_auth_menu'
-import '../js/animated_add_to_cart'
-import '../js/upload_file'
+import './db/listener'
+import './auth/auth_form'
+import './cart/add_to_cart'
+import './auth/dropdown_auth_menu'
+import './cart/animated_add_to_cart'
+import './db/upload_file'

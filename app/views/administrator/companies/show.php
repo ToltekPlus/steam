@@ -39,7 +39,7 @@
 
                             <div class="form-control">
                                 <div class="buttons">
-                                    <button class="button is-success is-light">Добавить</button>
+                                    <button class="button is-success is-light" type="submit">Добавить</button>
                                 </div>
                             </div>
                         </form>

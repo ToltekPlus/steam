@@ -84,10 +84,10 @@ class GenreController extends GenrePolicy implements ControllerInterface {
      */
     public function delete() : void
     {
-        $this->deleteImageFromDirectory($_GET['id']);
+        $this->deleteImageFromDirectory($_POST['id']);
 
         $genre = new GenreModel();
-        $genre->delete($_GET['id']);
+        $genre->delete($_POST['id']);
     }
 
     /**

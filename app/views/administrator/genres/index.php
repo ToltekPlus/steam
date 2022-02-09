@@ -21,7 +21,11 @@
                             <a href="/genres/edit?id=<?=$genre->id?>">Редактировать</a>
                         </td>
                         <td style="width: 80px; text-align: center;">
-                            <a href="/genres/delete?id=<?=$genre->id?>">X</a>
+                            <!--<a href="/genres/delete?id=<?=$genre->id?>">X</a>-->
+                            <form action="/delete" method="POST">
+                                <input type="hidden" value="<?=$genre->id?>" name="id">
+                                <button type="submit">X</button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach;?>
