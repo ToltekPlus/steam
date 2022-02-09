@@ -21,6 +21,9 @@
                     <td>
                         <a href="/companies/edit?id=<?=$company->id?>">Редактировать</a>
                     </td>
+                    <td style="width: 80px; text-align: center;">
+                        <a href="/companies/delete?id=<?=$company->id?>">X</a>
+                    </td>
                 </tr>
                 <?php endforeach;?>
             </table>

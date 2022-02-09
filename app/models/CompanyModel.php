@@ -34,4 +34,34 @@ class CompanyModel extends Model {
     {
         return $this->storeToTable($this->table, $args);
     }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    public function find(int $id)   : object
+    {
+        $company = $this->getByIdFromTable($this->table, $id);
+        return array_shift($company);
+    }
+
+    /**
+     * @param $args
+     * @param $id
+     * @return void
+     */
+    public function update($args, $id)
+    {
+        return $this->updateForTable($this->table, $id, $args);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function delete($id)
+    {
+        $args = ['id' => $id];
+        return $this->deleteFromTable($this->table, $args);
+    }
 }

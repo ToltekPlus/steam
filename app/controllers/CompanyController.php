@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Model\CompanyModel;
 use App\Policy\CompanyPolicy;
 use App\Rule\ControllerInterface;
+use App\Service\DataBuilder;
 use App\Service\UploadFile;
 use Core\View;
 
 class CompanyController extends CompanyPolicy implements ControllerInterface {
     use UploadFile;
-
+    use DataBuilder;
     protected $logotype_path = '/resources/images/administrator/companies/';
 
     /**
@@ -18,15 +19,20 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
      */
     public function index()
     {
-        $companies = new CompanyModel();
-        $result = $companies->all();
+        $company = new CompanyModel();
+        $result = $company->all();
 
         View::render('administrator/companies/index.php', ['companies' => $result]);
     }
 
-    public function get()
+    /**
+     * @return void
+     */
+    public function get($id) : object
     {
         // TODO реализовать выборку данных для редактирования
+        $company = new CompanyModel();
+        return $company->find($id);
     }
 
     /**
@@ -35,8 +41,8 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
      */
     public function show()
     {
-        $companies = new CompanyModel();
-        $count = $companies->count();
+        $company = new CompanyModel();
+        $count = $company->count();
 
         View::render('administrator/companies/show.php', ['count' => $count]);
     }
@@ -44,29 +50,51 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     /**
      * @return void
      */
-    public function store() {
-        // TODO использовать js в обработчике
+    public function store() : void {
         $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
-
-        $args = [
-            'name_company' => $_POST['name_company'],
-            'description_company' => $_POST['description_company'],
-            'logotype_company' => $logotype,
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
-        ];
+        $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
 
         $company = new CompanyModel();
         $company->store($args);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function edit() {
+        $company = $this->get($_GET['id']);
 
+        View::render('administrator/companies/edit.php', ['company' => $company]);
     }
+    /**
+     * Обновление информации о компаниях
+     */
     public function update() {
+        // TODO реализовать проверку наличия изображения
+        $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
+        $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
+
+        $company = new CompanyModel();
+        $company->update($args, $_POST['id']);
 
     }
-    public function delete() {
+    /**
+     * Удаление компании и изображения из таблицы
+     */
+    public function delete() : void
+    {
+        $this->deleteImageFromDirectory($_GET['id']);
 
+        $company = new CompanyModel();
+        $company->delete($_GET['id']);
+    }
+
+    /**
+     * @param $id
+     */
+    public function deleteImageFromDirectory($id)
+    {
+        $company = $this->get($id);
+        $this->deleteImage($company->logotype_company);
     }
 }
