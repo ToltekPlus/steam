@@ -29,4 +29,7 @@ $router->add('genres/edit?{id}', ['controller' => 'GenreController', 'action' =>
 $router->add('genres/update', ['controller' => 'GenreController', 'action' => 'update']);
 $router->add('genres/delete', ['controller' => 'GenreController', 'action' => 'delete']);
 
+/*=== РАБОТА С ПСЕВДОСЫЛКАМИ ===*/
+$router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'generate']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);

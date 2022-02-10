@@ -16,7 +16,7 @@
                         <div class="form-control">
                             <div class="file is-info is-small has-name"  id="file-js-example">
                                 <label class="file-label">
-                                    <input class="file-input" type="file" name="icon">
+                                    <input class="file-input" type="file" name="icon" id="file">
                                     <span class="file-cta">
                                               <span class="file-icon">
                                                 <i class="fas fa-upload"></i>

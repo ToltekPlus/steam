@@ -6,11 +6,13 @@ use App\Model\GenreModel;
 use App\Policy\GenrePolicy;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
+use App\Service\DeleteFile;
 use App\Service\UploadFile;
 use Core\View;
 
 class GenreController extends GenrePolicy implements ControllerInterface {
     use UploadFile;
+    use DeleteFile;
     use DataBuilder;
 
     protected $icon_path = '/resources/images/administrator/genres/';

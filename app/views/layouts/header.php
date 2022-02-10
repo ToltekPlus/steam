@@ -85,6 +85,9 @@
                             <a href="/genres/list" class="dropdown-item">
                                 Жанры
                             </a>
+                            <a href="/symlinks" class="dropdown-item">
+                                Сгенерировать псевдосылки
+                            </a>
                           <a href="/logout" class="dropdown-item">
                             Выход
                           </a>

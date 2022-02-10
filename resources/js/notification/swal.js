@@ -1,4 +1,4 @@
-function notification(message) {
+export function notification(message) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
