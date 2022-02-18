@@ -4,9 +4,8 @@ var buttonAuth = document.getElementById("enterToAccount");
 if (buttonAuth) {
     buttonAuth.onclick = function() {
         Swal.fire({
-            title: 'Войти в аккаунт',
+            title: 'Регистрация',
             html:
-                '<a href="C:\OpenServer\domains\steam-dev\steam\resources\js\reg\reg_form.js" class="register-link">или зарегистрироваться</a>' +
                 '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
                 '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
             preConfirm: () => {
@@ -23,7 +22,7 @@ if (buttonAuth) {
           `,
             background: 'linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%)',
             confirmButtonColor: '#0C57C7',
-            confirmButtonText: 'Войти'
+            confirmButtonText: 'Зарегистрироваться'
         });
 
         new MaskInput(document.querySelector('.input-selector'), {

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Магазин игр Steam</title>
+        <link rel='stylesheet' href='styles/style.css'>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    </head>
+    <body>
+        <header class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                        <span class="steam">
+                            Steam
+                        </span>
+                        </span>
+                    </div>
+
+                    <div class="column is-6">
+                        <nav>
+                            <ul class="menu-list">
+                                <li>
+                                    <a href="">Магазин</a>
+                                </li>
+                                <li>Новости</li>
+                                <li>Поддержка</li>
+                                <li>Сообщество</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="column is-3">
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="heart-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="icon-text">
+                          <span class="icon">
+                            <ion-icon name="basket-outline"></ion-icon>
+                          </span>
+                        </span>
+
+                        <span class="login">
+                            <div class="dropdown">
+                              <div class="dropdown-trigger userpic">
+                                  <img src="images/userpic/userpic.jpg" alt="Юзерпик" >
+                              </div>
+                              <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
+                                <div class="dropdown-content">
+                                  <a href="#" class="dropdown-item">
+                                    Мои игры
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Кошелек
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Архив
+                                  </a>
+                                  <a href="#" class="dropdown-item">
+                                    Выход
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <section class="columns is-full is-centered is-vertical catalog">
+            <section class="column is-8 filter">
+                <div class="select is-rounded is-small">
+                    <select>
+                        <option>Все</option>
+                        <option>Стратегии</option>
+                        <option>Шутеры</option>
+                        <option>ММОРПГ</option>
+                    </select>
+                </div>
+
+                <div class="select is-rounded is-small">
+                    <select>
+                        <option>Все</option>
+                        <option>Стратегии</option>
+                        <option>Шутеры</option>
+                        <option>ММОРПГ</option>
+                    </select>
+                </div>
+
+                <div class="select is-rounded is-small">
+                    <select>
+                        <option>Все</option>
+                        <option>Стратегии</option>
+                        <option>Шутеры</option>
+                        <option>ММОРПГ</option>
+                    </select>
+                </div>
+
+                <section class="catalog-sort-visible">
+                    <nav class="columns">
+                        <ul class="column is-12">
+                            <li class="sort-visible">
+                                Однопользовательская игра
+                                <span>&#x2715</span>
+                            </li>
+                            <li class="sort-visible">
+                                Многопользовательская игра
+                                <span>&#x2715</span>
+                            </li>
+                            <li class="sort-visible">
+                                ММОРПГ
+                                <span>&#x2715</span>
+                            </li>
+                            <li>
+                                <a href="">
+                                    Очистить все
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+            </section>
+        </section>
+
+        <section class="columns is-full is-centered is-vertical catalog-block">
+            <div class="column is-8">
+                <div class="columns is-multiline">
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <div class="buy" id="0">
+                                <span class="icon">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </span>
+                                Добавить в корзину
+                            </div>
+                            <figure class='image is-full'>
+                                <img src="images/cyber.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                Cyberpunk 2077
+                            </div>
+                            <div class="game-company">
+                                CD Project Red
+                            </div>
+                            <div class="game-price">
+                                3499 &#x20bd
+                                <span class="discount">-20%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <div class="buy" id="game-1">
+                                <span class="icon">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </span>
+                                Добавить в корзину
+                            </div>
+
+                            <figure class='image is-full'>
+                                <img src="images/fifa.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                FIFA 21
+                            </div>
+                            <div class="game-company">
+                                EA Games
+                            </div>
+                            <div class="game-price">
+                                4555 &#x20bd
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/witcher.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                The Witcher 3
+                            </div>
+                            <div class="game-company">
+                                CD Project Red
+                            </div>
+                            <div class="game-price">
+                                1499 &#x20bd
+                                <span class="discount">-60%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/last.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                The last of us. Part 2
+                            </div>
+                            <div class="game-company">
+                                Naughty Dog
+                            </div>
+                            <div class="game-price">
+                                4499 &#x20bd
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/forza.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                The last of us. Part 2
+                            </div>
+                            <div class="game-company">
+                                Naughty Dog
+                            </div>
+                            <div class="game-price">
+                                4499 &#x20bd
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/rdr2.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                Red Dead Redemption 2
+                            </div>
+                            <div class="game-company">
+                                Rockstar Games
+                            </div>
+                            <div class="game-price">
+                                4299 &#x20bd
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/str.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                Death Stranding
+                            </div>
+                            <div class="game-company">
+                                GENIUS
+                            </div>
+                            <div class="game-price">
+                                3899 &#x20bd
+                                <span class="discount">-60%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-quarter game">
+                        <div class="game-cover">
+                            <figure class='image is-full'>
+                                <img src="images/apex.jpg" alt="">
+                            </figure>
+                        </div>
+                        <div class="game-description">
+                            <div class="game-title">
+                                Apex Legends
+                            </div>
+                            <div class="game-company">
+                                Respawn
+                            </div>
+                            <div class="game-price">
+                                Free
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="columns is-full is-centered is-vertical">
+            <div class="column is-8">
+                <div class="columns">
+                    <div class="column is-3">
+                          <span class="icon logotype">
+                            <ion-icon name="logo-steam"></ion-icon>
+                          </span>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Что такое Steam</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Сообщество</a>
+                    </div>
+
+                    <div class="column is-3">
+                        <a href="">Пресс-релизы</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script type="text/javascript" src="js/bundle.js"></script>
+    </body>
+</html>
