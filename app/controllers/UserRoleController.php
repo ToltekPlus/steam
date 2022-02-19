@@ -30,7 +30,7 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
     /**
      * @throws \Exception
      */
-    public function get()
+    public function get($id)
     {
         $user = array_shift(UserRoleModel::find($_GET['id']));
 
