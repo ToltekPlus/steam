@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Core\Model;
 
-class RoleModel extends Model{
+class BasketModel extends Model{
     /**
      * @var string
      */
@@ -17,4 +17,5 @@ class RoleModel extends Model{
     {
         return $this->getAll($this->table);
     }
+    
 }

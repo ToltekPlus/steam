@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\UserRoleModel;
+use App\Model\BasketModel;
 //use App\Policy\BasketPolicy;
 use Core\View;
 
@@ -16,10 +16,11 @@ class BasketController //extends BasketPolicy
     /**
      * @throws \Exception
      */
-    public function index()
+    public function index() : void
     {
-        $baskets = BasketModel::all();
+        $baskets = new BasketModel();
+        $result = $baskets->all();
 
-        View::render('basket/index.php', ['baskets' => $baskets]);
+        View::render('basket/index.php', ['baskets' => $result]);
     }
 }
