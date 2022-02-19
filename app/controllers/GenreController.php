@@ -15,7 +15,7 @@ class GenreController extends GenrePolicy implements ControllerInterface {
     use DeleteFile;
     use DataBuilder;
 
-    protected $icon_path = '/resources/images/administrator/genres/';
+    protected $icon_path = '/administrator/genres/';
 
     /**
      * @throws \Exception
