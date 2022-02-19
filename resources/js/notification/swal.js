@@ -1,4 +1,4 @@
-export function notification(message) {
+export function notification(message, type = "success") {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -12,7 +12,7 @@ export function notification(message) {
     });
 
     Toast.fire({
-        icon: "success",
+        icon: type,
         text: message
     })
 }

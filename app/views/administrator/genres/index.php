@@ -18,14 +18,13 @@
                 <?php foreach ($genres as $genre) : ?>
                     <tr>
                         <td>
-                            <img src="" alt="">
+                            <img src="/images/administrator/<?=$genre->icon_genre;?>" alt="<?=$genre->name_genre;?>">
                         </td>
                         <td><?=$genre->name_genre;?></td>
                         <td>
                             <a href="/genres/edit?id=<?=$genre->id?>">Редактировать</a>
                         </td>
                         <td style="width: 80px; text-align: center;">
-                            <!--<a href="/genres/delete?id=<?=$genre->id?>">X</a>-->
                             <form action="/delete" method="POST">
                                 <input type="hidden" value="<?=$genre->id?>" name="id">
                                 <button class="button is-small is-danger" type="submit">X</button>

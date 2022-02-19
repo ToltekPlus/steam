@@ -8,6 +8,7 @@ $router->add('', ['controller' => 'HomeController', 'action' => 'index']);
 /*=== АВТОРИЗАЦИЯ, РЕГИСТРАЦИЯ, ВЫХОД ИЗ АККАУНТА ===*/
 $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']);
+$router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 
 /*=== РАБОТА С РОЛЯМИ ===*/
 $router->add('roles', ['controller' => 'UserRoleController', 'action' => 'index']);

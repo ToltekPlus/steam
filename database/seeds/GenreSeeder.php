@@ -19,21 +19,18 @@ class GenreSeeder extends AbstractSeed
             [
                 'name_genre' => 'Хоррор',
                 'icon_genre' => '',
-                'icon_genre_path' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'name_genre' => 'RTC',
                 'icon_genre' => '',
-                'icon_genre_path' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'name_genre' => 'BattleRoyal',
                 'icon_genre' => '',
-                'icon_genre_path' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

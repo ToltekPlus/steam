@@ -8,7 +8,7 @@ trait DeleteFile {
      */
     public function deleteImage($link)
     {
-        $image = dirname(__DIR__, 2) . $link;
+        $image = dirname(__DIR__, 2)  . $_ENV['IMAGES_DIRECTORY'] . $link;
 
         if(file_exists($image)) unlink($image);
     }

@@ -21,7 +21,6 @@ final class GenresTable extends AbstractMigration
         $table = $this->table('genres');
         $table->addColumn('name_genre', 'string')
             ->addColumn('icon_genre', 'string')
-            ->addColumn('icon_genre_path', 'string')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->create();
