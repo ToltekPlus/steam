@@ -7,6 +7,7 @@
  * vendor\bin\phinx migrate                     => выполняем работу всех миграций
  * vendor\bin\phinx seed:create NameSeeder      => создаем новый сидер, где Name - название сидера
  * vendor\bin\phinx seed:run -s UserSeeder      => выполняем работу сидера
+ *  vendor\bin\phinx rollback -e -t 0           => откат всех миграций
  *
  */
 

@@ -37,7 +37,7 @@ trait SymlinkBuilder {
     public function formatDirectory(string $file) : void
     {
         $file = str_replace('\\', '/', $file);
-        $directory = explode('/', $file);;
+        $directory = explode('/', $file);
         $last_key = array_key_last($directory);
         array_push($this->result, $directory[$last_key - 1]);
     }

@@ -3,7 +3,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class UserRoleSeeder extends AbstractSeed
+class AccountSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -15,19 +15,22 @@ class UserRoleSeeder extends AbstractSeed
      */
     public function run()
     {
-        $foreignKeysRoles = $this->adapter->fetchAll("SELECT id FROM roles WHERE id = 3");
         $foreignKeysUsers = $this->adapter->fetchAll("SELECT id FROM users WHERE id = 1");
 
         $data = [
             [
                 'user_id' => $foreignKeysUsers[array_rand($foreignKeysUsers)]['id'],
-                'role_id' => $foreignKeysRoles[array_rand($foreignKeysRoles)]['id'],
+                'name' => 'Иван',
+                'surname' => 'Иванов',
+                'about' => 'Люблю деградировать',
+                'birthday_at' => date('Y-m-d H:i:s'),
+                'userpic' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ];
 
-        $user_role = $this->table('users_role');
-        $user_role->insert($data)->save();
+        $account = $this->table('accounts');
+        $account->insert($data)->save();
     }
 }

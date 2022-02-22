@@ -2,7 +2,7 @@ import { sendData } from './send';
 import { list } from "../route/list";
 import { notification } from '../notification/swal';
 import { redirect } from './redirect';
-import {clearForm} from "./clear_form";
+import { clearForm } from "./clear_form";
 
 document.addEventListener('DOMContentLoaded', () => {
     // Создаем массив объектов, в котором соотносятся страницы с роутерами

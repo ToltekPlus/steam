@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CompaniesTable extends AbstractMigration
+final class AccountsTable extends AbstractMigration
 {
     /**
      * @return void
      */
     public function up() : void
     {
-        $exists = $this->hasTable('companies');
+        $exists = $this->hasTable('accounts');
         if ($exists) {
-            $this->table('companies')->drop()->save();
+            $this->table('accounts')->drop()->save();
         }
     }
 
@@ -29,12 +29,14 @@ final class CompaniesTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('companies');
-        $table->addColumn('name_company', 'string')
-            ->addColumn('description_company', 'string')
-            ->addColumn('logotype_company', 'string')
+        $table = $this->table('accounts');
+        $table->addColumn('name', 'string')
+            ->addColumn('surname', 'string')
+            ->addColumn('about', 'string')
+            ->addColumn('birthday_at','date')
+            ->addColumn('userpic', 'string')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
-            ->create();
+            ->save();
     }
 }
