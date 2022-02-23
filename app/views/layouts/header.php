@@ -14,9 +14,11 @@
         <div class="columns">
             <div class="column is-3">
                         <span class="icon-text">
-                          <span class="icon logotype">
-                            <ion-icon name="logo-steam"></ion-icon>
-                          </span>
+                            <span class="icon logotype">
+                              <a href="/">
+                                  <ion-icon name="logo-steam"></ion-icon>
+                              </a>
+                            </span>
                         <span class="steam">
                             Steam
                         </span>
@@ -50,12 +52,6 @@
 
                 <span class="icon-text">
                           <span class="icon">
-                            <ion-icon name="heart-outline"></ion-icon>
-                          </span>
-                        </span>
-
-                <span class="icon-text">
-                          <span class="icon">
                             <ion-icon name="basket-outline"></ion-icon>
                           </span>
                         </span>
@@ -79,7 +75,7 @@
                             <a href="/roles" class="dropdown-item">
                                 Роли
                             </a>
-                            <a href="/companies" class="dropdown-item">
+                            <a href="/companies/list" class="dropdown-item">
                                 Компании
                             </a>
                             <a href="/genres/list" class="dropdown-item">

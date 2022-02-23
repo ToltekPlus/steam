@@ -16,7 +16,7 @@ trait UploadFile {
      */
     public function upload(array $image, string $path) : string
     {
-        $upload_file_path = dirname(__DIR__, 2) . $_ENV['IMAGES_DIRECTORY'] . $path;
+        $upload_file_path = dirname(__DIR__, 2) . $_ENV['SYMLINK_IMAGES_DIRECTORY'] . $path;
         // Проверяем тип файла
         $type_image = $this->getImageType($image['tmp_name']);
         if (!$type_image) return false;
@@ -56,7 +56,7 @@ trait UploadFile {
      */
     protected function createFileName($image, $path, $type)
     {
-        $upload_file_path = dirname(__DIR__, 2)  . $_ENV['IMAGES_DIRECTORY'] . $path;
+        $upload_file_path = dirname(__DIR__, 2)  . $_ENV['SYMLINK_IMAGES_DIRECTORY'] . $path;
         $extension = pathinfo($image, PATHINFO_EXTENSION);
 
         // Если разрешение отсутствует, то получаем его из type

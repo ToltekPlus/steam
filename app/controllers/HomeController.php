@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\UserRoleModel;
+use App\Model\GenreModel;
+use App\Model\CompanyModel;
 use App\Policy\HomePolicy;
 use Core\View;
 
@@ -14,12 +15,22 @@ class HomeController extends HomePolicy
     }
 
     /**
+     * @return void
      * @throws \Exception
      */
-    public function index()
+    public function index() : void
     {
-        $roles = UserRoleModel::all();
+        $genres = new GenreModel();
+        $genres = $genres->all();
 
-        View::render('dashboard/index.php', ['roles' => $roles]);
+        $companies = new CompanyModel();
+        $companies = $companies->all();
+
+        View::render('dashboard/index.php', ['genres' => $genres, 'companies' => $companies]);
+    }
+
+    static function account()
+    {
+        // TODO вывод информации о пользователе для вывода в хедер
     }
 }

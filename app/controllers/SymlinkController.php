@@ -26,7 +26,7 @@ class SymlinkController {
      */
     public function generate() : void
     {
-        $this->generateTree($this->symlink, $this->dir);
+        $this->generateTree($this->dir, $this->symlink);
 
     }
 }

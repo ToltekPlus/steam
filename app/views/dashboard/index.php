@@ -4,10 +4,10 @@
     <section class="column is-8 filter">
         <div class="select is-rounded is-small">
             <select>
-                <option>Уровни доступа</option>
-                <?php foreach ($roles as $role): ?>
-                    <option value="<?=$role->role_id; ?>" name="<?=$role->role_id; ?>">
-                        <?=$role->name_role; ?>
+                <option>Жанры</option>
+                <?php foreach ($genres as $genre): ?>
+                    <option value="<?=$genre->id; ?>" name="<?=$genre->name_genre; ?>">
+                        <?=$genre->name_genre; ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -15,28 +15,12 @@
 
         <div class="select is-rounded is-small">
             <select>
-                <option>Все</option>
-                <option>Стратегии</option>
-                <option>Шутеры</option>
-                <option>ММОРПГ</option>
-            </select>
-        </div>
-
-        <div class="select is-rounded is-small">
-            <select>
-                <option>Все</option>
-                <option>Стратегии</option>
-                <option>Шутеры</option>
-                <option>ММОРПГ</option>
-            </select>
-        </div>
-
-        <div class="select is-rounded is-small">
-            <select>
-                <option>Все</option>
-                <option>Стратегии</option>
-                <option>Шутеры</option>
-                <option>ММОРПГ</option>
+                <option>Компании</option>
+                <?php foreach ($companies as $company): ?>
+                    <option value="<?=$company->id; ?>" name="<?=$company->name_company; ?>">
+                        <?=$company->name_company; ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
         </div>
 

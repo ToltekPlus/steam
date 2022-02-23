@@ -15,12 +15,12 @@ $router->add('roles', ['controller' => 'UserRoleController', 'action' => 'index'
 $router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' => 'get']);
 
 /*=== РАБОТА С КОМПАНИЯМИ ===*/
-$router->add('companies', ['controller' => 'CompanyController', 'action' => 'index']);
+$router->add('companies/list', ['controller' => 'CompanyController', 'action' => 'index']);
 $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 'show']);
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'edit']);
 $router->add('companies/update', ['controller' => 'CompanyController', 'action' => 'update']);
-$router->add('companies/delete?{id}', ['controller' => 'CompanyController', 'action' => 'delete']);
+$router->add('companies/delete', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/
 $router->add('genres/list', ['controller' => 'GenreController', 'action' => 'index']);
