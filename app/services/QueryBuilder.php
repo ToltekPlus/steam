@@ -13,8 +13,6 @@ trait QueryBuilder {
      */
     public function queryBuilder(array $tables, ?int $id) : string
     {
-        //$selected_table = implode(", ", $tables);
-        // TODO переделать на спредах
         $selected_table = "";
         foreach ($tables as $key => $table) {
             if ($key == array_key_last($tables)) {
@@ -25,7 +23,9 @@ trait QueryBuilder {
         }
         $where = $this->queryConditionWhereBuilder($tables, $id);
 
-        return "SELECT * FROM " . $selected_table . $where;
+        $table_key = $tables[0]['table'] . "." . $tables[0]['group_key']  ." as table_id";
+
+        return "SELECT *, " . $table_key . " FROM " . $selected_table . $where;
     }
 
     /**
@@ -37,7 +37,6 @@ trait QueryBuilder {
      */
     public function queryConditionWhereBuilder(array $tables, ?int $id) : ?string
     {
-        // TODO изменить условие для достоверной выборки
         $count = count($tables);
 
         if ($count > 1) {
@@ -69,6 +68,6 @@ trait QueryBuilder {
      */
     public function conditionForKey($tables, $id)
     {
-        if ($id != 0) return ' AND ' . $tables[0]['table']. '.id = ' . $id;
+        if ($id != null) return ' AND ' . $tables[0]['table']. '.id = ' . $id;
     }
 }

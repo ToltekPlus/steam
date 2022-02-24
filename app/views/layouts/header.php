@@ -72,8 +72,8 @@
                           <a href="#" class="dropdown-item">
                             Архив
                           </a>
-                            <a href="/roles" class="dropdown-item">
-                                Роли
+                            <a href="/roles/list" class="dropdown-item">
+                                Пользователи
                             </a>
                             <a href="/companies/list" class="dropdown-item">
                                 Компании

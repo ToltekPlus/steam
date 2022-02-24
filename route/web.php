@@ -11,8 +11,8 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 
 /*=== РАБОТА С РОЛЯМИ ===*/
-$router->add('roles', ['controller' => 'UserRoleController', 'action' => 'index']);
-$router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' => 'get']);
+$router->add('roles/list', ['controller' => 'UserRoleController', 'action' => 'index']);
+$router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' => 'show']);
 
 /*=== РАБОТА С КОМПАНИЯМИ ===*/
 $router->add('companies/list', ['controller' => 'CompanyController', 'action' => 'index']);

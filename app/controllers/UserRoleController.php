@@ -24,41 +24,42 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
     {
         $users = UserRoleModel::all();
 
-        View::render('administrator/roles/show.php', ['users' => $users]);
+        View::render('administrator/roles/index.php', ['users' => $users]);
+    }
+
+    /**
+     * @param $id
+     * @return object
+     */
+    public function get($id) : object
+    {
+        $user_role = new UserRoleModel();
+        return $user_role->find($id);
     }
 
     /**
      * @throws \Exception
      */
-    public function get()
-    {
-        $user = array_shift(UserRoleModel::find($_GET['id']));
-
-        View::render('administrator/roles/index.php', ['user' => $user]);
-    }
-
     public function show()
     {
-        // TODO: Implement show() method.
+        $user = $this->get($_GET['id']);
+
+        View::render('administrator/roles/role.php', ['item' => $user]);
     }
 
     public function edit()
     {
-        // TODO: Implement edit() method.
     }
 
     public function store()
     {
-        // TODO: Implement store() method.
     }
 
     public function update()
     {
-        // TODO: Implement update() method.
     }
 
     public function delete()
     {
-        // TODO: Implement delete() method.
     }
 }
