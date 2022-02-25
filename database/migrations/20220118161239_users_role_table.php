@@ -6,17 +6,6 @@ use Phinx\Migration\AbstractMigration;
 final class UsersRoleTable extends AbstractMigration
 {
     /**
-     * @return void
-     */
-    public function up() : void
-    {
-        $exists = $this->hasTable('users_role');
-        if ($exists) {
-            $this->table('users_role')->drop()->save();
-        }
-    }
-
-    /**
      * Change Method.
      *
      * Write your reversible migrations using this method.
@@ -29,9 +18,12 @@ final class UsersRoleTable extends AbstractMigration
      */
     public function change(): void
     {
+        // TODO здесь должно быть отношение к таблице
         $table = $this->table('users_role');
-        $table->addColumn('created_at', 'datetime')
+        $table->addColumn('user_id', 'integer')
+            ->addColumn('role_id', 'integer')
+            ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
-            ->save();
+            ->create();
     }
 }

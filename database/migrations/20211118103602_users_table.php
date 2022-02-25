@@ -6,17 +6,6 @@ use Phinx\Migration\AbstractMigration;
 final class UsersTable extends AbstractMigration
 {
     /**
-     * @return void
-     */
-    public function up() : void
-    {
-        $exists = $this->hasTable('users');
-        if ($exists) {
-            $this->table('users')->drop()->save();
-        }
-    }
-
-    /**
      * Change Method.
      *
      * Write your reversible migrations using this method.
@@ -29,21 +18,14 @@ final class UsersTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table( 'users');
-        $table->addColumn( 'password', 'string' )
+        $table = $this->table( 'users' );
+        $table->addColumn( 'login', 'varchar' )
+            ->addColumn( 'password', 'varchar' )
+            ->addColumn( 'name', 'string' )
+            ->addColumn( 'surname', 'string' )
             ->addColumn( 'phone', 'char' )
             ->addColumn( 'created_at', 'datetime' )
             ->addColumn( 'updated_at', 'datetime' )
             ->create();
-
-        $refTable = $this->table('users_role');
-        $refTable->addColumn('user_id', 'integer', ['null' => true])
-            ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
-            ->save();
-
-        $refTable = $this->table('accounts');
-        $refTable->addColumn('user_id', 'integer', ['null' => true])
-            ->addForeignKey('user_id', 'accounts', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
-            ->save();
     }
 }

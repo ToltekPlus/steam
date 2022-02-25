@@ -6,17 +6,6 @@ use Phinx\Migration\AbstractMigration;
 final class CompaniesTable extends AbstractMigration
 {
     /**
-     * @return void
-     */
-    public function up() : void
-    {
-        $exists = $this->hasTable('companies');
-        if ($exists) {
-            $this->table('companies')->drop()->save();
-        }
-    }
-
-    /**
      * Change Method.
      *
      * Write your reversible migrations using this method.
