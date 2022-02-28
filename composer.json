@@ -1,6 +1,7 @@
 {
     "require-dev": {
-        "odan/phinx-migrations-generator": "^5.4"
+        "odan/phinx-migrations-generator": "^5.4",
+        "phpunit/phpunit": "^9.5"
     },
     "require": {
         "vlucas/phpdotenv": "^5.4"

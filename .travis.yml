@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - 7.2
+  - 7.4
+  - 8.0
+
+sudo: false
+
+before_script: composer install
+script: phpunit
