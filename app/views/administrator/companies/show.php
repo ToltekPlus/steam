@@ -55,7 +55,7 @@
                                     <h3>Самая популярная</h3>
                                 </div>
                                 <div>
-                                    <?=$count->count;?><br>
+                                    <span id="count_values"><?=$count->count;?></span><br>
                                     Activision
                                 </div>
                             </div>

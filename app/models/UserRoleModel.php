@@ -30,13 +30,13 @@ class UserRoleModel extends Model {
 
     /**
      * @param int $id
-     * @return array
+     * @return object
      */
-    static function find(int $id) : array
+    public function find(int $id) : object
     {
         $users_role = new UserRoleModel();
         $selected_tables = $users_role->selected_tables($users_role->table, $users_role->pivot_tables);
-        return $users_role->getById($selected_tables, $id);
+        return array_shift($users_role->getAllPivot($selected_tables, $id));
     }
 
 

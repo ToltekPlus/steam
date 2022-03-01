@@ -70,18 +70,25 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
 
         View::render('administrator/companies/edit.php', ['company' => $company]);
     }
+
     /**
      * Обновление информации о компаниях
      */
     public function update() {
-        // TODO реализовать проверку наличия изображения
-        $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
+        if ($_FILES['logotype']['size'] != 0) {
+            $this->deleteImageFromDirectory($_POST['id']);
+            $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
+        }else {
+            $company = $this->get($_POST['id']);
+            $logotype = $company->logotype_company;
+        }
         $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
 
         $company = new CompanyModel();
         $company->update($args, $_POST['id']);
 
     }
+
     /**
      * Удаление компании и изображения из таблицы
      */

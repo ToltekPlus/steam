@@ -46,9 +46,9 @@ class Model {
      * @param array $tables
      * @return array
      */
-    public function getAllPivot(array $tables) : array
+    public function getAllPivot(array $tables, $id = null) : array
     {
-        $sql = $this->queryBuilder($tables, 0);
+        $sql = $this->queryBuilder($tables, $id);
         return $this->connect->query($sql);
     }
 
@@ -114,7 +114,6 @@ class Model {
      */
     public function storeToTable($table, $args)
     {
-        // TODO декомпозировать и исправить недочеты
         $set = '';
         $values = '';
 
