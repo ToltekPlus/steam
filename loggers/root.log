@@ -1,0 +1,2 @@
+[db][Tue Mar 01 06:27:57 2022] [SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1DELETE FROM genres WHERE id = '22'' at line 1] 
+[db][Tue Mar 01 06:28:14 2022] [SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1DELETE FROM companies WHERE id = '6'' at line 1] 

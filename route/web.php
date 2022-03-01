@@ -33,4 +33,7 @@ $router->add('genres/delete', ['controller' => 'GenreController', 'action' => 'd
 /*=== РАБОТА С ПСЕВДОСЫЛКАМИ ===*/
 $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'generate']);
 
+/*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
+$router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);
