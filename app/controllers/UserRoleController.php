@@ -28,7 +28,8 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
     }
 
     /**
-     * @throws \Exception
+     * @param $id
+     * @return object
      */
     public function get($id) : object
     {
@@ -38,7 +39,6 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
 
     /**
      * @return void
-     * @throws \Exception
      */
     public function show()
     {

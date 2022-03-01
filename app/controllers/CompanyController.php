@@ -74,7 +74,8 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     /**
      * Обновление информации о компаниях
      */
-    public function update() {
+    public function update()
+    {
         if ($_FILES['logotype']['size'] != 0) {
             $this->deleteImageFromDirectory($_POST['id']);
             $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
@@ -82,11 +83,11 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
             $company = $this->get($_POST['id']);
             $logotype = $company->logotype_company;
         }
+  
         $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
 
         $company = new CompanyModel();
         $company->update($args, $_POST['id']);
-
     }
 
     /**

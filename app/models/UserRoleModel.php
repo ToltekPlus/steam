@@ -39,7 +39,6 @@ class UserRoleModel extends Model {
         return array_shift($users_role->getAllPivot($selected_tables, $id));
     }
 
-
     /**
      * Возвращаем роль пользователя
      *

@@ -80,6 +80,7 @@ class GenreController extends GenrePolicy implements ControllerInterface {
             $genre = $this->get($_POST['id']);
             $icon = $genre->icon_genre;
         }
+
         $args = $this->dataBuilder($_POST, ['icon_genre' => $icon]);
 
         $genre = new GenreModel();
