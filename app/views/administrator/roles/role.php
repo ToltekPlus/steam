@@ -18,19 +18,19 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td><?=$item->phone?></td>
-                        <td><?=$item->name_role?></td>
-                        <td><?=$item->level?></td>
-                        <td>
-                            <form action="/block" method="POST">
-                                <input type="hidden" value="<?=$item->table_id?>" name="id">
-                                <button class="button is-small is-danger" type="submit">
-                                    <ion-icon name="eye-off-outline"></ion-icon>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><?=$item->phone?></td>
+                    <td><?=$item->name_role?></td>
+                    <td><?=$item->level?></td>
+                    <td>
+                        <form action="/block" method="POST">
+                            <input type="hidden" value="<?=$item->table_id?>" name="id">
+                            <button class="button is-small is-danger" type="submit">
+                                <ion-icon name="eye-off-outline"></ion-icon>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </section>

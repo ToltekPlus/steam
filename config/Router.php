@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\View;
+
 class Router {
     /**
      * здесь будет наш ассоциативный массив маршрутов
@@ -119,7 +121,8 @@ class Router {
                 throw new \Exception("Контроллер $controller не найден");
             }
         } else {
-            throw new \Exception('Роут не отрабатывает.', 404);
+            //throw new \Exception('Роут не отрабатывает.', 404);
+            View::render('errors/404.php');
         }
     }
 

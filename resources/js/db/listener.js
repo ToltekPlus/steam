@@ -3,6 +3,7 @@ import { list } from "../route/list";
 import { notification } from '../notification/swal';
 import { redirect } from './redirect';
 import { clearForm } from "./clear_form";
+import { addNewValueToCountContent } from "../content/statistics_for_table";
 
 document.addEventListener('DOMContentLoaded', () => {
     // Создаем массив объектов, в котором соотносятся страницы с роутерами
@@ -31,8 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             send(formData)
                 .then((response) => {
-                    // запускаем всплывающее окно с сообщением
-                    notification(operation.message);
+                    if (response.trim() == '') {
+                        // запускаем всплывающее окно с сообщением, что все ок
+                        // увеличиваем значение в статистике значений
+                        addNewValueToCountContent();
+                        notification(operation.message);
+                    }else {
+                        // запускаем всплывающее окно с сообщением, что произошла ошибка
+                        notification(operation.message_error, 'error');
+                    }
+
                     // очищаем форму
                     clearForm(form, '#file-js-example .file-name');
                 })
