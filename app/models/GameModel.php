@@ -6,6 +6,9 @@ use App\Rule\ModelInterface;
 use Core\Model;
 
 class GameModel extends Model implements ModelInterface {
+    /**
+     * @var string
+     */
     protected $table = 'games';
 
     /**

@@ -81,12 +81,13 @@ class Model {
      *
      * @param string $table
      * @param array $pivot
+     * @param string $group_key
      * @return array
      */
-    public function selected_tables(string $table, array $pivot) : array
+    public function selected_tables(string $table, array $pivot, $group_key = "id") : array
     {
         $result = [];
-        array_push($result, ["table" => $table, "group_key" => "id"]);
+        array_push($result, ["table" => $table, "group_key" => $group_key]);
 
         foreach ($pivot as $key => $value) {
             array_push($result, $value);
