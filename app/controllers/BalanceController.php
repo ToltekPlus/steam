@@ -15,10 +15,4 @@ class BalanceController extends BalancePolicy{
 
         View::render('administrator/balances/index.php', ['balances' => $result]);
     }
-
-    public function get($id) : object
-    {
-        $balance = new BalanceModel();
-        return $balance->find($id);
-    }
 }
