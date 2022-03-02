@@ -33,4 +33,7 @@ $router->add('genres/delete', ['controller' => 'GenreController', 'action' => 'd
 /*=== РАБОТА С ПСЕВДОСЫЛКАМИ ===*/
 $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'generate']);
 
+/*=== РАБОТА С БАЛАНСОМ ===*/
+$router->add('balances/list', ['controller' => 'BalanceController', 'action' => 'index']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);
