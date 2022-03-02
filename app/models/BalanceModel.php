@@ -13,14 +13,4 @@ class BalanceModel extends Model{
         return $this->getAll($this->table);
     }
 
-    public function find(int $id) : object
-    {
-        $balance = $this->getByIdFromTable($this->table, $id);
-        return array_shift($balance);
-    }
-
-    public function store($args)
-    {
-        return $this->storeToTable($this->table, $args);
-    }
 }
