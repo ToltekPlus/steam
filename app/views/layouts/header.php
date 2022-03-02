@@ -84,6 +84,9 @@
                             <a href="/symlinks" class="dropdown-item">
                                 Сгенерировать псевдосылки
                             </a>
+                            <a href="/logs" class="dropdown-item">
+                                Логи
+                            </a>
                           <a href="/logout" class="dropdown-item">
                             Выход
                           </a>

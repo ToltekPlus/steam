@@ -3,6 +3,7 @@
 namespace Core;
 
 use App\Service\QueryBuilder;
+use Core\Logger;
 
 class Model {
     use QueryBuilder;
@@ -111,15 +112,15 @@ class Model {
      * @param $fields
      * @return void
      */
-    public function storeToTable($table, $fields)
+    public function storeToTable($table, $args)
     {
         $set = '';
         $values = '';
 
-        $array = array_keys($fields);
+        $array = array_keys($args);
         $last_key = end($array);
 
-        foreach ($fields as $key => $value) {
+        foreach ($args as $key => $value) {
             if ($key == $last_key) {
                 $values .= ':' . $key;
                 $set .= $key;
@@ -131,7 +132,7 @@ class Model {
 
         $sql = 'INSERT INTO ' . $table . " (" .$set . ") VALUES (" . $values . ")";
 
-        $this->connect->execute($sql, $fields);
+        $this->executeQuery($sql, $args);
     }
 
     /**
@@ -143,7 +144,7 @@ class Model {
     {
         $sql = $this->builderForUpdate($id, $table, $args);
 
-        $this->connect->execute($sql, $args);
+        $this->executeQuery($sql, $args);
     }
 
     /**
@@ -180,8 +181,22 @@ class Model {
     {
         $sql = 'DELETE FROM ' . $table . ' WHERE id = :id';
 
-        $this->connect->execute($sql, $args);
+        $this->executeQuery($sql, $args);
 
         return true;
+    }
+
+    /**
+     * @param $sql
+     * @param $args
+     * @return void
+     */
+    public function executeQuery($sql, $args) : void
+    {
+        try {
+            $this->connect->execute($sql, $args);
+        }catch (\Exception $e) {
+            Logger::getLogger()->log('sql', $e->getMessage());
+        }
     }
 }

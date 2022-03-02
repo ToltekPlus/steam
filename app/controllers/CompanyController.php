@@ -83,7 +83,7 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
             $company = $this->get($_POST['id']);
             $logotype = $company->logotype_company;
         }
-
+  
         $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
 
         $company = new CompanyModel();

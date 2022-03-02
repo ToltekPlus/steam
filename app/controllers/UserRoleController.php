@@ -38,7 +38,7 @@ class UserRoleController extends UserRolePolicy implements ControllerInterface {
     }
 
     /**
-     * @throws \Exception
+     * @return void
      */
     public function show()
     {
