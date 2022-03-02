@@ -10,6 +10,13 @@ $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']);
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 
+/*=== РАБОТА С ИГРАМИ ===*/
+$router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
+$router->add('games/add', ['controller' => 'GameController', 'action' => 'show']);
+$router->add('games/store', ['controller' => 'GameController', 'action' => 'store']);
+$router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => 'edit']);
+$router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
+
 /*=== РАБОТА С РОЛЯМИ ===*/
 $router->add('roles/list', ['controller' => 'UserRoleController', 'action' => 'index']);
 $router->add('roles/role?{id}', ['controller' => 'UserRoleController', 'action' => 'show']);

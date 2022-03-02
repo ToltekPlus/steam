@@ -75,6 +75,9 @@
                             <a href="/roles/list" class="dropdown-item">
                                 Пользователи
                             </a>
+                            <a href="/games/list" class="dropdown-item">
+                                Игры
+                            </a>
                             <a href="/companies/list" class="dropdown-item">
                                 Компании
                             </a>
