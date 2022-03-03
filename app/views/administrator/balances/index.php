@@ -2,12 +2,16 @@
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
             <? foreach($balances as $balance):?>
-            <div>Баланс: <?$balance->balance?></div>
+            <h2>Баланс: <?echo $balance->balance?>RUB</h2>
             <? endforeach;?>
-            <form action="store" method="POST">
-                <input type="text" name="sum" id="sum">
-                <input type="button" name="add" id="add" value="Пополнить">
-            </form>
+            <form action="store" method="POST" class="form">
+                <div class="form-control">
+                        <input type="text" name="sum" id="sum">
+                    <div class="buttons">
+                        <button class="button is-success is-light" type="submit">Пополнить</button>
+                    </div>
+                </div>
+            /form>
         </section>
     </section>
 <?php \Core\View::renderFooter()?>
