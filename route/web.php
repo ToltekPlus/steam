@@ -35,5 +35,6 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 
 /*=== РАБОТА С БАЛАНСОМ ===*/
 $router->add('balances/list', ['controller' => 'BalanceController', 'action' => 'index']);
+$router->add('balances/store', ['controller' => 'BalanceController', 'action' => 'store']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);
