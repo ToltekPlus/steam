@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Core\Model;
+use Core\DataBuilder;
 
 class BalanceModel extends Model{
     
@@ -12,5 +13,10 @@ class BalanceModel extends Model{
     {
         return $this->getAll($this->table);
     }
+    
+    public function store($args)
+	{
+		return $this->storeToTable($this->table, $args);
+	}
 
 }
