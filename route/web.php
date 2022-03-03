@@ -18,8 +18,8 @@ $router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => '
 $router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
 
 /*=== УСТАНОВКА СКИДОК ===*/
-$router->add('games/tax?{id}', ['controller' => 'GameTaxController', 'action' => 'create']);
-$router->add('tax/store', ['controller' => 'GameTaxController', 'action' => 'store']);
+$router->add('taxes/edit?{id}', ['controller' => 'GameTaxController', 'action' => 'create']);
+$router->add('taxes/update', ['controller' => 'GameTaxController', 'action' => 'update']);
 
 /*=== РАБОТА С РОЛЯМИ ===*/
 $router->add('roles/list', ['controller' => 'UserRoleController', 'action' => 'index']);

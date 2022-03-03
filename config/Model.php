@@ -59,9 +59,9 @@ class Model {
      * @param int $id
      * @return array
      */
-    public function getByIdFromTable(string $table, int $id) : array
+    public function getByIdFromTable(string $table, int $id, string $table_id = "id") : array
     {
-        $sql = "SELECT * FROM " . $table . " WHERE id = " . $id;
+        $sql = "SELECT * FROM " . $table . " WHERE " . $table_id . " = " . $id;
         return $this->connect->query($sql);
     }
 
@@ -185,6 +185,14 @@ class Model {
         $this->executeQuery($sql, $args);
 
         return true;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function lastInsertKey()
+    {
+        return $this->connect->lastId();
     }
 
     /**

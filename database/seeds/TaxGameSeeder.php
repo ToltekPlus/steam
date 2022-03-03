@@ -3,7 +3,7 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class GameSeeder extends AbstractSeed
+class TaxGameSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -15,29 +15,22 @@ class GameSeeder extends AbstractSeed
      */
     public function run()
     {
+        // TODO перенастроить foreign-key для таблиц БД
         $data = [
             [
-                'name_game' => 'Fifa 22',
-                'description_game' => 'Описание фифули',
-                'cover_game' => '',
-                'base_price' => 3499,
-                'visibility' => 1,
-                'company_id' => 1,
-                'genre_id' => 1,
+                'game_id' => 1,
+                'tax' => 30,
+                'end_of_discount' => date('Y-m-d', strtotime('+1 year')),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'name_game' => 'Cyberpunk 2077',
-                'description_game' => 'Описание об данной игре',
-                'cover_game' => '',
-                'base_price' => 5499,
-                'visibility' => 0,
-                'company_id' => 2,
-                'genre_id' => 2,
+                'game_id' => 2,
+                'tax' => 20,
+                'end_of_discount' => date('Y-m-d', strtotime('+1 year')),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
-            ],
+            ]
         ];
 
         $game = $this->table('games');

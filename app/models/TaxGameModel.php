@@ -5,6 +5,9 @@ namespace App\Model;
 use Core\Model;
 
 class TaxGameModel extends Model {
+    /**
+     * @var string
+     */
     protected $table = 'taxes_game';
 
     protected $pivot_tables = [
@@ -18,6 +21,26 @@ class TaxGameModel extends Model {
     public function store($args)
     {
         return $this->storeToTable($this->table, $args);
+    }
+
+    /**
+     * @param $args
+     * @param $id
+     * @return void
+     */
+    public function update($args, $id)
+    {
+        return $this->updateForTable($this->table, $id, $args);
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    public function find(int $id) : object
+    {
+        $genre = $this->getByIdFromTable($this->table, $id, "game_id");
+        return array_shift($genre);
     }
 
     /**

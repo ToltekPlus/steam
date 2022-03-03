@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Model\GameModel;
 use App\Model\TaxGameModel;
 use App\Policy\TaxGamePolicy;
 use App\Service\DataBuilder;
+use DateTime;
 use Core\View;
 
 class GameTaxController extends TaxGamePolicy {
@@ -17,8 +17,14 @@ class GameTaxController extends TaxGamePolicy {
      */
     public function create()
     {
-        $game = new GameModel();
+        $game = new TaxGameModel();
         $game = $game->find($_GET['id']);
+
+        // переформатируем дату в формат Y-m-d для инпута
+        $createDate = new DateTime($game->end_of_discount);
+        $strip = $createDate->format('Y-m-d');
+
+        $game->end_of_discount = $strip;
 
         View::render('administrator/taxes_game/create.php', ['game' => $game]);
     }
@@ -34,6 +40,14 @@ class GameTaxController extends TaxGamePolicy {
         $genre->store($args);
     }
 
-    // TODO обновление скидки
-    // TODO Добавление скидки при добавлении игры
+    /**
+     * @return void
+     */
+    public function update()
+    {
+        $args = $this->dataBuilder($_POST);
+
+        $tax = new TaxGameModel();
+        $tax->update($args, $_POST['id']);
+    }
 }

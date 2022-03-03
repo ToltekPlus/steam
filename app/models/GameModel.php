@@ -31,11 +31,12 @@ class GameModel extends Model implements ModelInterface {
 
     /**
      * @param $args
-     * @return void
+     * @return false|string
      */
     public function store($args)
-    {
-        return $this->storeToTable($this->table, $args);
+    {;
+        $this->storeToTable($this->table, $args);
+        return $this->lastInsertKey();
     }
 
     /**

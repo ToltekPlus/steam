@@ -17,7 +17,8 @@ class MainSeeder extends AbstractSeed
         AccountSeeder::class,
         CompanySeeder::class,
         GenreSeeder::class,
-        GameSeeder::class
+        GameSeeder::class,
+        TaxGameSeeder::class
     ];
 
     /**

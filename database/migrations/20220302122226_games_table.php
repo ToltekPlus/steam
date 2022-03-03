@@ -34,18 +34,19 @@ final class GamesTable extends AbstractMigration
             ->addColumn( 'description_game', 'string')
             ->addColumn( 'cover_game', 'string')
             ->addColumn( 'base_price', 'float')
+            ->addColumn( 'visibility', 'boolean')
             ->addColumn( 'created_at', 'datetime' )
             ->addColumn( 'updated_at', 'datetime' )
             ->create();
 
-        $refTable = $this->table('games');
+        $refTable = $this->table('companies');
         $refTable->addColumn('company_id', 'integer', ['null' => true])
-            ->addForeignKey('company_id', 'companies', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('company_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
 
-        $refTable = $this->table('games');
+        $refTable = $this->table('genres');
         $refTable->addColumn('genre_id', 'integer', ['null' => true])
-            ->addForeignKey('genre_id', 'genres', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('genre_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
     }
 }

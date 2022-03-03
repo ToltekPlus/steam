@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\CompanyModel;
 use App\Model\GameModel;
 use App\Model\GenreModel;
+use App\Model\TaxGameModel;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
 use App\Service\DeleteFile;
@@ -18,6 +19,10 @@ class GameController implements ControllerInterface {
 
     protected $cover_path = 'administrator/games/';
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function index()
     {
         $games = new GameModel();
@@ -51,6 +56,7 @@ class GameController implements ControllerInterface {
         View::render('administrator/games/show.php', ['genres' => $genres, 'companies' => $companies]);
     }
 
+
     /**
      * @return void
      */
@@ -60,7 +66,15 @@ class GameController implements ControllerInterface {
         $args = $this->dataBuilder($_POST, ['cover_game' => $cover_game]);
 
         $game = new GameModel();
-        $game->store($args);
+        $key = $game->store($args);
+
+        // ставим по умолчанию скидку на год вперед равную нулю
+        $end_of_discount = date('Y-m-d', strtotime('+1 year'));
+
+        $argsTax = $this->dataBuilder(['tax' => 0, 'game_id' => (int) $key, 'end_of_discount' => $end_of_discount]);
+
+        $tax = new TaxGameModel();
+        $tax->store($argsTax);
     }
 
     /**

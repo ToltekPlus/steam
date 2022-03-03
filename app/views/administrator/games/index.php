@@ -23,7 +23,7 @@
                         <td><?=$game->name_game;?></td>
                         <td><?=$game->base_price;?></td>
                         <td>
-                            <a href="/games/tax?id=<?=$game->id?>">
+                            <a href="/taxes/edit?id=<?=$game->id?>">
                                 <ion-icon name="pricetag-outline"></ion-icon>
                             </a>
                         </td>
