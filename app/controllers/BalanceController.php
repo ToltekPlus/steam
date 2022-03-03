@@ -5,9 +5,10 @@ namespace App\Controller;
 use App\Model\BalanceModel;
 use App\Policy\BalancePolicy;
 use Core\View;
-use App\Rule\ControllerInterface;
+use App\Service\DataBuilder;
 
 class BalanceController extends BalancePolicy{
+	use DataBuilder;
     public function index()
     {
         $balance = new BalanceModel();
