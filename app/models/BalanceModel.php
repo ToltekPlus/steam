@@ -15,8 +15,8 @@ class BalanceModel extends Model{
     }
     
     public function store($args)
-	{
-		return $this->storeToTable($this->table, $args);
-	}
+    {
+	return $this->storeToTable($this->table, $args);
+    }
 
 }
