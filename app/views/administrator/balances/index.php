@@ -2,7 +2,7 @@
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
             <? foreach($balances as $balance):?>
-            <h2>Баланс: <?echo $balance->balance?>RUB</h2>
+            <h2>Баланс: <?=$balance->balance?>RUB</h2>
             <? endforeach;?>
             <form action="store" method="POST" class="form">
                 <div class="form-control">
@@ -11,7 +11,7 @@
                         <button class="button is-success is-light" type="submit">Пополнить</button>
                     </div>
                 </div>
-            /form>
+            </form>
         </section>
     </section>
 <?php \Core\View::renderFooter()?>
