@@ -17,18 +17,19 @@ class BalanceController extends BalancePolicy{
         View::render('administrator/balances/index.php', ['balances' => $result]);
     }
     
-    public function store() : void
+public function store() : void
     {
     	$balance = new BalanceModel();
     	$balances = $balance->all();
 
     	foreach($balances as $balance){
-    		$_POST['balance'] = $_POST['sum'] + $balance->balance;
+    		$data = $_POST['sum'] + $balance->balance;
     		$_POST['sum'] = 0;
     	}
 
-    	$args = $this->dataBuilder($_POST);
+    	$args = $this->dataBuilder($_POST, ['balance' => $data]);
 
     	$balance->store($args);
     }
+}
 }
