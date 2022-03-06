@@ -8,6 +8,7 @@
 
                 <div class="column is-two-thirds form">
                     <form method="POST" action="store" enctype="multipart/form-data">
+                        <input type="hidden" name="visibility" id="visibility" value="1">
                         <div class="form-control">
                             <label for="name_genre">Название игры</label>
                             <input type="text" name="name_game" id="name_game" placeholder="Введите игру" autocomplete="off">

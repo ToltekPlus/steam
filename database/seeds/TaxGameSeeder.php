@@ -15,7 +15,6 @@ class TaxGameSeeder extends AbstractSeed
      */
     public function run()
     {
-        // TODO перенастроить foreign-key для таблиц БД
         $data = [
             [
                 'game_id' => 1,
@@ -33,7 +32,7 @@ class TaxGameSeeder extends AbstractSeed
             ]
         ];
 
-        $game = $this->table('games');
+        $game = $this->table('taxes_game');
         $game->insert($data)->save();
     }
 }

@@ -30,9 +30,14 @@ class HomeController extends HomePolicy
 
         $games = TaxGameModel::summaryInformation();
 
-        $result = $this->addOtherInformation($games);
+        $addOtherInformationForGames = $this->addOtherInformation($games);
 
-        View::render('dashboard/index.php', ['games' => $result, 'genres' => $genres, 'companies' => $companies]);
+        // сортируем только игры, которые можно отображать
+        $sortGames = array_filter($addOtherInformationForGames, function ($key) use ($games) {
+            return $games[$key]->visibility;
+        }, ARRAY_FILTER_USE_KEY);
+
+        View::render('dashboard/index.php', ['games' => $sortGames, 'genres' => $genres, 'companies' => $companies]);
     }
 
     /**

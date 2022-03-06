@@ -12,7 +12,8 @@
                 <tr>
                     <th>Название</th>
                     <th>Базовая цена</th>
-                    <th>Установить скидку</th>
+                    <th>Скидка</th>
+                    <th>Видимость</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -24,6 +25,11 @@
                         <td><?=$game->base_price;?></td>
                         <td>
                             <a href="/taxes/edit?id=<?=$game->id?>">
+                                <ion-icon name="pricetag-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/games/visibility?id=<?=$game->id?>">
                                 <ion-icon name="pricetag-outline"></ion-icon>
                             </a>
                         </td>

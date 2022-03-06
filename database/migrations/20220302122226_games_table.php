@@ -39,14 +39,14 @@ final class GamesTable extends AbstractMigration
             ->addColumn( 'updated_at', 'datetime' )
             ->create();
 
-        $refTable = $this->table('companies');
+        $refTable = $this->table('games');
         $refTable->addColumn('company_id', 'integer', ['null' => true])
-            ->addForeignKey('company_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('company_id', 'companies', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
 
-        $refTable = $this->table('genres');
+        $refTable = $this->table('games');
         $refTable->addColumn('genre_id', 'integer', ['null' => true])
-            ->addForeignKey('genre_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('genre_id', 'genres', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
     }
 }

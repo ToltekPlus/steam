@@ -36,7 +36,7 @@ final class TaxesGameTable extends AbstractMigration
             ->addColumn( 'updated_at', 'datetime' )
             ->create();
 
-        $refTable = $this->table('games');
+        $refTable = $this->table('taxes_game');
         $refTable->addColumn('game_id', 'integer', ['null' => true])
             ->addForeignKey('game_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();

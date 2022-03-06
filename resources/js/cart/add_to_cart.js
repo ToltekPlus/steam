@@ -1,5 +1,6 @@
 import { notification } from '../notification/swal'
 import { get_session } from '../db/get_session'
+import { productInCart } from "./brief_cart";
 
 let status;
 
@@ -41,6 +42,8 @@ function addGameToCart(id) {
     }
 
     localStorage.setItem('steamCart', JSON.stringify(cart));
+
+    productInCart();
 
     notification("Товар под номером " + id + " в корзине");
 }

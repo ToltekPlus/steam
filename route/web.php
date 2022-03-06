@@ -16,6 +16,10 @@ $router->add('games/add', ['controller' => 'GameController', 'action' => 'show']
 $router->add('games/store', ['controller' => 'GameController', 'action' => 'store']);
 $router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => 'edit']);
 $router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
+$router->add('games/visibility?{id}', ['controller' => 'GameController', 'action' => 'visibility']);
+
+/*=== РАБОТА С КОРЗИНОЙ ===*/
+$router->add('cart/brief', ['controller' => 'CartController', 'action' => 'brief']);
 
 /*=== УСТАНОВКА СКИДОК ===*/
 $router->add('taxes/edit?{id}', ['controller' => 'GameTaxController', 'action' => 'create']);

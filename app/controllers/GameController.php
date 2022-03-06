@@ -97,6 +97,22 @@ class GameController implements ControllerInterface {
     /**
      * @return void
      */
+    public function visibility()
+    {
+        $game = $this->get($_GET['id']);
+        $visibility = (int)!$game->visibility;
+
+        $args = $this->dataBuilder(['visibility' => $visibility]);
+
+        $game = new GameModel();
+        $game->update($args, $_GET['id']);
+
+        header('Location: ' . '/games/list');
+    }
+
+    /**
+     * @return void
+     */
     public function update()
     {
         if ($_FILES['cover_game']['size'] != 0) {
