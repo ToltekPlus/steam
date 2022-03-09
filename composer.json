@@ -13,6 +13,7 @@
             "App\\Rule\\": "app/interfaces/",
             "App\\Service\\": "app/services/",
             "App\\Policy\\": "app/policies/",
+            "Test\\Unit\\": "tests/Unit/",
             "Core\\": "config/"
         }
     }

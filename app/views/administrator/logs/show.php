@@ -6,7 +6,8 @@
                     <h2>Логи</h2>
                     <div>
                         <?php
-                        while (($line = fgets($logs)) !== false) {
+                        //while (($line = fgets($logs)) !== false) {
+                        foreach ($logs as $line) {
                             $parser = explode('[', $line);
 
                             $type = mb_substr($parser[1], 0, -1);

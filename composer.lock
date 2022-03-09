@@ -826,16 +826,16 @@
         },
         {
             "name": "odan/phinx-migrations-generator",
-            "version": "5.4.3",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/odan/phinx-migrations-generator.git",
-                "reference": "fb3d2228e4ce56ab039b4fd18a087a376ca403a7"
+                "reference": "86942d5701c9136574bbf37ab6e8c5b389ef634b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/odan/phinx-migrations-generator/zipball/fb3d2228e4ce56ab039b4fd18a087a376ca403a7",
-                "reference": "fb3d2228e4ce56ab039b4fd18a087a376ca403a7",
+                "url": "https://api.github.com/repos/odan/phinx-migrations-generator/zipball/86942d5701c9136574bbf37ab6e8c5b389ef634b",
+                "reference": "86942d5701c9136574bbf37ab6e8c5b389ef634b",
                 "shasum": ""
             },
             "require": {
@@ -850,9 +850,11 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "overtrue/phplint": "^1.1 || ^2.0 || ^3.0",
-                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan": "^1.0",
                 "phpunit/phpunit": "^8 || ^9",
-                "squizlabs/php_codesniffer": "^3.4"
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/polyfill-uuid": "^1.24",
+                "symfony/string": "^5 || ^6"
             },
             "bin": [
                 "./bin/phinx-migrations"
@@ -877,11 +879,7 @@
                 "mysql",
                 "phinx"
             ],
-            "support": {
-                "issues": "https://github.com/odan/phinx-migrations-generator/issues",
-                "source": "https://github.com/odan/phinx-migrations-generator/tree/5.4.3"
-            },
-            "time": "2021-09-25T22:35:29+00:00"
+            "time": "2022-02-22T17:42:52+00:00"
         },
         {
             "name": "phar-io/manifest",
