@@ -20,26 +20,29 @@ class BalanceController extends BalancePolicy{
     
     public function store() : void
     {
-    	$balance = new BalanceModel();
-    	$balances = $balance->all();
+        $mainBalance = new BalanceModel();
+        $balances = $mainBalance->all();
 
-    	foreach($balances as $balance){
-    		$data = $_POST['sum'] + $balance->balance;
-    		$_POST['sum'] = 0;
-    	}
+        if($this->check()){
+            foreach($balances as $balance){
+                $data = $_POST['sum'] + $balance->balance;
+                $_POST['sum'] = 0;
+            }
 
-    	$args = $this->dataBuilder($_POST, ['balance' => $data]);
+            $args = $this->dataBuilder($_POST, ['balance' => $data]);
 
-    	$balance->store($args);
+            $mainBalance->store($args);
+        }
     }
-	
+
     public function check()
     {
-        if((int)$_POST['sum'] >= 5000){
-            return true;
-        } else {
-            return false;
+        if(is_numeric($_POST['sum'])){
+            if((int)$_POST['sum'] >= 5000){
+                return true;
+            }
         }
+        return false;
     }
 }
 
