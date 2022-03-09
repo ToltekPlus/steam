@@ -6,6 +6,7 @@
             <? endforeach;?>
             <form action="balances/store" method="POST" class="form">
                 <div class="form-control">
+                        <input type="hidden" value="<?=$balance->id?>" name="id">
                         <input type="text" name="sum" id="sum">
                     <div class="buttons">
                         <button class="button is-success is-light" type="submit">Пополнить</button>
