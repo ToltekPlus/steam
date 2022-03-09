@@ -21,17 +21,18 @@ class BalanceController extends BalancePolicy{
     public function store() : void
     {
         $mainBalance = new BalanceModel();
-        $balances = $mainBalance->all();
 
         if($this->check()){
-            foreach($balances as $balance){
-                $data = $_POST['sum'] + $balance->balance;
-                $_POST['sum'] = 0;
-            }
-
+	    $balance = $this->find($_POST['id']);
+            
+            $data = $_POST['sum'] + $balance->balance;
+	    $userId = $balance->user_id;
+            
             $args = $this->dataBuilder($_POST, ['balance' => $data]);
-
-            $mainBalance->store($args);
+		
+	    $this->storeToHistory();
+            $this->delete();
+	    $mainBalance->store($args);
         }
     }
 
@@ -43,6 +44,23 @@ class BalanceController extends BalancePolicy{
             }
         }
         return false;
+    }
+	
+    public function storeToHistory()
+    {
+        $balance = $this->find($_POST['id']);
+        $data = $balance->balance;
+        $sum = (int)$_POST['sum'];
+        $userId = $balance->user_id;
+
+        $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
+        $this->storeToHistoryBalance($args);
+    }
+
+    public function delete()
+    {
+        $balance = new BalanceModel;
+        $balance->delete($_POST['id']);
     }
 }
 
