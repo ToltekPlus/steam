@@ -8,7 +8,8 @@ use Core\View;
 use App\Service\DataBuilder;
 
 class BalanceController extends BalancePolicy{
-	use DataBuilder;
+    use DataBuilder;
+	
     public function index()
     {
         $balance = new BalanceModel();
@@ -30,6 +31,15 @@ class BalanceController extends BalancePolicy{
     	$args = $this->dataBuilder($_POST, ['balance' => $data]);
 
     	$balance->store($args);
+    }
+	
+    public function check()
+    {
+        if((int)$_POST['sum'] >= 5000){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
