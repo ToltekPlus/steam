@@ -17,7 +17,7 @@ class BalanceController extends BalancePolicy{
         View::render('administrator/balances/index.php', ['balances' => $result]);
     }
     
-public function store() : void
+    public function store() : void
     {
     	$balance = new BalanceModel();
     	$balances = $balance->all();
@@ -32,4 +32,4 @@ public function store() : void
     	$balance->store($args);
     }
 }
-}
+
