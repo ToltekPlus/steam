@@ -4,7 +4,7 @@
             <? foreach($balances as $balance):?>
             <h2>Баланс: <?=$balance->balance?>RUB</h2>
             <? endforeach;?>
-            <form action="store" method="POST" class="form">
+            <form action="balances/store" method="POST" class="form">
                 <div class="form-control">
                         <input type="text" name="sum" id="sum">
                     <div class="buttons">
