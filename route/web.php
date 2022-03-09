@@ -30,6 +30,10 @@ $router->add('genres/edit?{id}', ['controller' => 'GenreController', 'action' =>
 $router->add('genres/update', ['controller' => 'GenreController', 'action' => 'update']);
 $router->add('genres/delete', ['controller' => 'GenreController', 'action' => 'delete']);
 
+/*=== РАБОТА С КОРЗИНОЙ ===*/
+$router->add('basket', ['controller' => 'BasketController', 'action' => 'index']);
+$router->add('getProducts', ['controller' => 'BasketController', 'action' => 'getProducts']);
+
 /*=== РАБОТА С ПСЕВДОСЫЛКАМИ ===*/
 $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'generate']);
 
