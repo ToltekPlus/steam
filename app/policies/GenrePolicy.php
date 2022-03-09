@@ -6,6 +6,9 @@ use App\Model\UserRoleModel;
 use Core\View;
 
 class GenrePolicy {
+    /**
+     * @var array
+     */
     protected $role;
 
     /**
