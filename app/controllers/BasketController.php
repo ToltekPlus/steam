@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Model\CompanyModel;
+use App\Model\GameModel;
+use App\Model\GenreModel;
+use App\Model\TaxGameModel;
 use Core\View;
 
 class BasketController {
@@ -29,7 +33,8 @@ class BasketController {
 
         $result = $this->getInformationForBasket();
 
-        echo $result;
+        //echo json_encode(array_shift($result));
+        echo json_encode($result);
     }
 
     /**
@@ -43,8 +48,22 @@ class BasketController {
 
         $result = [];
 
-        foreach ($explodeKeys as $item) {
-            // TODO выборка данных и их подготовка к возврату
+        foreach ($explodeKeys as $key => $item) {
+            $game = new GameModel();
+            $game = $game->find($item);
+            $result[$key] = $game;
+
+            $genre = new GenreModel();
+            $genre = $genre->find($game->genre_id);
+            $result[$key]->genre = $genre;
+
+            $company = new CompanyModel();
+            $company = $company->find($game->company_id);
+            $result[$key]->company = $company;
+
+            $tax = new TaxGameModel();
+            $tax = $tax->find($item);
+            $result[$key]->tax = $tax;
         }
 
         return $result;

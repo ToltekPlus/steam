@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearForm(form, '#file-js-example .file-name');
                     })
                     .catch((err) => console.error(err));
-
             }
 
             // если поле редиректа не пустое, то редиректимся туда, куда описывает поле
