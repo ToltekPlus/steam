@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class UsersTable extends AbstractMigration
+final class TaxesGameTable extends AbstractMigration
 {
     /**
      * @return void
      */
     public function up() : void
     {
-        $exists = $this->hasTable('users');
+        $exists = $this->hasTable('taxes_game');
         if ($exists) {
-            $this->table('users')->drop()->save();
+            $this->table('games')->drop()->save();
         }
     }
 
@@ -29,21 +29,16 @@ final class UsersTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table( 'users');
-        $table->addColumn( 'password', 'string' )
-            ->addColumn( 'phone', 'char' )
+        $table = $this->table('taxes_game');
+        $table->addColumn( 'tax', 'integer')
+            ->addColumn( 'end_of_discount', 'datetime' )
             ->addColumn( 'created_at', 'datetime' )
             ->addColumn( 'updated_at', 'datetime' )
             ->create();
 
-        $refTable = $this->table('users_role');
-        $refTable->addColumn('user_id', 'integer', ['null' => true])
-            ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
-            ->save();
-
-        $refTable = $this->table('accounts');
-        $refTable->addColumn('user_id', 'integer', ['null' => true])
-            ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+        $refTable = $this->table('taxes_game');
+        $refTable->addColumn('game_id', 'integer', ['null' => true])
+            ->addForeignKey('game_id', 'games', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
     }
 }
