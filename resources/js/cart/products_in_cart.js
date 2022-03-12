@@ -1,3 +1,6 @@
+// TODO оформить удаление прямиком из корзины
+// TODO декомпозировать код, убрать дублирующие куски
+
 import { sendData } from "../db/send";
 
 // определяем поведение для работы с корзиной
@@ -36,6 +39,11 @@ if (identityRoute.length) {
     let operation = identityRoute.shift();
 
     let cart = JSON.parse(localStorage.getItem('steamCart'));
+    if (!cart.length) {
+        window.setTimeout( function(){
+            window.location = '/';
+        }, 500 );
+    }
 
     cart.forEach((item) => {
         arrKeys.push(parseInt(item.id));

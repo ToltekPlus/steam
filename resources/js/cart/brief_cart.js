@@ -1,4 +1,5 @@
 import { sendData } from "../db/send";
+import {deleteFromLocaleStorage} from "./delete_product_from_cart";
 
 var linkBrief = document.getElementById("briefCart");
 
@@ -46,12 +47,12 @@ export function productInCart() {
             .then(response => {
                 let result = JSON.parse(response)
                 result.forEach((item, key) => {
-                    finalPrice = finalPrice + cart[key].count*item.price;
+                    finalPrice = finalPrice + cart[key].count * item.price;
                     product.innerHTML += "<div class='product-in-cart__title'>"
-                        +item.name_game+"<span class='product-in-cart__count'>(x"+cart[key].count+")</span>"
-                        +"<div class='product-in-cart__price'>"+item.price+"<span class='product-in-cart__delete'>удалить</span></div>"
-                        +"</div>";
-                    finalPriceInCart.innerHTML = "<div class='product-in-cart__price'>Финальная цена: "+finalPrice+"</div>"+"<div class='arange'><a href='/basket'>Оформить</a></div>";
+                        + item.name_game + "<span class='product-in-cart__count'>(x" + cart[key].count + ")</span>"
+                        + "<div class='product-in-cart__price'>" + item.price + "<label class='product-in-cart__delete' data-el='" + cart[key].id + "' id='" + cart[key].id + "'>удалить</label></div>"
+                        + "</div>";
+                    finalPriceInCart.innerHTML = "<div class='product-in-cart__price'>Финальная цена: " + finalPrice + "</div>" + "<div class='arange'><a href='/basket'>Оформить</a></div>";
                     cartProducts.append(product);
                     cartProducts.append(finalPriceInCart)
                     cartContent.append(cartProducts);
@@ -60,6 +61,17 @@ export function productInCart() {
             .catch(error => {
                 console.log(error);
             })
+
+        setTimeout(deleteFromCart, 1000);
     }
 }
 
+function deleteFromCart() {
+    [...document.getElementsByClassName("product-in-cart__delete")].forEach(el => el.addEventListener('click', event => {
+        deleteFromLocaleStorage(event.target.getAttribute("data-el"));
+
+        let elem = document.getElementsByClassName("cart-products")[0];
+        if (elem) { elem.parentNode.removeChild(elem) }
+        productInCart();
+    }))
+}
