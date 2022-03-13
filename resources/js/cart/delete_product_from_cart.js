@@ -1,3 +1,10 @@
+/**
+ * Принимаем id элемента, который нужно удалить
+ * Включаем функцию фильтрации localStorage, оставляя все что не соответствует id
+ *
+ * Перезаписываем localStorage уже с обновленными данными
+ *
+ */
 export function deleteFromLocaleStorage(id)
 {
     let productsInCart = JSON.parse(localStorage.getItem('steamCart'));
