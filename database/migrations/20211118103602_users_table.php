@@ -43,7 +43,7 @@ final class UsersTable extends AbstractMigration
 
         $refTable = $this->table('accounts');
         $refTable->addColumn('user_id', 'integer', ['null' => true])
-            ->addForeignKey('user_id', 'accounts', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
+            ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->save();
     }
 }

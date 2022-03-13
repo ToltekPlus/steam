@@ -44,17 +44,32 @@
             </div>
 
             <div class="column is-3">
-                        <span class="icon-text">
-                          <span class="icon">
-                            <ion-icon name="search-outline"></ion-icon>
-                          </span>
-                        </span>
-
                 <span class="icon-text">
-                          <span class="icon">
-                            <ion-icon name="basket-outline"></ion-icon>
-                          </span>
-                        </span>
+                  <span class="icon">
+                    <ion-icon name="search-outline"></ion-icon>
+                  </span>
+                </span>
+
+
+
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+               <span class="icon-text">
+                      <span class="icon" id="briefCart">
+                        <ion-icon name="basket-outline"></ion-icon>
+                      </span>
+                </span>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                        <div class="dropdown-content" id="cartContent">
+                            <center>
+                                <h4>Корзина</h4>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+
                 <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
                     <div class="dropdown">
@@ -75,6 +90,9 @@
                             <a href="/roles/list" class="dropdown-item">
                                 Пользователи
                             </a>
+                            <a href="/games/list" class="dropdown-item">
+                                Игры
+                            </a>
                             <a href="/companies/list" class="dropdown-item">
                                 Компании
                             </a>
@@ -83,6 +101,9 @@
                             </a>
                             <a href="/symlinks" class="dropdown-item">
                                 Сгенерировать псевдосылки
+                            </a>
+                            <a href="/logs" class="dropdown-item">
+                                Логи
                             </a>
                           <a href="/logout" class="dropdown-item">
                             Выход
