@@ -1,21 +1,37 @@
+/**
+ * Определяем роуты и ищем совпадения
+ *
+ * Если совпадения найдены, то подготавлием элементы для построения html
+ * Проверяем, есть ли в корзине информация. Если нет, то возвращаем на главную
+ *
+ * По id из localStorage забираем с сервера нужные для нас данные
+ * Строим html данные
+ *
+ * Вешаем на элементы с удалением id элемента
+ * И через секунду запускаем функцию с удалением (т.к. DOM-дерево сперва не имеет информацию о данных корзины)
+ *
+ * Для удаления перебираем все элементы с требуемым классом и кидаем в функцию удаления
+ *
+ * Дублирем проверку на наличие корзины
+ *
+ * Релодимся на страницу с корзиной, чтобы обновить информацию с древом
+ *
+ */
+
+// TODO декомпозировать код, убрать дублирующие куски
+// TODO при добавлении товаров дублируется корзина
+// TODO обновлять html после удаления ассинхронно
+
 import { sendData } from "../db/send";
+import { identity_route } from "./identity_route";
+import { list } from "../route/list";
+import { deleteFromLocaleStorage } from "./delete_product_from_cart";
+import { productInCart } from "./brief_cart";
 
 // определяем поведение для работы с корзиной
-let basket =  [
-    {
-        "page": "basket",
-        "action": "getProducts",
-        "header": "application/x-www-form-urlencoded"
-    }
-];
+let type = list();
 
-// собираем url без get параметров
-let urlPATH = window.location.origin + window.location.pathname;
-
-// ищем соответствующий метод для работы
-let identityRoute = basket.filter(item => {
-    return item.page === urlPATH.split('/').pop();
-});
+let identityRoute = identity_route(type);
 
 if (identityRoute.length) {
     let product = document.createElement('div');
@@ -36,6 +52,11 @@ if (identityRoute.length) {
     let operation = identityRoute.shift();
 
     let cart = JSON.parse(localStorage.getItem('steamCart'));
+    if (!cart.length) {
+        window.setTimeout( function(){
+            window.location = '/';
+        }, 500 );
+    }
 
     cart.forEach((item) => {
         arrKeys.push(parseInt(item.id));
@@ -57,6 +78,7 @@ if (identityRoute.length) {
                     + "<span>(x" + cart[key].count + ")</span>"
                     + "<span class='discount'>"+ item.tax.tax +" %</span></div>"
                     + "<div class='product-in-cart__product-categories'><ul class='column is-12'><li>"+ item.genre.name_genre +"</li></ul></div>"
+                    + "<div class='product-in-cart__delete-from-cart'><a class='delete-link' data-el='" + cart[key].id + "' id='" + cart[key].id + "'>удалить из корзины</a></div>"
                     + "</div>";
 
                 basket.append(product);
@@ -66,4 +88,20 @@ if (identityRoute.length) {
             cartData.append(cartDataInfo);
         })
         .catch((err) => console.error(err));
+
+    setTimeout(deleteFromCart, 1000);
+}
+
+function deleteFromCart() {
+    [...document.getElementsByClassName("delete-link")].forEach(el => el.addEventListener('click', event => {
+        deleteFromLocaleStorage(event.target.getAttribute("data-el"));
+
+        let elem = document.getElementsByClassName("cart-products")[0];
+        if (elem) { elem.parentNode.removeChild(elem) }
+        productInCart();
+
+        window.setTimeout( function(){
+            window.location = '/basket';
+        }, 500 );
+    }))
 }
