@@ -57,6 +57,7 @@ vendor\bin\phinx seed:run -s MainSeeder
 - pull-request от главного своей команды в ``dev`` ветку
 
 ## Continuous Integration
+![CI](https://hsto.org/r/w1560/webt/eu/y-/xc/euy-xcul0bvx8zvzhpz2uvr_0tk.png)
 Для прогона перед пушем коммит идет в ``circleci``. Там проект собирается, тестируются миграции и сидеры и возвращается результат.
 Если проект не билдится, то вываливается ошибка, и пулл-реквест (или мержинг) не происходит до исправления ошибок.
 Настройка находится по адресу ``.circleci/config.yml``.
