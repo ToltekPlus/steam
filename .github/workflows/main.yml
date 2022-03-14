@@ -53,9 +53,6 @@ jobs:
       - name: Create test database
         run: mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS steam;'
 
-      - name: Validate composer.json and composer.lock
-        run: composer validate
-
       - name: Install dependencies for PHP 7
         if: matrix.php-versions < '8.0'
         run: composer update --prefer-dist --no-progress
