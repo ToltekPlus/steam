@@ -55,4 +55,8 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
+/*=== РАБОТА С БАЛАНСОМ ===*/
+$router->add('balances/list', ['controller' => 'BalanceController', 'action' => 'index']);
+$router->add('balances/store', ['controller' => 'BalanceController', 'action' => 'store']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);
