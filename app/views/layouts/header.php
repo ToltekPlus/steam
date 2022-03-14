@@ -81,7 +81,7 @@
                           <a href="#" class="dropdown-item">
                             Мои игры
                           </a>
-                          <a href="#" class="dropdown-item">
+                          <a href="/balances/list" class="dropdown-item">
                             Кошелек
                           </a>
                           <a href="#" class="dropdown-item">
