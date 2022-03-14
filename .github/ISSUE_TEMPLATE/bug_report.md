@@ -1,8 +1,8 @@
 ---
 name: Bug report
 about: Отчет, который поможет сделать продукт лучше
-title: ''
-labels: ''
+title: :bug:
+labels: bug
 assignees: ''
 
 ---
