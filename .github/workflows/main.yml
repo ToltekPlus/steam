@@ -62,7 +62,7 @@ jobs:
 
       - name: Install dependencies for PHP 8
         if: matrix.php-versions >= '8.0'
-        run: composer update --prefer-dist --no-progress' --ignore-platform-reqs
+        run: composer update --prefer-dist --no-progress --ignore-platform-reqs
       
       - name: Copy .env
         run: cp .env.example .env
