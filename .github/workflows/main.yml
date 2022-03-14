@@ -8,6 +8,11 @@ on:
   pull_request:
     branches: [ dev ]
     
+defaults:
+ run:
+  working-directory: ./
+  
+    
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -56,12 +61,10 @@ jobs:
       - name: Install dependencies for PHP 7
         if: matrix.php-versions < '8.0'
         run: composer update --prefer-dist --no-progress
-        working-directory: ./
 
       - name: Install dependencies for PHP 8
         if: matrix.php-versions >= '8.0'
         run: composer update --prefer-dist --no-progress --ignore-platform-reqs
-        working-directory: ./
       
       - name: Copy .env
         run: cp .env.example .env
