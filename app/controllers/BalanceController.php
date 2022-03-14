@@ -40,6 +40,20 @@ class BalanceController extends BalancePolicy{
             $mainBalance->store($args);
         }
     }
+    
+    /*
+     * Добавление данных в таблицу истории баланса
+     */
+    public function storeToHistory()
+    {
+        $balance = $this->find($_POST['id']);
+        $data = $balance->balance;
+        $sum = (int)$_POST['sum'];
+        $userId = $balance->user_id;
+
+        $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
+        $this->storeToHistoryBalance($args);
+    }
 
     /*
      * Проверка данных введённых в форму 
