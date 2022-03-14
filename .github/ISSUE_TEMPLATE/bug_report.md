@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Отчет, который поможет сделать продукт лучше
-title: :bug:
+title: "[Bug]"
 labels: bug
 assignees: ''
 
