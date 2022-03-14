@@ -52,17 +52,16 @@ jobs:
 
       - name: Create test database
         run: mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS steam;'
-      
-      - name: Install composer
-        run: composer install -n --prefer-dist
 
       - name: Install dependencies for PHP 7
         if: matrix.php-versions < '8.0'
         run: composer update --prefer-dist --no-progress
+        working-directory: ./
 
       - name: Install dependencies for PHP 8
         if: matrix.php-versions >= '8.0'
         run: composer update --prefer-dist --no-progress --ignore-platform-reqs
+        working-directory: ./
       
       - name: Copy .env
         run: cp .env.example .env
