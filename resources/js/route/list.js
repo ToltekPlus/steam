@@ -20,6 +20,11 @@ export function list() {
             "redirect": "list",
             "message": "Данные удалены",
             "message_error": "Произошла ошибка"
+        },
+        {
+            "page": "basket",
+            "action": "getProducts",
+            "header": "application/x-www-form-urlencoded"
         }
     ];
 }

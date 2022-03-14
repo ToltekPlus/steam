@@ -59,9 +59,9 @@ class Model {
      * @param int $id
      * @return array
      */
-    public function getByIdFromTable(string $table, int $id) : array
+    public function getByIdFromTable(string $table, int $id, string $table_id = "id") : array
     {
-        $sql = "SELECT * FROM " . $table . " WHERE id = " . $id;
+        $sql = "SELECT * FROM " . $table . " WHERE " . $table_id . " = " . $id;
         return $this->connect->query($sql);
     }
 
@@ -81,12 +81,13 @@ class Model {
      *
      * @param string $table
      * @param array $pivot
+     * @param string $group_key
      * @return array
      */
-    public function selected_tables(string $table, array $pivot) : array
+    public function selected_tables(string $table, array $pivot, $group_key = "id") : array
     {
         $result = [];
-        array_push($result, ["table" => $table, "group_key" => "id"]);
+        array_push($result, ["table" => $table, "group_key" => $group_key]);
 
         foreach ($pivot as $key => $value) {
             array_push($result, $value);
@@ -184,6 +185,14 @@ class Model {
         $this->executeQuery($sql, $args);
 
         return true;
+    }
+
+    /**
+     * @return false|string
+     */
+    public function lastInsertKey()
+    {
+        return $this->connect->lastId();
     }
 
     /**

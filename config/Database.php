@@ -59,4 +59,12 @@ class Database
             Logger::getLogger()->log('db', $e->getMessage());
         }
     }
+
+    /**
+     * @return false|string
+     */
+    public function lastId()
+    {
+        return $this->connect->lastInsertId();
+    }
 }
