@@ -8,7 +8,8 @@ use Core\DataBuilder;
 class BalanceModel extends Model{
     
     protected $table = 'balances';
-
+    protected $table2 = 'update-balances';
+	
     /*
      * Сбор всех данных из таблицы баланса
      */
@@ -23,6 +24,14 @@ class BalanceModel extends Model{
     public function store($args)
     {
 	return $this->storeToTable($this->table, $args);
+    }
+	
+	/*
+     * Добавление данных в таблицу истории баланса
+     */
+	public function storeToHistoryBalance($args)
+    {
+    	return $this->storeToTable($this->table2, $args);
     }
 	
     /*
