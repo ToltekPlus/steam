@@ -24,7 +24,7 @@ class AccountSeeder extends AbstractSeed
                 'surname' => 'Иванов',
                 'about' => 'Люблю деградировать',
                 'birthday_at' => date('Y-m-d H:i:s'),
-                'userpic' => '',
+                'userpic' => '/userpic/userpic.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

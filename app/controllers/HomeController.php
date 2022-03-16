@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Model\AccountModel;
 use App\Model\GameModel;
 use App\Model\GenreModel;
 use App\Model\CompanyModel;
 use App\Model\TaxGameModel;
+use App\Model\UserRoleModel;
 use App\Policy\HomePolicy;
 use Core\View;
 
@@ -62,8 +64,25 @@ class HomeController extends HomePolicy
         return $result;
     }
 
-    static function account()
+    /**
+     * account userpic
+     */
+    static function accountUserpic()
     {
-        // TODO вывод информации о пользователе для вывода в хедер
+        $account = new AccountModel();
+        $account = $account->find($_SESSION['sid']);
+
+        echo $account->userpic;
+    }
+
+    /**
+     * @return mixed
+     */
+    static function accountRole()
+    {
+        $role = new UserRoleModel();
+        $role = $role->find($_SESSION['sid']);
+
+        return $role->role_id;
     }
 }
