@@ -8,7 +8,7 @@ use Core\DataBuilder;
 class BalanceModel extends Model{
     
     protected $table = 'balances';
-    protected $table2 = 'update-balances';
+    protected $table2 = 'balances-history';
 	
     /*
      * Сбор всех данных из таблицы баланса
@@ -41,6 +41,14 @@ class BalanceModel extends Model{
     {
     	$balance = $this->getByIdFromTable($this->table, $id);
         return array_shift($balance);
+    }
+	
+	/*
+     * Обновление данных из таблицы по id
+     */
+    public function update($id, $args)
+    {
+        $this->builderForUpdate($id, $this->table, $args);
     }
 
     /*
