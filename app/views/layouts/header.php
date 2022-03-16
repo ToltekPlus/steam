@@ -69,24 +69,41 @@
                     </div>
                 </div>
 
-
                 <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="../images/userpic/userpic.jpg" alt="Юзерпик" >
+                          <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
-                          <a href="#" class="dropdown-item">
-                            Мои игры
-                          </a>
-                          <a href="#" class="dropdown-item">
-                            Кошелек
-                          </a>
-                          <a href="#" class="dropdown-item">
-                            Архив
-                          </a>
+                        <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="#" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 2: ?>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 3: ?>
+                            <a href="#" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
                             <a href="/roles/list" class="dropdown-item">
                                 Пользователи
                             </a>
@@ -105,9 +122,10 @@
                             <a href="/logs" class="dropdown-item">
                                 Логи
                             </a>
-                          <a href="/logout" class="dropdown-item">
-                            Выход
-                          </a>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php endswitch; ?>
                         </div>
                       </div>
                     </div>
