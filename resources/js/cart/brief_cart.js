@@ -59,13 +59,13 @@ export function productInCart() {
         let arrKeys = [];
         cart.forEach((item) => {
             arrKeys.push(parseInt(item.id));
-        })
+        });
 
         const send = sendData(arrKeys, path, basket.header);
 
         send(arrKeys)
             .then(response => {
-                let result = JSON.parse(response)
+                let result = JSON.parse(response);
                 result.forEach((item, key) => {
                     finalPrice = finalPrice + cart[key].count * item.price;
                     product.innerHTML += "<div class='product-in-cart__title'>"
@@ -74,13 +74,13 @@ export function productInCart() {
                         + "</div>";
                     finalPriceInCart.innerHTML = "<div class='product-in-cart__price'>Финальная цена: " + finalPrice + "</div>" + "<div class='arange'><a href='/basket'>Оформить</a></div>";
                     cartProducts.append(product);
-                    cartProducts.append(finalPriceInCart)
+                    cartProducts.append(finalPriceInCart);
                     cartContent.append(cartProducts);
                 })
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
 
         setTimeout(deleteFromCart, 1000);
     }

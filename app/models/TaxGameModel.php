@@ -46,10 +46,10 @@ class TaxGameModel extends Model {
     /**
      * @return array
      */
-    static function summaryInformation() : array
+    static function summaryInformation($limit) : array
     {
         $games = new TaxGameModel();
         $selected_tables = $games->selected_tables($games->table, $games->pivot_tables);
-        return $games->getAllPivot($selected_tables);
+        return $games->getAllPivot($selected_tables, null,$limit);
     }
 }

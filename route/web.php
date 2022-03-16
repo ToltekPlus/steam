@@ -4,6 +4,7 @@ use Core\Router;
 
 $router = new Router();
 $router->add('', ['controller' => 'HomeController', 'action' => 'index']);
+$router->add('selector', ['controller' => 'HomeController', 'action' => 'selectorGames']);
 
 /*=== АВТОРИЗАЦИЯ, РЕГИСТРАЦИЯ, ВЫХОД ИЗ АККАУНТА ===*/
 $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);

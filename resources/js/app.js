@@ -1,5 +1,6 @@
 import '../sass/app.sass'
 
+import './content/selector_games_for_dashboard'
 import './db/listener'
 import './auth/auth_form'
 import './cart/add_to_cart'
