@@ -10,7 +10,8 @@ use App\Service\DataBuilder;
 class BalanceController extends BalancePolicy{
     use DataBuilder;
     
-    public $max_sum = 5000;
+    private $max_sum = 5000;
+    
     /*
      * Вывод формы 
      */
@@ -21,24 +22,37 @@ class BalanceController extends BalancePolicy{
 
         View::render('administrator/balances/index.php', ['balances' => $result]);
     }
+    
+    /*
+     * Изменение баланса для снятия или пополнения
+     */
+    public function changeBalance($sum, $action) : int
+    {
+        $balance = $this->find($_POST['id']);
+        if($this->check()){
+            if($action == '+'){
+                return $balance->balance =+ $sum;
+            } else if($action == '-'){
+                return $balance->balance =- $sum;
+            } else {
+                return $balance->balance;
+            }
+        } return 0;
+    }
   
     /*
      * Добавление данных в таблицу баланса
      */
     public function store() : void
     {
-        $mainBalance = new BalanceModel();
-
-        if($this->check()){
             $balance = $this->find($_POST['id']);  
-            $data = $_POST['sum'] + $balance->balance;
-            $userId = $balance->user_id;   
+
+            $userId = $balance->user_id; 
+            $data = changeBalance($_POST['sum'], '+');
             $args = $this->dataBuilder($_POST, ['balance' => $data]);
 
             $this->storeToHistory();
-            $this->delete();
-            $mainBalance->store($args);
-        }
+            $this->update($args);        
     }
     
     /*
@@ -63,6 +77,15 @@ class BalanceController extends BalancePolicy{
         if(is_numeric($_POST['sum']) || (int)$_POST['sum'] >= $max_sum){
             return true; 
         } return false;
+    }
+    
+    /*
+     * Обновление данных таблицы
+     */
+    public function update($args)
+    {
+        $balance = new BalanceModel();
+        $balance->update($_POST['id'], $args);
     }
   
     /*
