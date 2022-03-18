@@ -24,18 +24,32 @@ class BalanceController extends BalancePolicy{
     }
     
     /*
+     *Вывод формы пополнения 
+     */
+    public function showStore()
+    {
+        $balance = new BalanceModel();
+        $result = $balance->all();
+
+        View::render('administrator/balances/replenish.php', ['balances' => $result]);
+    }
+    
+    /*
      * Изменение баланса для снятия или пополнения
      */
     public function changeBalance($sum, $action) : int
     {
-        $balance = $this->find($_POST['id']);
+        $balances = new BalanceModel();
+        $balance = $balances->find($_POST['id'])->balance;
+        $sum = (int)$sum;
+        
         if($this->check()){
             if($action == '+'){
-                return $balance->balance =+ $sum;
+                return $balance = $balance + $sum;
             } else if($action == '-'){
-                return $balance->balance =- $sum;
+                return $balance = $balance - $sum;
             } else {
-                return $balance->balance;
+                return $balance;
             }
         } return 0;
     }
@@ -43,13 +57,14 @@ class BalanceController extends BalancePolicy{
     /*
      * Добавление данных в таблицу баланса
      */
-    public function store() : void
+    public function replenish() : void
     {
-            $balance = $this->find($_POST['id']);  
+            $balances = new BalanceModel();
+            $balance = $balances->find($_POST['id']);
 
             $userId = $balance->user_id; 
-            $data = changeBalance($_POST['sum'], '+');
-            $args = $this->dataBuilder($_POST, ['balance' => $data]);
+            $data = $this->changeBalance($_POST['sum'], '+');
+            $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
 
             $this->storeToHistory();
             $this->update($args);        
@@ -60,13 +75,15 @@ class BalanceController extends BalancePolicy{
      */
     public function storeToHistory()
     {
-        $balance = $this->find($_POST['id']);
+        $balances = new BalanceModel();
+        $balance = $balances->find($_POST['id']);
+        
         $data = $balance->balance;
         $sum = (int)$_POST['sum'];
         $userId = $balance->user_id;
 
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
-        $this->storeToHistoryBalance($args);
+        $balances->storeToHistoryBalance($args);
     }
 
     /*
