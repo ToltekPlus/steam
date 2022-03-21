@@ -44,6 +44,7 @@ class TaxGameModel extends Model {
     }
 
     /**
+     * @param $limit
      * @return array
      */
     static function summaryInformation($limit) : array

@@ -34,6 +34,8 @@ document.getElementById('briefCart').addEventListener('click', function (e) {
 
 export function productInCart() {
     if (linkBrief) {
+        let cart = JSON.parse(localStorage.getItem('steamCart'));
+
         // определяем поведение для работы с корзиной
         let basket = {
             "header": "application/x-www-form-urlencoded"
@@ -50,11 +52,18 @@ export function productInCart() {
         let finalPriceInCart = document.createElement('div');
         finalPriceInCart.classList.add("product-in-cart__final-price");
 
+        if (!cart.length) {
+            // TODO если корзира уже была постая, то удлять этот блок
+            let emptyCart = document.createElement('div');
+            emptyCart.classList.add("empty-cart");
+
+            emptyCart.innerHTML = "<div style='text-align: center;'>Корзина пустая :(</div>";
+            cartContent.append(emptyCart);
+        }
+
         let finalPrice = 0;
 
         let path = "cart/brief";
-
-        let cart = JSON.parse(localStorage.getItem('steamCart'));
 
         let arrKeys = [];
         cart.forEach((item) => {

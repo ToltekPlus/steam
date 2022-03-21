@@ -1,16 +1,17 @@
 import { sendData } from "../db/send";
 import { notification } from "../notification/swal";
-import { tree_container } from "./tree_container";
+import {tree_container} from "./tree_container";
 
-// TODO оформить добавление товара после выбора кол-ва игры на главной
+// TODO оформить добавление товара после выбора жанра игры на главной
 let selector = {
-    "path": "selector",
-    "header": "application/x-www-form-urlencoded"
+    "path": "selector-genres",
+    "header": "application/x-www-form-urlencoded",
+    "class": "counts"
 };
 
 let dashboard = document.getElementById('dashboard');
 
-document.getElementById('selector-games').addEventListener('change', function() {
+document.getElementById('selector-genres').addEventListener('change', function() {
     notification('Загружаем игры...', 'info');
 
     const send = sendData(this.value, selector.path, selector.header);

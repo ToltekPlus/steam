@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\AccountModel;
+use App\Model\GameModel;
 use App\Model\GenreModel;
 use App\Model\CompanyModel;
 use App\Model\TaxGameModel;
@@ -114,5 +115,52 @@ class HomeController extends HomePolicy
         }, ARRAY_FILTER_USE_KEY);
 
         echo json_encode($sortGames);
+    }
+
+    /**
+     * @return void
+     */
+    public function selectorGenres()
+    {
+        foreach ($_POST as $key => $item) {
+            $this->selector = $key;
+        }
+
+        $games = new GameModel();
+        $games = $games->findByGenre($this->selector);
+
+        $taxGames = $this->selectTaxGames($games);
+
+        // сортируем только игры, которые можно отображать
+        $sortGames = array_filter($taxGames, function ($key) use ($games) {
+            return $games[$key]->visibility;
+        }, ARRAY_FILTER_USE_KEY);
+
+        echo json_encode($sortGames);
+    }
+
+    /**
+     * @param $games
+     * @return array
+     */
+    public function selectTaxGames($games)
+    {
+        $result = [];
+        foreach ($games as $key => $game) {
+            $taxGame = new TaxGameModel();
+            $taxGame = $taxGame->find($game->id);
+            $result[$key] = $taxGame;
+            $result[$key] = $games[$key];
+
+            $genre = new GenreModel();
+            $genre = $genre->find($games[$key]->genre_id);
+            $result[$key]->genre = $genre;
+
+            $company = new CompanyModel();
+            $company = $company->find($games[$key]->company_id);
+            $result[$key]->company = $company;
+        }
+
+        return $result;
     }
 }

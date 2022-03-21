@@ -1,7 +1,8 @@
 import '../sass/app.sass'
 
-import './content/selector_games_for_dashboard'
 import './db/listener'
+import './content/selector_games_for_dashboard'
+import './content/selector_games_for_dashboard_by_genres'
 import './auth/auth_form'
 import './cart/add_to_cart'
 import './cart/products_in_cart'

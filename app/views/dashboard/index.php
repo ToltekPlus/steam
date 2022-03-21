@@ -5,7 +5,7 @@
         <div class="select is-rounded is-small">
             <select id="selector-games">
                 <option>Отображать по</option>
-                <?php for ($i=0; $i <=3; $i = $i + 1): ?>
+                <?php for ($i = 5 ; $i <= 20; $i = $i + 5): ?>
                     <option value="<?=$i;?>" name="<?=$i;?>">
                         <?=$i;?>
                     </option>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="select is-rounded is-small">
-            <select>
+            <select id="selector-genres">
                 <option>Жанры</option>
                 <?php foreach ($genres as $genre): ?>
                     <option value="<?=$genre->id; ?>" name="<?=$genre->name_genre; ?>">
