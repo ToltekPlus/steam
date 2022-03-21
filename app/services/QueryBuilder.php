@@ -11,9 +11,10 @@ trait QueryBuilder {
      * @param int|null $id
      * @return string
      */
-    public function queryBuilder(array $tables, ?int $id) : string
+    public function queryBuilder(array $tables, ?int $id, $limit) : string
     {
         $selected_table = "";
+        $limit_data = "";
         foreach ($tables as $key => $table) {
             if ($key == array_key_last($tables)) {
                 $selected_table .= $table['table'];
@@ -25,7 +26,9 @@ trait QueryBuilder {
 
         $table_key = $tables[0]['table'] . "." . $tables[0]['group_key']  ." as table_id";
 
-        return "SELECT *, " . $table_key . " FROM " . $selected_table . $where;
+        if (!is_null($limit)) $limit_data = " LIMIT " . $limit;
+
+        return "SELECT *, " . $table_key . " FROM " . $selected_table . $where . $limit_data;
     }
 
     /**

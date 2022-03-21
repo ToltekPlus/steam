@@ -46,9 +46,9 @@ class Model {
      * @param array $tables
      * @return array
      */
-    public function getAllPivot(array $tables, $id = null) : array
+    public function getAllPivot(array $tables, $id = null, $limit = null) : array
     {
-        $sql = $this->queryBuilder($tables, $id);
+        $sql = $this->queryBuilder($tables, $id, $limit);
         return $this->connect->query($sql);
     }
 
