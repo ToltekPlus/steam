@@ -33,6 +33,16 @@ class BalanceController extends BalancePolicy{
 
         View::render('administrator/balances/replenish.php', ['balances' => $result]);
     }
+    /*
+     * Вывод истории баланса
+     */
+    public function showHistory()
+    {
+       $balance = new BalanceModel();
+       $result = $balance->allHistory(); 
+
+       View::render('administrator/balances/history.php', ['balances' => $result]);
+    }
     
     /*
      * Изменение баланса для снятия или пополнения
