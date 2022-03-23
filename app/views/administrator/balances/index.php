@@ -7,21 +7,13 @@
                       <h2>Баланс: </h2>
                       <h1><?=$balance->balance?>RUB</h1>
                 </div>
-                <div style="display:block">
-                    <form action="show" method="POST" style="margin: 5% 0% 10% 0%;">
-                        <div class="form-control">
-                            <div class='buttons'>
-                                <button class="button is-success is-light" type="submit">Пополнить</button>
-                            </div>
-                        </div>
-                    </form>
-                    <form action="history" method="POST">
-                        <div class="form-control">
-                            <div class='buttons'>
-                                <button class="button is-success is-light" type="submit">История пополнений</button>
-                            </div>
-                        </div>
-                    </form>
+                <div style="display: block;">
+                    <div>
+                        <a href="replenish" class="button is-success is-light">Пополнить</a>
+                    </div>
+                    <div style="margin-top: 10%;">
+                        <a href="history" class="button is-success is-light">История пополнений</a>
+                    </div>
                 </div>
                 <? endforeach;?>
             </section>
