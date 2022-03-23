@@ -6,14 +6,20 @@ use App\Model\BalanceModel;
 use App\Policy\BalancePolicy;
 use Core\View;
 use App\Service\DataBuilder;
+use App\Model\BalanceHistoryModel;
 
 class BalanceController extends BalancePolicy{
     use DataBuilder;
     
+    /**
+     * Максимальная сумма пополнения
+     * @var integer
+     */
     private $max_sum = 5000;
     
-    /*
-     * Вывод формы 
+    /**
+     * Вывод главной страницы баланса
+     * @throws /Exception
      */
     public function index()
     {
@@ -23,8 +29,9 @@ class BalanceController extends BalancePolicy{
         View::render('administrator/balances/index.php', ['balances' => $result]);
     }
     
-    /*
-     *Вывод формы пополнения 
+    /**
+     * Вывод формы пополнения
+     * @throws /Exception
      */
     public function showStore()
     {
@@ -33,8 +40,10 @@ class BalanceController extends BalancePolicy{
 
         View::render('administrator/balances/replenish.php', ['balances' => $result]);
     }
-    /*
+    
+    /**
      * Вывод истории баланса
+     * @throws /Exception
      */
     public function showHistory()
     {
@@ -44,8 +53,11 @@ class BalanceController extends BalancePolicy{
        View::render('administrator/balances/history.php', ['balances' => $result]);
     }
     
-    /*
+    /**
      * Изменение баланса для снятия или пополнения
+     * @param $sum int
+     * @param $action '+' or '-'
+     * @return int
      */
     public function changeBalance($sum, $action) : int
     {
