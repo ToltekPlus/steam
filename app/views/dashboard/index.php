@@ -3,7 +3,18 @@
 <section class="columns is-full is-centered is-vertical catalog">
     <section class="column is-8 filter">
         <div class="select is-rounded is-small">
-            <select>
+            <select id="selector-games">
+                <option>Отображать по</option>
+                <?php for ($i = 5 ; $i <= 20; $i = $i + 5): ?>
+                    <option value="<?=$i;?>" name="<?=$i;?>">
+                        <?=$i;?>
+                    </option>
+                <?php endfor; ?>
+            </select>
+        </div>
+
+        <div class="select is-rounded is-small">
+            <select id="selector-genres">
                 <option>Жанры</option>
                 <?php foreach ($genres as $genre): ?>
                     <option value="<?=$genre->id; ?>" name="<?=$genre->name_genre; ?>">
@@ -52,7 +63,7 @@
 
 <section class="columns is-full is-centered is-vertical catalog-block">
     <div class="column is-8">
-        <div class="columns is-multiline">
+        <div class="columns is-multiline" id="dashboard">
             <?php foreach ($games as $game) : ?>
                 <div class="column is-one-quarter game">
                     <div class="game-cover">

@@ -13,16 +13,16 @@
     <div class="column is-8">
         <div class="columns">
             <div class="column is-3">
-                        <span class="icon-text">
-                            <span class="icon logotype">
-                              <a href="/">
-                                  <ion-icon name="logo-steam"></ion-icon>
-                              </a>
-                            </span>
-                        <span class="steam">
-                            Steam
-                        </span>
-                        </span>
+                <span class="icon-text">
+                    <span class="icon logotype">
+                      <a href="/">
+                          <ion-icon name="logo-steam"></ion-icon>
+                      </a>
+                    </span>
+                    <span class="steam">
+                        Steam
+                    </span>
+                </span>
             </div>
 
             <div class="column is-6">
