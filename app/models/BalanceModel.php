@@ -17,6 +17,14 @@ class BalanceModel extends Model{
     {
         return $this->getAll($this->table);
     }
+	
+	/*
+     * Сбор всех данных из таблицы истории баланса
+     */
+    public function allHistory() : array
+    {
+        return $this->getAll($this->table2);
+    }
 
     /*
      * Добавление данных в таблицу баланса
