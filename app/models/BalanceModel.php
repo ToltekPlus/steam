@@ -8,42 +8,28 @@ use Core\DataBuilder;
 class BalanceModel extends Model{
     
     protected $table = 'balances';
-    protected $table2 = 'balances-history';
 	
-    /*
+    /**
      * Сбор всех данных из таблицы баланса
+     * @return array
      */
     public function all() : array
     {
         return $this->getAll($this->table);
     }
-	
-	/*
-     * Сбор всех данных из таблицы истории баланса
-     */
-    public function allHistory() : array
-    {
-        return $this->getAll($this->table2);
-    }
 
-    /*
+    /**
      * Добавление данных в таблицу баланса
+     * @param $args array
      */
     public function store($args)
     {
 	return $this->storeToTable($this->table, $args);
     }
 	
-	/*
-     * Добавление данных в таблицу истории баланса
-     */
-	public function storeToHistoryBalance($args)
-    {
-    	return $this->storeToTable($this->table2, $args);
-    }
-	
-    /*
+	/**
      * Забирает id
+     * @return array
      */
     public function find($id)
     {
@@ -51,16 +37,19 @@ class BalanceModel extends Model{
         return array_shift($balance);
     }
 	
-	/*
+	/**
      * Обновление данных из таблицы по id
+     * @param $id int
+     * @param $args array
      */
     public function update($id, $args)
     {
         $this->builderForUpdate($id, $this->table, $args);
     }
-
-    /*
+	
+	/**
      * Удаление данных из таблицы по id
+     * @param $id int
      */
     public function delete($id)
     {
