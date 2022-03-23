@@ -1,9 +1,9 @@
 <?php \Core\View::renderHeader()?>
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
-             <section style='display:flex; margin: 6% 0% 0% 13%;'>
+             <section style='display:flex; margin: 8% 0% 0% 13%;'>
                 <? foreach($balances as $balance):?>
-                <div style='display:block; margin: 2% 15% 0% 10%;'>
+                <div style='display:block; margin: 0% 15% 0% 10%;'>
                       <h2>Баланс: </h2>
                       <h1><?=$balance->balance?>RUB</h1>
                 </div>
