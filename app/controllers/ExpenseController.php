@@ -3,12 +3,12 @@
 namespace App\Controller;
 
 use App\Model\ExpenseModel;
-use App\Policy\BalancePolicy;
+use App\Policy\ExpensePolicy;
 use Core\View;
 use App\Service\DataBuilder;
 use App\Model\HistoryExpenseModel;
 
-class ExpenseController extends BalancePolicy{
+class ExpenseController extends ExpensePolicy{
     use DataBuilder;
     
     /**
@@ -16,9 +16,7 @@ class ExpenseController extends BalancePolicy{
      * @var integer
      */
     private $max_sum = 5000;
-    private $pivot_tables = [
-        ["table" => "types_operation", "foreign_key" => "type_operation_id"]
-    ];
+    private $pivot_tables = ["table" => "types_operation", "foreign_key" => "type_operation_id"];
     
     /**
      * Вывод главной страницы баланса
@@ -52,6 +50,7 @@ class ExpenseController extends BalancePolicy{
     {
        $expense = new HistoryExpenseModel();
        $result = $expense->all();
+       //TODO: выводить информацию из пивотных таблиц
 
        View::render('administrator/expenses/history.php', ['expenses' => $result]);
     }
@@ -98,7 +97,8 @@ class ExpenseController extends BalancePolicy{
             $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
 
             $this->storeToHistory();
-            $this->update($args);        
+            $this->update($args);
+            $this->index();        
     }
     
     /*

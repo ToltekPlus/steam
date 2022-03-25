@@ -28,12 +28,22 @@ class ExpenseModel extends Model{
     }
 	
 	/**
-     * Забирает id
+     * Забирает по id
      * @return array
      */
     public function find($id)
     {
     	$balance = $this->getByIdFromTable($this->table, (int)$id);
+        return array_shift($balance);
+    }
+
+    /**
+     * Забирает по id user
+     * @return array
+     */
+    public function findUser()
+    {
+        $balance = $this->getByIdFromTable($this->table, $_SESSION['sid'], 'user_id');
         return array_shift($balance);
     }
 	

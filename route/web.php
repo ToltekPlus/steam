@@ -58,17 +58,10 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
 /*=== РАБОТА С БАЛАНСОМ ===*/
-<<<<<<< Updated upstream
-$router->add('balances/list', ['controller' => 'BalanceController', 'action' => 'index']);
-$router->add('balances/show', ['controller' => 'BalanceController', 'action' => 'showStore']);
-$router->add('balances/replenish', ['controller' => 'BalanceController', 'action' => 'replenish']);
 
-$router->dispatch($_SERVER['QUERY_STRING']);
-=======
 $router->add('expenses/list', ['controller' => 'ExpenseController', 'action' => 'index']);
 $router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 'showStore']);
 $router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
 $router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);
->>>>>>> Stashed changes
