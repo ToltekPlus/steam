@@ -1,12 +1,10 @@
 import MaskInput from "mask-input";
-
-var buttonAuth = document.getElementById("enterToAccount");
-if (buttonAuth) {
-    buttonAuth.onclick = function() {
+var buttonRegister = document.getElementById("registerAccount");
+if (buttonRegister) {
+    buttonRegister.onclick = function() {
         Swal.fire({
-            title: 'Войти в аккаунт',
+            title: 'Зарегестрироваться',
             html:
-                '<span class="login"><button class="button is-small" id="registerAccount">или зарегестрироваться!</button></span>' +
                 '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
                 '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
             preConfirm: () => {
@@ -33,4 +31,3 @@ if (buttonAuth) {
         });
     };
 }
-
