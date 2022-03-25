@@ -34,6 +34,8 @@ document.getElementById('briefCart').addEventListener('click', function (e) {
 
 export function productInCart() {
     if (linkBrief) {
+        let cart = JSON.parse(localStorage.getItem('steamCart'));
+
         // определяем поведение для работы с корзиной
         let basket = {
             "header": "application/x-www-form-urlencoded"
@@ -50,22 +52,29 @@ export function productInCart() {
         let finalPriceInCart = document.createElement('div');
         finalPriceInCart.classList.add("product-in-cart__final-price");
 
+        if (!cart.length) {
+            // TODO если корзира уже была постая, то удлять этот блок
+            let emptyCart = document.createElement('div');
+            emptyCart.classList.add("empty-cart");
+
+            emptyCart.innerHTML = "<div style='text-align: center;'>Корзина пустая :(</div>";
+            cartContent.append(emptyCart);
+        }
+
         let finalPrice = 0;
 
         let path = "cart/brief";
 
-        let cart = JSON.parse(localStorage.getItem('steamCart'));
-
         let arrKeys = [];
         cart.forEach((item) => {
             arrKeys.push(parseInt(item.id));
-        })
+        });
 
         const send = sendData(arrKeys, path, basket.header);
 
         send(arrKeys)
             .then(response => {
-                let result = JSON.parse(response)
+                let result = JSON.parse(response);
                 result.forEach((item, key) => {
                     finalPrice = finalPrice + cart[key].count * item.price;
                     product.innerHTML += "<div class='product-in-cart__title'>"
@@ -74,13 +83,13 @@ export function productInCart() {
                         + "</div>";
                     finalPriceInCart.innerHTML = "<div class='product-in-cart__price'>Финальная цена: " + finalPrice + "</div>" + "<div class='arange'><a href='/basket'>Оформить</a></div>";
                     cartProducts.append(product);
-                    cartProducts.append(finalPriceInCart)
+                    cartProducts.append(finalPriceInCart);
                     cartContent.append(cartProducts);
                 })
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
 
         setTimeout(deleteFromCart, 1000);
     }

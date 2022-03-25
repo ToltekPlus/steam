@@ -1,5 +1,9 @@
 # Редизайн Steam для группы web-разработки :rocket:
 
+[![Latest Version on Github](https://img.shields.io/badge/release-v.1.0.3-red)](https://github.com/ToltekPlus/steam/releases/tag/v1.0.3)
+![example workflow](https://github.com/ToltekPlus/steam/actions/workflows/main.yml/badge.svg)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+
 ## Требования
 > PHP 7.4+
 > 
@@ -61,3 +65,11 @@ vendor\bin\phinx seed:run -s MainSeeder
 Для прогона перед пушем коммит идет в ``circleci``. Там проект собирается, тестируются миграции и сидеры и возвращается результат.
 Если проект не билдится, то вываливается ошибка, и пулл-реквест (или мержинг) не происходит до исправления ошибок.
 Настройка находится по адресу ``.circleci/config.yml``.
+
+## Contributing
+
+Пожалуйста, просмотрите [CONTRIBUTING](CONTRIBUTING.md) и [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) для подробностей.
+
+## License
+
+The MIT License (MIT). Смотрите [License File](LICENSE) для деталей.
