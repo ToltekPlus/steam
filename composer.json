@@ -1,10 +1,10 @@
 {
     "require-dev": {
-        "odan/phinx-migrations-generator": "^5.4",
-        "phpunit/phpunit": "^9.5"
+        "odan/phinx-migrations-generator": "^5.4"
     },
     "require": {
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {
@@ -13,7 +13,8 @@
             "App\\Rule\\": "app/interfaces/",
             "App\\Service\\": "app/services/",
             "App\\Policy\\": "app/policies/",
-            "Test\\Unit\\": "tests/Unit/",
+            "Test\\Unit\\Controller\\": "tests/Unit/Controllers/",
+            "Test\\Unit\\Model\\": "tests/Unit/Models/",
             "Core\\": "config/"
         }
     }
