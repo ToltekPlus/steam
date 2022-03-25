@@ -78,6 +78,7 @@
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
+<<<<<<< Updated upstream
                           <a href="#" class="dropdown-item">
                             Мои игры
                           </a>
@@ -87,6 +88,35 @@
                           <a href="#" class="dropdown-item">
                             Архив
                           </a>
+=======
+                        <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="/expenses/list" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 2: ?>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 3: ?>
+                            <a href="/expenses/list" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
+>>>>>>> Stashed changes
                             <a href="/roles/list" class="dropdown-item">
                                 Пользователи
                             </a>
