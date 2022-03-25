@@ -18,7 +18,12 @@ class MainSeeder extends AbstractSeed
         CompanySeeder::class,
         GenreSeeder::class,
         GameSeeder::class,
-        TaxGameSeeder::class
+        TaxGameSeeder::class,
+        TypeOperationSeeder::class,
+        ExpenseSeeder::class,
+        HistoryExepenseSeeder::class,
+        OrderSeeder::class,
+        OrderRefandSeeder::class
     ];
 
     /**
