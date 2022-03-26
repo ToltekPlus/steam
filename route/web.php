@@ -58,9 +58,9 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
 /*=== РАБОТА С БАЛАНСОМ ===*/
-
 $router->add('expenses/list', ['controller' => 'ExpenseController', 'action' => 'index']);
 $router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 'showStore']);
+$router->add('expenses/confirm', ['controller' => 'ExpenseController', 'action' => 'confirm']);
 $router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
 $router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
 

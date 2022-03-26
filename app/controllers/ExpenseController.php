@@ -16,7 +16,7 @@ class ExpenseController extends ExpensePolicy{
      * @var integer
      */
     private $max_sum = 5000;
-    private $pivot_tables = ["table" => "types_operation", "foreign_key" => "type_operation_id"];
+    //private $pivot_tables = ["table" => "types_operation", "foreign_key" => "type_operation_id"];
     
     /**
      * Вывод главной страницы баланса
@@ -29,30 +29,10 @@ class ExpenseController extends ExpensePolicy{
 
         View::render('administrator/expenses/index.php', ['expenses' => $result]);
     }
-    
-    /**
-     * Вывод формы пополнения
-     * @throws /Exception
-     */
-    public function showStore()
-    {
-        $expense = new ExpenseModel();
-        $result = $expense->all();
 
-        View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
-    }
-    
-    /**
-     * Вывод истории баланса
-     * @throws /Exception
-     */
-    public function showHistory()
+    public function confirm()
     {
-       $expense = new HistoryExpenseModel();
-       $result = $expense->all();
-       //TODO: выводить информацию из пивотных таблиц
-
-       View::render('administrator/expenses/history.php', ['expenses' => $result]);
+        View::render('administrator/expenses/confirm.php', ['sum' => $_POST['sum']]);
     }
     
     /**
@@ -83,22 +63,47 @@ class ExpenseController extends ExpensePolicy{
             }
         }
     }
+
+    /**
+     * Вывод формы пополнения
+     * @throws /Exception
+     */
+    public function showStore()
+    {
+        $expense = new ExpenseModel();
+        $result = $expense->all();
+
+        View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
+    }
+    
+    /**
+     * Вывод истории баланса
+     * @throws /Exception
+     */
+    public function showHistory()
+    {
+       $expense = new HistoryExpenseModel();
+       $result = array_slice($expense->all(), 0, 50, true);
+       //TODO: выводить информацию из пивотных таблиц
+
+       View::render('administrator/expenses/history.php', ['expenses' => $result]);
+    }
   
     /*
      * Добавление данных в таблицу баланса
      */
     public function replenish() : void
     {
-            $balances = new ExpenseModel();
-            $balance = $balances->find($_POST['id']);
+        $balances = new ExpenseModel();
+        $balance = $balances->find($_POST['id']);
 
-            $userId = $balance->user_id; 
-            $data = $this->changeExpense($_POST['sum'], '+');
-            $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
+        $userId = $balance->user_id; 
+        $data = $this->changeExpense($_POST['sum'], '+');
+        $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
 
-            $this->storeToHistory();
-            $this->update($args);
-            $this->index();        
+        $this->storeToHistory();
+        $this->update($args);
+        $this->index();        
     }
     
     /*
@@ -106,15 +111,15 @@ class ExpenseController extends ExpensePolicy{
      */
     public function storeToHistory()
     {
-        $balances = new HistoryExpenseModel();
-        $balance = $balances->find($_POST['id']);
+        $expenses = new HistoryExpenseModel();
+        $expense = $expenses->find($_POST['id']);
         
-        $data = $balance->balance;
+        $data = $expense->balance;
         $sum = (int)$_POST['sum'];
         $userId = $balance->user_id;
 
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
-        $balances->store($args);
+        $expenses->store($args);
     }
 
     /*
