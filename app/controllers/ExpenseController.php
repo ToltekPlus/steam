@@ -94,10 +94,10 @@ class ExpenseController extends ExpensePolicy{
      */
     public function replenish() : void
     {
-        $balances = new ExpenseModel();
-        $balance = $balances->find($_POST['id']);
+        $expenses = new ExpenseModel();
+        $expense = $expenses->find($_POST['id']);
 
-        $userId = $balance->user_id; 
+        $userId = $expense->user_id; 
         $data = $this->changeExpense($_POST['sum'], '+');
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
 
@@ -116,7 +116,7 @@ class ExpenseController extends ExpensePolicy{
         
         $data = $expense->balance;
         $sum = (int)$_POST['sum'];
-        $userId = $balance->user_id;
+        $userId = $expense->user_id;
 
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
         $expenses->store($args);
@@ -137,8 +137,8 @@ class ExpenseController extends ExpensePolicy{
      */
     public function update($args)
     {
-        $balance = new ExpenseModel();
-        $balance->update($_POST['id'], $args);
+        $expense = new ExpenseModel();
+        $expense->update($_POST['id'], $args);
     }
   
     /*
@@ -146,7 +146,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function delete()
     {
-        $balance = new ExpenseModel;
-        $balance->delete($_POST['id']);
+        $expense = new ExpenseModel;
+        $expense->delete($_POST['id']);
     }
 }
