@@ -1,13 +1,13 @@
 <?php \Core\View::renderHeader()?>
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
-             <section style='display:flex; margin: 8% 0% 0% 13%;'>
+             <section style='display:flex; margin: 6% 19%;'>
                 <? foreach($expenses as $expense):?>
-                <div style='display:block; margin: 0% 15% 0% 10%;'>
+                <div style='display:block; margin-right:25%;'>
                       <h2>Баланс: </h2>
                       <h1><?=$expense->balance?>RUB</h1>
                 </div>
-                <div style="display: block;">
+                <div>
                     <div>
                         <a href="show" class="button is-success is-light">Пополнить</a>
                     </div>
