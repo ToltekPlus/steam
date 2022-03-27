@@ -1,4 +1,5 @@
 import MaskInput from "mask-input";
+import { auth_validate } from "../content/auth_validate";
 
 var buttonAuth = document.getElementById("enterToAccount");
 if (buttonAuth) {
@@ -6,31 +7,76 @@ if (buttonAuth) {
         Swal.fire({
             title: 'Войти в аккаунт',
             html:
-                '<span class="login"><button class="button is-small" id="registerAccount">или зарегестрироваться!</button></span>' +
                 '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
-                '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
+                '<div id="phoneErrDiv"></div>' +
+                '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
+                '<div id="passwordErrDiv"></div>',
             preConfirm: () => {
-                return [
-                    document.getElementById('phone').value,
-                    document.getElementById('password').value
-                ]
+                if (!auth_validate()) {
+                    Swal.showValidationMessage('Проверьте правильность введных данных');
+                } else {
+                    return [
+                        document.getElementById('phone').value,
+                        document.getElementById('password').value
+                    ]
+                }
             },
             backdrop: `
             rgba(18,97,199,0.4)
             url("/images/nyan-cat.gif")
-            left top
+            left tops
             no-repeat
           `,
+            showConfirmButton: true,
+            showDenyButton: true,
             background: 'linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%)',
             confirmButtonColor: '#0C57C7',
-            confirmButtonText: 'Войти'
-        });
-
+            confirmButtonText: 'Войти',
+            denyButtonText: 'или зарегестрироваться'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Вы успешно вошли',
+                    '',
+                    'success'
+                )
+            }else if (result.isDenied) {
+                Swal.fire({
+                    title: 'Зарегестрироваться',
+                    html:
+                        '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
+                        '<div id="phoneErrDiv"></div>' +
+                        '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
+                        '<div id="passwordErrDiv"></div>',
+                    preConfirm: () => {
+                        if (!auth_validate()) {
+                            Swal.showValidationMessage('Проверьте правильность введных данных');
+                        } else {
+                            return [
+                                document.getElementById('phone').value,
+                                document.getElementById('password').value
+                            ]
+                        }
+                    },
+                    showConfirmButton: true,
+                    background: 'linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%)',
+                    confirmButtonColor: '#0C57C7',
+                    confirmButtonText: 'Зарегестрироваться',
+                }).then((result) => {
+                    if (result.isConfirmed && auth_validate()) {
+                        Swal.fire(
+                            'Вы успешно зарегестрировались',
+                            '',
+                            'success'
+                        )
+                    }
+                })
+            }
+        })
         new MaskInput(document.querySelector('.input-selector'), {
-            mask: '+(000)-00-00-000',
+            mask: '+(000)-000-00-00',
             alwaysShowMask: true,
             maskChar: '_',
         });
     };
 }
-

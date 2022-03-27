@@ -9,7 +9,9 @@ export function validate()
     let textareas = document.querySelectorAll('textarea');
 
     let resultInputs = validateIterator(inputs, inputs.length);
+    console.log(resultInputs);
     let resultTextareas = validateIterator(textareas, textareas.length);
+    console.log(resultTextareas);
 
     if (!resultInputs || !resultTextareas) return false;
 
