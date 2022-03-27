@@ -72,6 +72,7 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = new ExpenseModel();
         $result = $expense->all();
+        //TODO: проверять input на заполненность
 
         View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
     }
@@ -94,6 +95,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function replenish() : void
     {
+        //TODO: сделать так, чтобы данные заполнялись в БД
         $expenses = new ExpenseModel();
         $expense = $expenses->find($_POST['id']);
 
@@ -111,6 +113,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function storeToHistory()
     {
+        //TODO: сделать так, чтобы данные заполнялись в БД
         $expenses = new HistoryExpenseModel();
         $expense = $expenses->find($_POST['id']);
         

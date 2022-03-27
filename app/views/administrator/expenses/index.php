@@ -1,4 +1,5 @@
 <?php \Core\View::renderHeader()?>
+<?//TODO: перенести все style в sass?>
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
              <section style='display:flex; margin: 6% 19%;'>

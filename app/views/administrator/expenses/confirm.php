@@ -1,4 +1,5 @@
 <?php \Core\View::renderHeader()?>
+<?//TODO: перенести все style в sass?>
  <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
         	<div style="text-align: center;"><h2>Вы уверены, что хотите пополнить баланс на сумму</h2>
