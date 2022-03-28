@@ -2,12 +2,12 @@
 
 namespace Test\Unit\Controller;
 
-use App\Model\GenreModel;
+use App\Model\CompanyModel;
 use Test\Unit\BaseTest\ControllerTest;
 
-class GenreControllerTest extends ControllerTest {
+class CompanyControllerTest extends ControllerTest {
     /**
-     * @var GenreModel|\PHPUnit\Framework\MockObject\MockObject
+     * @var
      */
     protected $stub;
 
@@ -16,7 +16,7 @@ class GenreControllerTest extends ControllerTest {
      */
     public function setUp(): void
     {
-        $this->stub = $this->createMock(GenreModel::class);
+        $this->stub = $this->createMock(CompanyModel::class);
     }
 
     /**

@@ -26,3 +26,4 @@
 [db][Wed Mar 02 07:58:15 2022] [SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in order clause is ambiguous] 
 [db][Wed Mar 02 07:58:21 2022] [SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'steam.taxes_game.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by] 
 [db][Wed Mar 02 07:58:24 2022] [SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'steam.taxes_game.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by] 
+[db][Mon Mar 21 03:35:51 2022] [SQLSTATE[42000]: Syntax error or access violation: 1327 Undeclared variable: Отображать_по] 

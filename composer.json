@@ -13,6 +13,7 @@
             "App\\Rule\\": "app/interfaces/",
             "App\\Service\\": "app/services/",
             "App\\Policy\\": "app/policies/",
+            "Test\\Unit\\BaseTest\\": "tests/Unit/BaseTest/",
             "Test\\Unit\\Controller\\": "tests/Unit/Controllers/",
             "Test\\Unit\\Model\\": "tests/Unit/Models/",
             "Core\\": "config/"

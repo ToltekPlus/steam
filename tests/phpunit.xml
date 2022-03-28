@@ -1,0 +1,20 @@
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="GenreControllerTest">
+            <file>Unit/Controllers/GenreControllerTest.php</file>
+            <directory>Unit/Controllers</directory>
+        </testsuite>
+        <testsuite name="CompanyControllerTest">
+            <file>Unit/Controllers/CompanyControllerTest.php</file>
+            <directory>Unit/Controllers</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
