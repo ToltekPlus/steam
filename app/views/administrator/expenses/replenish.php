@@ -8,7 +8,7 @@
 	                <h2>Баланс: </h2>
 	                <h1><?=$expense->balance?>RUB</h1>
 	            </div>
-	        	<form action="confirm" method="POST" name="sum" id="sum" class="form" style="margin-left: 15%; width: 70%;">
+	        	<form action="confirm" method="POST" id="sum" class="form" style="margin-left: 15%; width: 70%;">
 		        	<div class="form-control">
 		                    <input type="hidden" value="<?=$expense->id?>" name="id">
 		                    <input type="text" name="sum" id="sum">

@@ -24,8 +24,8 @@ class ExpenseController extends ExpensePolicy{
      */
     public function index()
     {
-        $expense = new ExpenseModel();
-        $result = $expense->all();
+        $expenses = new ExpenseModel();
+        $result = $expenses->findUserBalance($_SESSION['sid']);
 
         View::render('administrator/expenses/index.php', ['expenses' => $result]);
     }
@@ -34,33 +34,38 @@ class ExpenseController extends ExpensePolicy{
     {
         View::render('administrator/expenses/confirm.php', ['sum' => $_POST['sum']]);
     }
+
+    public function get()
+    {
+        $expenses = new ExpenseModel();
+        return $expenses->find($_POST['id']);
+    }
     
     /**
      * Изменение баланса для снятия или пополнения
-     * @param $sum int
      * @param $action '+' or '-'
-     * @return int
      */
-    public function changeExpense($sum, $action) : int
+    public function changeBalance($action)
     {
-        $expenses = new ExpenseModel();
-        $expense = $expenses->find($_POST['id'])->balance;
-        $sum = (int)$sum;
+        $balance = $this->get()->balance;
+        $sum = $_POST['sum'];
         
         if($this->check()){
             switch ($action) {
                 case '+':
-                    return $expense = $expense + $sum;
+                    return $balance + $sum;
                     break;
 
                 case '-':
-                    return $expense = $expense - $sum;
+                    return $balance - $sum;
                     break;
                 
                 default:
-                    return $expense;
+                    return $balance;
                     break;
             }
+        } else {
+            View::render('errors/400.php');
         }
     }
 
@@ -70,8 +75,8 @@ class ExpenseController extends ExpensePolicy{
      */
     public function showStore()
     {
-        $expense = new ExpenseModel();
-        $result = $expense->all();
+        $expenses = new ExpenseModel();
+        $result = $expenses->findUserBalance($_SESSION['sid']);
         //TODO: проверять input на заполненность
 
         View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
@@ -96,16 +101,17 @@ class ExpenseController extends ExpensePolicy{
     public function replenish() : void
     {
         //TODO: сделать так, чтобы данные заполнялись в БД
-        $expenses = new ExpenseModel();
-        $expense = $expenses->find($_POST['id']);
+        $expense = $this->get();
 
         $userId = $expense->user_id; 
-        $data = $this->changeExpense($_POST['sum'], '+');
+        $data = $this->changeBalance('+');
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
 
         $this->storeToHistory();
         $this->update($args);
-        $this->index();        
+        if($this->check()){
+            $this->index();        
+        }
     }
     
     /*
@@ -115,13 +121,14 @@ class ExpenseController extends ExpensePolicy{
     {
         //TODO: сделать так, чтобы данные заполнялись в БД
         $expenses = new HistoryExpenseModel();
-        $expense = $expenses->find($_POST['id']);
+        $expense = $this->get();
         
         $data = $expense->balance;
-        $sum = (int)$_POST['sum'];
+        $sum = $_POST['sum'];
         $userId = $expense->user_id;
 
         $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
+        
         $expenses->store($args);
     }
 
@@ -130,9 +137,12 @@ class ExpenseController extends ExpensePolicy{
      */
     public function check()
     {
-        if(is_numeric($_POST['sum']) || (int)$_POST['sum'] >= $max_sum){
-            return true; 
-        } return false;
+        if(is_numeric($_POST['sum'])){
+            if((int)$_POST['sum'] <= $this->max_sum)
+            {
+                return true;
+            }
+        } return false;     
     }
     
     /*

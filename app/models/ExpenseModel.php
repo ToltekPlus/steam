@@ -36,6 +36,16 @@ class ExpenseModel extends Model{
     	$expense = $this->getByIdFromTable($this->table, (int)$id);
         return array_shift($expense);
     }
+
+    /**
+     * Забирает данные по user_id
+     * @return array
+     */
+    public function findUserBalance($id)
+    {
+        $expense = $this->getByIdFromTable($this->table, (int)$id, 'user_id');
+        return $expense; 
+    }
 	
 	/**
      * Обновление данных из таблицы по id
@@ -44,7 +54,7 @@ class ExpenseModel extends Model{
      */
     public function update($id, $args)
     {
-        $this->builderForUpdate($id, $this->table, $args);
+        $this->updateForTable($this->table, $id, $args);
     }
 	
 	/**
