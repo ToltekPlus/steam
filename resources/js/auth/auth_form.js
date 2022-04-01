@@ -1,5 +1,6 @@
 import MaskInput from "mask-input";
 import { auth_validate } from "../content/auth_validate";
+import { sendData } from "../db/send";
 
 var buttonAuth = document.getElementById("enterToAccount");
 if (buttonAuth) {
@@ -52,10 +53,15 @@ if (buttonAuth) {
                         if (!auth_validate()) {
                             Swal.showValidationMessage('Проверьте правильность введных данных');
                         } else {
-                            return [
-                                document.getElementById('phone').value,
-                                document.getElementById('password').value
-                            ]
+                            let phone = document.getElementById('phone').value;
+                            let password = document.getElementById('password').value;
+                            const data = {
+                                "phone": phone,
+                                "password": password,
+                            };
+                            let data_send = JSON.stringify(data);
+                            console.log(data_send);
+                            sendData(data_send, "register", "application/json");
                         }
                     },
                     showConfirmButton: true,
@@ -71,6 +77,11 @@ if (buttonAuth) {
                         )
                     }
                 })
+                new MaskInput(document.querySelector('.input-selector'), {
+                    mask: '+(000)-000-00-00',
+                    alwaysShowMask: true,
+                    maskChar: '_',
+                });
             }
         })
         new MaskInput(document.querySelector('.input-selector'), {
@@ -78,5 +89,6 @@ if (buttonAuth) {
             alwaysShowMask: true,
             maskChar: '_',
         });
+
     };
 }
