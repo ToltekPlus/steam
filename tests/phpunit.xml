@@ -26,7 +26,7 @@
         </testsuite>
 
         <testsuite name="GenreModelTest">
-            <file>Unit/Model/GenreModelTest.php</file>
+            <file>Unit/Models/GenreModelTest.php</file>
             <directory>Unit/Models</directory>
         </testsuite>
     </testsuites>
