@@ -16,5 +16,18 @@
             <file>Unit/Controllers/CompanyControllerTest.php</file>
             <directory>Unit/Controllers</directory>
         </testsuite>
+        <testsuite name="HomeControllerTest">
+            <file>Unit/Controllers/HomeControllerTest.php</file>
+            <directory>Unit/Controllers</directory>
+        </testsuite>
+        <testsuite name="GameTaxControllerTest">
+            <file>Unit/Controllers/GameTaxControllerTest.php</file>
+            <directory>Unit/Controllers</directory>
+        </testsuite>
+
+        <testsuite name="GenreModelTest">
+            <file>Unit/Model/GenreModelTest.php</file>
+            <directory>Unit/Models</directory>
+        </testsuite>
     </testsuites>
 </phpunit>

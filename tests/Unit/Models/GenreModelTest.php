@@ -3,9 +3,9 @@
 namespace Test\Unit\Model;
 
 use App\Model\GenreModel;
-use PHPUnit\Framework\TestCase;
+use Test\Unit\BaseTest\ModelTest;
 
-class GenreModelTest extends TestCase {
+class GenreModelTest extends ModelTest {
     /**
      * @var GenreModel|\PHPUnit\Framework\MockObject\MockObject
      */
@@ -24,23 +24,11 @@ class GenreModelTest extends TestCase {
      */
     public function testAll()
     {
-        $this->stub->method('getAll')
-            ->willReturn([]);
-
-        $this->assertSame([], $this->stub->all());
+        $this->testGetAll();
     }
 
-
-    /**
-     * Проверяем что возврат объекта - ошибка
-     */
-    public function testAllObjectReturnError()
+    public function testStore()
     {
-        $object = new \stdClass();
-
-        $this->stub->method('getAll')
-            ->willReturn([]);
-
-        $this->assertNotEquals($object, $this->stub->all());
+        $this->testGetStore();
     }
 }
