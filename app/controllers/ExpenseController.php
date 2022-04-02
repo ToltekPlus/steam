@@ -16,7 +16,7 @@ class ExpenseController extends ExpensePolicy{
      * @var integer
      */
     private $max_sum = 5000;
-    //private $pivot_tables = ["table" => "types_operation", "foreign_key" => "type_operation_id"];
+    private $pivot_tables = ["table" => "types_operation", "foreign_key" => "type_operation_id"];
     
     /**
      * Вывод главной страницы баланса
@@ -88,11 +88,12 @@ class ExpenseController extends ExpensePolicy{
      */
     public function showHistory()
     {
-       $expense = new HistoryExpenseModel();
-       $result = array_slice($expense->all(), 0, 50, true);
+       $history = new HistoryExpenseModel();
+
+       $result = array_slice($history->all(), 0, 50, true);
        //TODO: выводить информацию из пивотных таблиц
 
-       View::render('administrator/expenses/history.php', ['expenses' => $result]);
+       View::render('administrator/expenses/history.php', ['expenses' => $result, 'types' => $types]);
     }
   
     /*
@@ -100,16 +101,16 @@ class ExpenseController extends ExpensePolicy{
      */
     public function replenish() : void
     {
-        //TODO: сделать так, чтобы данные заполнялись в БД
         $expense = $this->get();
 
         $userId = $expense->user_id; 
         $data = $this->changeBalance('+');
-        $args = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
+        $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
+        $args = array_slice($all, 3, 6, true);
 
         $this->storeToHistory();
-        $this->update($args);
         if($this->check()){
+            $this->update($args);
             $this->index();        
         }
     }
@@ -119,15 +120,15 @@ class ExpenseController extends ExpensePolicy{
      */
     public function storeToHistory()
     {
-        //TODO: сделать так, чтобы данные заполнялись в БД
         $expenses = new HistoryExpenseModel();
         $expense = $this->get();
         
-        $data = $expense->balance;
-        $sum = $_POST['sum'];
-        $userId = $expense->user_id;
+        $balance = $expense->balance;
+        $date = date('Y-m-d H:i:s', time());
+        $id = $expense->id;
 
-        $args = $this->dataBuilder($_POST, ['balance' => $data, 'sum' => $sum, 'user_id' => $userId]);
+        $all = $this->dataBuilder($_POST, ['status' => 1, 'date_of_enrollment' => $date, 'expense_id' => $id]);
+        $args = array_slice($all, 0, 1, true) + array_slice($all, 2, 6, true);
         
         $expenses->store($args);
     }

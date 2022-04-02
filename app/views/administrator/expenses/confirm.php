@@ -8,6 +8,7 @@
         	<form action="replenish" method="POST" id='confirm' style='margin-right: 10%;'>
                      <input type="hidden" name="sum" value="<?=$_POST['sum']?>">
                      <input type="hidden" name="id" value="<?=$_POST['id']?>">
+                     <input type="hidden" name="type_operation_id" value="<?=$_POST['type_operation_id']?>">
         		<button class="button is-success is-light">Да</button>
         	</form>
         	<form action="list" id='confirm'>

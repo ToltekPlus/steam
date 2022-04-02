@@ -11,6 +11,7 @@
 	        	<form action="confirm" method="POST" id="sum" class="form" style="margin-left: 15%; width: 70%;">
 		        	<div class="form-control">
 		                    <input type="hidden" value="<?=$expense->id?>" name="id">
+		                    <input type="hidden" value="<?=1?>" name="type_operation_id">
 		                    <input type="text" name="sum" id="sum">
 		                <div style="margin-left: 38%" class="buttons">
 		                    <button class="button is-success is-light" type="submit">Пополнить</button>

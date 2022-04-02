@@ -1,4 +1,4 @@
-<?php \Core\View::renderHeader()?>
+<?php \Core\View::renderHeader();?>
 <section class="columns is-full is-centered is-vertical catalog">
     <section class="column is-8 filter">
         <h1>История пополнений</h1>        
@@ -25,14 +25,16 @@
                     $expense->status = 'Невыполнено';
                     break;
             }
+            
                 echo '<tr>' . 
+            '<td>' . $expense->expense_id . '</td>' . 
             '<td>' . $expense->sum . '</td>' . 
-            '<td>' . $expense->balance . '</td>' . 
-            '<td>' . $expense->type . '</td>' .
+            '<td>' . $expense->type_operation_id . '</td>' .
             '<td>' . $expense->status . '</td>' .
             '<td>' . $expense->date_of_enrollment . '</td>' . 
                 '</tr>'?>
-            <? endforeach;?>
+            <? endforeach;
+             ?>
             </tbody>
         </table>
     </section>
