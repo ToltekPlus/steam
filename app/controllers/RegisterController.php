@@ -10,14 +10,24 @@ class RegisterController{
 
     use DataBuilder;
 
+    /**
+     * Добавление номера и пароля в базу(создание нового пользователя)
+     */
     public function store() : void {
-        $_POST['phone']
-        $_POST['password'] = md5($_POST['password']);
-        $args = $this->dataBuilder($_POST);
-        var_dump($_POST['phone']);
+
+        foreach ($_POST as $key => $value)
+        {
+            $json = json_decode($key, true);
+            foreach ($json as $key => $value) {
+                $array[$key] = $value;
+            }
+        }
+        $chars = ['_', '+', '(', ')'];
+        $array["phone"] = str_replace($chars, "", $array["phone"]);
+        $array["password"] = md5($array["password"]);
+        $args = $this->dataBuilder($array);
 
         $new_user = new RegisterModel();
         $new_user->store($args);
     }
-
 }
