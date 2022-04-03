@@ -8,7 +8,8 @@
         <table class="table">
             <tr>
                 <thead>
-                    <th>Баланс</th>
+                    <th>№</th>
+                    <?//<th>Баланс</th>?>
                     <th>Сумма</th> 
                     <th>Тип операции</th>
                     <th>Статус</th>
@@ -16,24 +17,19 @@
                 </thead>
             </tr>
             <tbody>
-            <? foreach($expenses as $expense):
-            switch ($expense->status) {
-                case '1':
-                    $expense->status = 'Выполнено';
-                    break;
-                case '0':
-                    $expense->status = 'Невыполнено';
-                    break;
-            }
-            
-                echo '<tr>' . 
-            '<td>' . $expense->expense_id . '</td>' . 
-            '<td>' . $expense->sum . '</td>' . 
-            '<td>' . $expense->type_operation_id . '</td>' .
-            '<td>' . $expense->status . '</td>' .
-            '<td>' . $expense->date_of_enrollment . '</td>' . 
-                '</tr>'?>
-            <? endforeach;
+            <?  
+                $num = 0;
+            foreach($expenses as $expense):
+                $num += 1; 
+                    echo '<tr>' . 
+                '<td>' . $num  . '</td>' .
+                //'<td>' . $expense->expense_id . '</td>' . 
+                '<td>' . $expense->sum . '</td>' . 
+                '<td>' . $expense->type_operation_id . '</td>' .
+                '<td>' . $expense->status . '</td>' .
+                '<td>' . $expense->date_of_enrollment . '</td>' . 
+                    '</tr>';
+            endforeach;
              ?>
             </tbody>
         </table>

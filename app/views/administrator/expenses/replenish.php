@@ -5,6 +5,7 @@
         	<section style='display:flex; margin: auto 0'>
         	<? foreach($expenses as $expense):?>
 	        	<div style='display:block; margin-top: 6%'>
+	        		<a href="list">Назад на главную</a>
 	                <h2>Баланс: </h2>
 	                <h1><?=$expense->balance?>RUB</h1>
 	            </div>
