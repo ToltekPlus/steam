@@ -107,9 +107,10 @@ class ExpenseController extends ExpensePolicy{
                 case '0':
                     $expense->status = 'Невыполнено';
                     break;
-            }
+            };
+
         endforeach;
-       //TODO: выводить информацию из таблицы типов операций
+
        View::render('administrator/expenses/history.php', ['expenses' => $result]);
     }
   
@@ -150,8 +151,9 @@ class ExpenseController extends ExpensePolicy{
         $history->store($args);
     }
 
-    /*
+    /**
      * Проверка данных введённых в форму 
+     * @return bool
      */
     public function check()
     {

@@ -20,10 +20,24 @@
             <?  
                 $num = 0;
             foreach($expenses as $expense):
-                $num += 1; 
-                    echo '<tr>' . 
+                $num += 1;
+                switch($expense->type_operation_id){
+                case '1':
+                    $expense->type_operation_id = 'Пополнение';
+                    break;
+                
+                case '2':
+                    $expense->type_operation_id = 'Оплата';
+                    break;
+                
+                case '3':
+                    $expense->type_operation_id = 'Возврат средств';
+                    break;
+                
+                } 
+                echo '<tr>' . 
+                
                 '<td>' . $num  . '</td>' .
-                //'<td>' . $expense->expense_id . '</td>' . 
                 '<td>' . $expense->sum . '</td>' . 
                 '<td>' . $expense->type_operation_id . '</td>' .
                 '<td>' . $expense->status . '</td>' .
