@@ -4,11 +4,10 @@ name: build
 on:
   # Triggers the workflow on push or pull request events but only for the dev branch
   push:
-    branches: [ dev ]
+    branches: [dev]
   pull_request:
-    branches: [ dev ]
-  
-    
+    branches: [dev]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -16,10 +15,10 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ ubuntu-latest ]
-        php-versions: [ '7.4', '8.0' ]
+        operating-system: [ubuntu-latest]
+        php-versions: ['7.4', '8.0']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
-    
+
     services:
       mysql:
         image: mysql:5.7
@@ -33,7 +32,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-    
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -63,12 +62,12 @@ jobs:
       - name: Install dependencies for PHP 8
         if: matrix.php-versions >= '8.0'
         run: composer update --prefer-dist --no-progress --ignore-platform-reqs
-      
+
       - name: Copy .env
         run: cp .env.example .env
 
       - name: Run migrate
         run: ./vendor/bin/phinx migrate
-        
+
       - name: Run seeders
         run: ./vendor/bin/phinx seed:run -s MainSeeder

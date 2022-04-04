@@ -1,14 +1,14 @@
-var animateButton = function(e) {
-    e.preventDefault();
+const animateButton = function (e) {
+  e.preventDefault();
+  e.target.classList.remove('animate');
+
+  e.target.classList.add('animate');
+  setTimeout(function () {
     e.target.classList.remove('animate');
-
-    e.target.classList.add('animate');
-    setTimeout(function(){
-        e.target.classList.remove('animate');
-    },700);
+  }, 700);
 };
 
-var bubblyButtons = document.getElementsByClassName("buy");
-for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButton, false);
-};
+const bubblyButtons = document.querySelectorAll('.buy');
+for (const bubblyButton of bubblyButtons) {
+  bubblyButton.addEventListener('click', animateButton, false);
+}

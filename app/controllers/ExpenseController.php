@@ -10,7 +10,7 @@ use App\Model\HistoryExpenseModel;
 
 class ExpenseController extends ExpensePolicy{
     use DataBuilder;
-    
+
     /**
      * Максимальная сумма пополнения
      * @var integer
@@ -35,24 +35,32 @@ class ExpenseController extends ExpensePolicy{
         View::render('administrator/expenses/index.php', ['expenses' => $result]);
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function confirm()
     {
         if($this->check()){
-            View::render('administrator/expenses/confirm.php', ['sum' => $_POST['sum']]);
+            View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
             View::render('errors/400.php');
         }
     }
 
+    /**
+     * @return array
+     */
     public function get()
     {
         $expense = new ExpenseModel();
         return $expense->find($_POST['id']);
     }
-    
+
     /**
      * Изменение баланса для снятия или пополнения
      * @param $action '+' or '-'
+     * @throws \Exception
      */
     public function changeBalance($action, $sum)
     {
@@ -67,7 +75,7 @@ class ExpenseController extends ExpensePolicy{
                 case '-':
                     return $balance - $sum;
                     break;
-                
+
                 default:
                     return $balance;
                     break;
@@ -89,7 +97,7 @@ class ExpenseController extends ExpensePolicy{
 
         View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
     }
-    
+
     /**
      * Вывод истории баланса
      * @throws /Exception
@@ -113,51 +121,56 @@ class ExpenseController extends ExpensePolicy{
 
        View::render('administrator/expenses/history.php', ['expenses' => $result]);
     }
-  
-    /*
+
+    /**
      * Добавление данных в таблицу баланса
+     *
+     * @return void
      */
     public function replenish() : void
     {
         $expense = $this->get();
 
-        $userId = $expense->user_id; 
-        $data = $this->changeBalance('+', $_POST['sum']);
+        $userId = $expense->user_id;
+        $data = $this->changeBalance('+', $_POST['balance']);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
-        $args = array_slice($all, 3, 6, true);
+        //$args = array_slice($all, 3, 6, true);
+        $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
 
         if($this->check()){
             $this->storeToHistory();
             $this->update($args);
-            $this->index();        
+            $this->index();
         }
     }
-    
-    /*
+
+    /**
      * Добавление данных в таблицу истории баланса
+     *
+     * @return void
      */
     public function storeToHistory()
     {
         $expense = $this->get();
-        
+
         $balance = $expense->balance;
         $date = date('Y-m-d H:i:s', time());
         $id = $expense->id;
 
         $all = $this->dataBuilder($_POST, ['status' => 1, 'date_of_enrollment' => $date, 'expense_id' => $id]);
         $args = array_slice($all, 0, 1, true) + array_slice($all, 2, 6, true);
-        
+
         $history = new HistoryExpenseModel();
         $history->store($args);
     }
 
     /**
-     * Проверка данных введённых в форму 
+     * Проверка данных введённых в форму
      * @return bool
      */
     public function check()
     {
-        $sum = $_POST['sum'];
+        $sum = $_POST['balance'];
 
         if(!is_null($sum)){
             if(is_numeric($sum)){
@@ -165,21 +178,26 @@ class ExpenseController extends ExpensePolicy{
                 {
                     return true;
                 }
-            } 
-        } return false;    
+            }
+        } return false;
     }
-    
-    /*
+
+    /**
      * Обновление данных таблицы
+     *
+     * @param $args
+     * @return void
      */
     public function update($args)
     {
         $expense = new ExpenseModel();
         $expense->update($_POST['id'], $args);
     }
-  
-    /*
+
+    /**
      * Удаление данных из таблицы
+     *
+     * @return void
      */
     public function delete()
     {
