@@ -1,6 +1,8 @@
-export function addNewValueToCountContent()
-{
-    let count = document.getElementById('count_values').innerText;
+export function addNewValueToCountContent() {
+  const count = document.querySelector('#count_values').innerText;
 
-    if (count != null) { document.getElementById('count_values').innerHTML = parseInt(count) + 1};
+  if (count != undefined) {
+    document.querySelector('#count_values').innerHTML =
+      Number.parseInt(count) + 1;
+  }
 }

@@ -22,86 +22,90 @@
 // TODO при добавлении товаров дублируется корзина
 // TODO обновлять html после удаления ассинхронно
 
-import { sendData } from "../db/send";
-import { identity_route } from "./identity_route";
-import { list } from "../route/list";
-import { deleteFromLocaleStorage } from "./delete_product_from_cart";
-import { productInCart } from "./brief_cart";
+import { sendData } from '../db/send';
+import { identity_route } from './identity_route';
+import { list } from '../route/list';
+import { deleteFromLocaleStorage } from './delete_product_from_cart';
+import { productInCart } from './brief_cart';
 
 // определяем поведение для работы с корзиной
-let type = list();
+const type = list();
 
-let identityRoute = identity_route(type);
+const identityRoute = identity_route(type);
 
-if (identityRoute.length) {
-    let product = document.createElement('div');
-    product.classList.add("basket-products");
+if (identityRoute.length > 0) {
+  const product = document.createElement('div');
+  product.classList.add('basket-products');
 
-    let cartDataInfo = document.createElement('div');
+  const cartDataInfo = document.createElement('div');
 
-    let basket = document.getElementById("basket");
+  const basket = document.querySelector('#basket');
 
-    let cartData = document.getElementById("cart-data");
+  const cartData = document.querySelector('#cart-data');
 
-    let finalPrice = 0;
+  let finalPrice = 0;
 
-    let countProducts = 0;
+  let countProducts = 0;
 
-    let arrKeys = [];
+  const arrKeys = [];
 
-    let operation = identityRoute.shift();
+  const operation = identityRoute.shift();
 
-    let cart = JSON.parse(localStorage.getItem('steamCart'));
-    if (!cart.length) {
-        window.setTimeout( function(){
-            window.location = '/';
-        }, 500 );
-    }
+  const cart = JSON.parse(localStorage.getItem('steamCart'));
+  if (cart.length === 0) {
+    window.setTimeout(function () {
+      window.location = '/';
+    }, 500);
+  }
 
-    cart.forEach((item) => {
-        arrKeys.push(parseInt(item.id));
+  for (const item of cart) {
+    arrKeys.push(Number.parseInt(item.id));
+  }
+
+  const send = sendData(arrKeys, operation.action, operation.header);
+
+  send(arrKeys)
+    .then(response => {
+      const result = JSON.parse(response);
+      for (const [key, item] of result.entries()) {
+        finalPrice += cart[key].count * item.base_price;
+        countProducts += cart[key].count;
+        product.innerHTML +=
+          `<div class='product-in-cart__image'><img src='images/administrator/${item.cover_game}' alt='${item.name_game}'></div>` +
+          `<div class='product-in-cart__description'>` +
+          `<h2 class='<h2'>${item.name_game}</h2>` +
+          `<div class='product-in-cart__company-information'>${item.company.name_company}</div>` +
+          `<div class='product-in-cart__price-information'>${item.base_price} &#x20bd` +
+          `<span>(x${cart[key].count})</span>` +
+          `<span class='discount'>${item.tax.tax} %</span></div>` +
+          `<div class='product-in-cart__product-categories'><ul class='column is-12'><li>${item.genre.name_genre}</li></ul></div>` +
+          `<div class='product-in-cart__delete-from-cart'><a class='delete-link' data-el='${cart[key].id}' id='${cart[key].id}'>удалить из корзины</a></div>` +
+          `</div>`;
+
+        basket.append(product);
+      }
+
+      cartDataInfo.innerHTML += `${countProducts}<br>${finalPrice}&#x20bd <br>`;
+      cartData.append(cartDataInfo);
     })
+    .catch(error => console.error(error));
 
-    const send = sendData(arrKeys, operation.action, operation.header);
-
-    send(arrKeys)
-        .then((response) => {
-            let result = JSON.parse(response)
-            result.forEach((item, key) => {
-                finalPrice = finalPrice + cart[key].count * item.base_price;
-                countProducts = countProducts + cart[key].count;
-                product.innerHTML += "<div class='product-in-cart__image'><img src='images/administrator/" + item.cover_game + "' alt='" + item.name_game + "'></div>"
-                    + "<div class='product-in-cart__description'>"
-                    + "<h2 class='<h2'>" + item.name_game + "</h2>"
-                    + "<div class='product-in-cart__company-information'>"+ item.company.name_company +"</div>"
-                    + "<div class='product-in-cart__price-information'>" + item.base_price +" &#x20bd"
-                    + "<span>(x" + cart[key].count + ")</span>"
-                    + "<span class='discount'>"+ item.tax.tax +" %</span></div>"
-                    + "<div class='product-in-cart__product-categories'><ul class='column is-12'><li>"+ item.genre.name_genre +"</li></ul></div>"
-                    + "<div class='product-in-cart__delete-from-cart'><a class='delete-link' data-el='" + cart[key].id + "' id='" + cart[key].id + "'>удалить из корзины</a></div>"
-                    + "</div>";
-
-                basket.append(product);
-            })
-
-            cartDataInfo.innerHTML += countProducts + "<br>" + finalPrice + "&#x20bd <br>";
-            cartData.append(cartDataInfo);
-        })
-        .catch((err) => console.error(err));
-
-    setTimeout(deleteFromCart, 1000);
+  setTimeout(deleteFromCart, 1000);
 }
 
 function deleteFromCart() {
-    [...document.getElementsByClassName("delete-link")].forEach(el => el.addEventListener('click', event => {
-        deleteFromLocaleStorage(event.target.getAttribute("data-el"));
+  for (const el of document.querySelectorAll('.delete-link'))
+    el.addEventListener('click', event => {
+      deleteFromLocaleStorage(event.target.dataset.el);
 
-        let elem = document.getElementsByClassName("cart-products")[0];
-        if (elem) { elem.parentNode.removeChild(elem) }
-        productInCart();
+      const elem = document.querySelectorAll('.cart-products')[0];
+      if (elem) {
+        elem.remove();
+      }
+      productInCart();
 
-        window.setTimeout( function(){
-            window.location = '/basket';
-        }, 500 );
-    }))
+      window.setTimeout(function () {
+        window.location = '/basket';
+      }, 500);
+    });
 }
