@@ -78,7 +78,7 @@
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
-                            <a href="#" class="dropdown-item">
+                            <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">
@@ -95,7 +95,7 @@
                                 Выход
                             </a>
                         <?php break; case 3: ?>
-                            <a href="#" class="dropdown-item">
+                            <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">

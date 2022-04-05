@@ -1,4 +1,4 @@
-import '../sass/app.sass'
+import '../sass/app.sass';
 
 import './db/listener'
 import './content/selector_games_for_dashboard'

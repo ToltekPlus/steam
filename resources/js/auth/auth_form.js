@@ -2,7 +2,7 @@ import MaskInput from "mask-input";
 import { auth_validate } from "../content/auth_validate";
 import { sendData } from "../db/send";
 
-var buttonAuth = document.getElementById("enterToAccount");
+const buttonAuth = document.querySelector('#enterToAccount');
 if (buttonAuth) {
     buttonAuth.onclick = function() {
         Swal.fire({
@@ -38,11 +38,11 @@ if (buttonAuth) {
                 }
             },
             backdrop: `
-            rgba(18,97,199,0.4)
-            url("/images/nyan-cat.gif")
-            left tops
-            no-repeat
-          `,
+              rgba(18,97,199,0.4)
+              url("/images/nyan-cat.gif")
+              left tops
+              no-repeat
+            `,
             showConfirmButton: true,
             showDenyButton: true,
             background: 'linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%)',
