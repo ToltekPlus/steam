@@ -1,4 +1,4 @@
-import '../sass/app.sass'
+import '../sass/app.sass';
 
 import './db/listener'
 import './content/selector_games_for_dashboard'
@@ -10,3 +10,5 @@ import './auth/dropdown_auth_menu'
 import './cart/animated_add_to_cart'
 import './db/upload_file'
 import './content/statistics_for_table'
+import './content/validate'
+import './content/auth_validate'
