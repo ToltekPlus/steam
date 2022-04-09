@@ -5,7 +5,7 @@ export function get_session(action) {
     });
     if (!fetchResponse.ok) {
       throw new Error(
-        `Ошибка по адресу ${url}, статус ошибки ${fetchResp.status}`,
+        `Ошибка по адресу ${url}, статус ошибки ${fetchResponse.status}`,
       );
     }
     return await fetchResponse.text();

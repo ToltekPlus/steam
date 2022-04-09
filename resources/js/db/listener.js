@@ -8,6 +8,11 @@ import { addNewValueToCountContent } from '../content/statistics_for_table';
 import { identity_route } from '../cart/identity_route';
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /**
+   * TODO итераторы / генераторы требуют regenerator-runtime
+   */
+
   // Создаем массив объектов, в котором соотносятся страницы с роутерами
   const type = list();
 
@@ -28,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const formData = new FormData(this);
 
-      if (validateResult == false) {
+      if (validateResult === false) {
         notification('Не все данные введены', 'error');
       } else {
         send(formData)
           .then(response => {
-            if (response.trim() == '') {
+            if (response.trim() === '') {
               // запускаем всплывающее окно с сообщением, что все ок
               // увеличиваем значение в статистике значений
               // addNewValueToCountContent();

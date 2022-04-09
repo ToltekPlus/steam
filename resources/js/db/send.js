@@ -1,4 +1,4 @@
-export function sendData(formData, action, header = '') {
+export function sendData(action, header = '') {
   // если желаем получить данные из корзины, то подключаем
   // заголовок
   const h = new Headers();
@@ -14,7 +14,7 @@ export function sendData(formData, action, header = '') {
     });
     if (!fetchResponse.ok) {
       throw new Error(
-        `Ошибка по адресу ${url}, статус ошибки ${fetchResp.status}`,
+        `Ошибка по адресу ${url}, статус ошибки ${fetchResponse.status}`,
       );
     }
     return await fetchResponse.text();
