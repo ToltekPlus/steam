@@ -12,7 +12,6 @@ $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']);
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
-$router->add('login', ['controller' => 'RegisterController', 'action' => 'get']);
 
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
