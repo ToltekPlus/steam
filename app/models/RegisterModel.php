@@ -21,11 +21,13 @@ class RegisterModel extends Model {
 
     /**
      * @param $args
-     * @return void
+     * @return false|string
      */
     public function store($args)
     {
-        return $this->storeToTable($this->table, $args);
+        $this->storeToTable($this->table, $args);
+
+        return $this->lastInsertKey();
     }
 
     /**
