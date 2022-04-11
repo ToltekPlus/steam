@@ -30,8 +30,8 @@ class ExpenseController extends ExpensePolicy{
     public function index()
     {
         $expense = new ExpenseModel();
-        $result = $expense->findUserBalance($_SESSION['sid']);
-
+        $result = $expense->findUserBalance($_SESSION['sid']);  
+        //TODO: сделать селектор с выбором пользователя 
         View::render('administrator/expenses/index.php', ['expenses' => $result]);
     }
 
@@ -84,9 +84,15 @@ class ExpenseController extends ExpensePolicy{
     public function showStore()
     {
         $expense = new ExpenseModel();
-        $result = $expense->findUserBalance($_SESSION['sid']);
+        if($this->checkUser($_POST['user'])){
+            $result = $expense->findUserBalance($_POST['user']); 
+        } else {
+            $result = $expense->findUserBalance($_SESSION['sid']); 
+        }
+        $users = $expense->getUsers();
+        var_dump($users);
 
-        View::render('administrator/expenses/replenish.php', ['expenses' => $result]);
+        View::render('administrator/expenses/replenish.php', ['expenses' => $result, 'users' => $users]);
     }
 
     /**
@@ -120,7 +126,13 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = $this->get();
 
-        $userId = $expense->user_id;
+        if($this->checkUser($_POST['user'])){
+            $userId = $_POST['user'];
+        } else {
+            $userId = $expense->user_id;
+        }
+        //TODO: переделать селектор
+        
         $data = $this->changeBalance('+', $_POST['sum']);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
         $args = array_slice($all, 3, 6, true);
@@ -165,6 +177,13 @@ class ExpenseController extends ExpensePolicy{
                     return true;
                 }
             }
+        } return false;
+    }
+
+    public function checkUser($userId)
+    {
+        if(!is_null($userId)){
+            return true;   
         } return false;
     }
 
