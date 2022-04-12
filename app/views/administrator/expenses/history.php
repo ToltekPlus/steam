@@ -3,13 +3,12 @@
     <section class="column is-8 filter">
         <h1>История пополнений</h1>
         <div>
-            <a href="list">Назад на главную</a>
+            <a href="main">Назад на главную</a>
         </div>
         <table class="table">
             <tr>
                 <thead>
                     <th>№</th>
-                    <?//<th>Баланс</th>?>
                     <th>Сумма</th>
                     <th>Тип операции</th>
                     <th>Статус</th>
@@ -35,13 +34,13 @@
                     break;
 
                 }
+                
                 echo '<tr>' .
-
                 '<td>' . $num  . '</td>' .
                 '<td>' . $expense->sum . '</td>' .
                 '<td>' . $expense->type_operation_id . '</td>' .
                 '<td>' . $expense->status . '</td>' .
-                '<td>' . $expense->date_of_enrollment . '</td>' .
+                '<td>' . $expense->date_of_enrollment . '</td>' . 
                     '</tr>';
             endforeach;
              ?>

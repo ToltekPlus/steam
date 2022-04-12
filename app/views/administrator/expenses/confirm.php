@@ -8,10 +8,11 @@
         	<form action="replenish" method="POST" id='confirm' style='margin-right: 10%;'>
                      <input type="hidden" name="sum" value="<?=$_POST['sum']?>">
                      <input type="hidden" name="id" value="<?=$_POST['id']?>">
-                     <input type="hidden" name="type_operation_id" value="<?=$_POST['type_operation_id']?>">
+                     <input type="hidden" name="user" value="<?=$_POST['user']?>">
+                     <input type="hidden" name="type_operation_id" value="<?=1?>">
         		<button class="button is-success is-light">Да</button>
         	</form>
-        	<form action="list" id='confirm'>
+        	<form action="main" id='confirm'>
         		<button class="button is-success is-light">Нет</button>
         	</form>
         </section>

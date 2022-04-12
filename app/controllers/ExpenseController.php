@@ -30,11 +30,19 @@ class ExpenseController extends ExpensePolicy{
     public function index()
     {
         $expense = new ExpenseModel();
-        $result = $expense->findUserBalance($_SESSION['sid']);  
-        //TODO: сделать селектор с выбором пользователя 
-        View::render('administrator/expenses/index.php', ['expenses' => $result]);
+        $users = $expense->getUsers();
+        if($this->checkUser($_POST['user'])){
+            $result = $expense->findUserBalance($_POST['user']);
+        } else {
+            $result = $expense->findUserBalance($_SESSION['sid']);
+        }  
+        View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users]);
     }
 
+    /**
+     * Вывод временного окна подтверждения
+     * @throws /Exception
+     */
     public function confirm()
     {
         if($this->check()){
@@ -44,6 +52,10 @@ class ExpenseController extends ExpensePolicy{
         }
     }
 
+    /**
+     * Получение баланса
+     * @return array
+     */
     public function get()
     {
         $expense = new ExpenseModel();
@@ -84,13 +96,8 @@ class ExpenseController extends ExpensePolicy{
     public function showStore()
     {
         $expense = new ExpenseModel();
-        if($this->checkUser($_POST['user'])){
-            $result = $expense->findUserBalance($_POST['user']); 
-        } else {
-            $result = $expense->findUserBalance($_SESSION['sid']); 
-        }
+        $result = $expense->findUserBalance($_POST['user']);
         $users = $expense->getUsers();
-        var_dump($users);
 
         View::render('administrator/expenses/replenish.php', ['expenses' => $result, 'users' => $users]);
     }
@@ -126,16 +133,10 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = $this->get();
 
-        if($this->checkUser($_POST['user'])){
-            $userId = $_POST['user'];
-        } else {
-            $userId = $expense->user_id;
-        }
-        //TODO: переделать селектор
-        
+        $userId = $expense->user_id;
         $data = $this->changeBalance('+', $_POST['sum']);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
-        $args = array_slice($all, 3, 6, true);
+        $args = array_slice($all, 4, 6, true);
 
         if($this->check()){
             $this->storeToHistory();
@@ -156,7 +157,7 @@ class ExpenseController extends ExpensePolicy{
         $id = $expense->id;
 
         $all = $this->dataBuilder($_POST, ['status' => 1, 'date_of_enrollment' => $date, 'expense_id' => $id]);
-        $args = array_slice($all, 0, 1, true) + array_slice($all, 2, 6, true);
+        $args = array_slice($all, 0, 1, true) + array_slice($all, 3, 6, true);
 
         $history = new HistoryExpenseModel();
         $history->store($args);
@@ -180,6 +181,10 @@ class ExpenseController extends ExpensePolicy{
         } return false;
     }
 
+    /**
+     * Проверка user_id
+     * @return bool
+     */
     public function checkUser($userId)
     {
         if(!is_null($userId)){
