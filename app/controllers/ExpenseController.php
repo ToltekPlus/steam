@@ -35,7 +35,7 @@ class ExpenseController extends ExpensePolicy{
             $result = $expense->findUserBalance($_POST['user']);
         } else {
             $result = $expense->findUserBalance($_SESSION['sid']);
-        }  
+        }
         View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users]);
     }
 
@@ -127,14 +127,15 @@ class ExpenseController extends ExpensePolicy{
     }
 
     /*
-     * Добавление данных в таблицу баланса
+     * Пополнение счета
      */
     public function replenish() : void
     {
         $expense = $this->get();
 
+        $sum = $_POST['sum'];
         $userId = $expense->user_id;
-        $data = $this->changeBalance('+', $_POST['sum']);
+        $data = $this->changeBalance('+', $sum);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
         $args = array_slice($all, 4, 6, true);
 
@@ -188,7 +189,7 @@ class ExpenseController extends ExpensePolicy{
     public function checkUser($userId)
     {
         if(!is_null($userId)){
-            return true;   
+            return true;
         } return false;
     }
 
