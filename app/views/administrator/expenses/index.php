@@ -29,7 +29,7 @@
                     <form method="POST" action="show">
                         <div>
                             <input type="hidden" value="<?=$expense->user_id?>" name="user">
-                            <button class="button is-success is-light">Пополнить</a>
+                            <button class="button is-success is-light">Пополнить</button>
                         </div>
                     </form>
                     <div style="margin-top: 10%;">
