@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </form>
-             <section style='display:flex; margin: 14% 19% 0% 19%'>
+             <section style='display:flex; margin: 8% 19% 0% 19%'>
                 <? foreach($expenses as $expense):?>
                 <div style='margin-right: 25%;'>
                       <h2>Баланс: </h2>

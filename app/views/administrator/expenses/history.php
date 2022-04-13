@@ -13,6 +13,7 @@
                     <th>Тип операции</th>
                     <th>Статус</th>
                     <th>Время операции</th>
+                    <th>Кошелёк</th>
                 </thead>
             </tr>
             <tbody>
@@ -34,13 +35,14 @@
                     break;
 
                 }
-                
+
                 echo '<tr>' .
                 '<td>' . $num  . '</td>' .
                 '<td>' . $expense->sum . '</td>' .
                 '<td>' . $expense->type_operation_id . '</td>' .
                 '<td>' . $expense->status . '</td>' .
-                '<td>' . $expense->date_of_enrollment . '</td>' . 
+                '<td>' . $expense->date_of_enrollment . '</td>' .
+                '<td>' . $expense->expense_id . '</td>' .
                     '</tr>';
             endforeach;
              ?>
