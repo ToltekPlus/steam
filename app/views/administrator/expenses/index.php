@@ -1,5 +1,4 @@
 <?php \Core\View::renderHeader()?>
-<?//TODO: перенести все style в sass?>
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
             <form style="position: absolute; margin-left: 12%;" action="main" method="POST" id="user">
