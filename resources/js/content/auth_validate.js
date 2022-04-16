@@ -35,7 +35,7 @@ function validatePhone(phone) {
  * @returns {boolean}
  */
 function validatePassword(password) {
-  if (password.trim().length < 6) {
+  if (password.trim().length < 5) {
     return false;
   }
   return true;

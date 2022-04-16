@@ -16,13 +16,13 @@ class UserSeeder extends AbstractSeed
     {
         $data = [
             [
-                'phone' => '8-927-33-94-968',
+                'phone' => '_7-927-339-49-68',
                 'password' => md5('admin'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ],
             [
-                'phone' => '8-987-45-85-987',
+                'phone' => '_7-987-458-59-87',
                 'password' => md5('user'),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
