@@ -32,7 +32,7 @@ if (buttonAuth) {
           const send = sendData(data_send, path, auth.header);
           send(data_send, path, auth.header)
             .then(response => {
-              if (response == 1) {
+              if (response === 1) {
                 window.setTimeout(function () {
                   window.location = '/';
                 }, 500);
@@ -66,7 +66,7 @@ if (buttonAuth) {
         registerForm();
       }
     });
-    new MaskInput(document.querySelector('.input-selector'), {
+    MaskInput(document.querySelector('.input-selector'), {
       mask: '+7-(000)-000-00-00',
       alwaysShowMask: true,
       maskChar: '_',
@@ -120,7 +120,7 @@ function registerForm() {
       }, 500);
     }
   });
-  new MaskInput(document.querySelector('.input-selector'), {
+  MaskInput(document.querySelector('.input-selector'), {
     mask: '+7-(000)-000-00-00',
     alwaysShowMask: true,
     maskChar: '_',

@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const formData = new FormData(this);
 
-      if (validateResult == false) {
+      if (validateResult === false) {
         notification('Не все данные введены', 'error');
       } else {
         send(formData)
           .then(response => {
-            if (response.trim() == '') {
+            if (response.trim() === '') {
               // запускаем всплывающее окно с сообщением, что все ок
               // увеличиваем значение в статистике значений
               // addNewValueToCountContent();

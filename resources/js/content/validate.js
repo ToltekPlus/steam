@@ -25,7 +25,7 @@ export function validate() {
 function validateIterator(block, blocksLength) {
   if (block.length === 0) return true;
 
-  for (let i = 0; i < blocksLength; ++i) {
+  for (let i = 0; i < blocksLength; i) {
     const v = block[i];
     if (!v.value) {
       return false;

@@ -22,7 +22,7 @@ export function auth_validate() {
  * @returns {boolean}
  */
 function validatePhone(phone) {
-  if (phone.replace(/\D/g, '').length != 11) {
+  if (phone.replace(/\D/g, '').length !== 11) {
     return false;
   }
   return true;
