@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack --watch",
-    "eslint": "eslint resources/js/**"
+    "eslint": "eslint resources/js/**",
+    "eslint:github-action": "eslint resources/js/**"
   },
   "author": "ToltekPlus Web Group",
   "license": "ISC",
