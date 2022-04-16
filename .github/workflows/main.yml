@@ -72,4 +72,4 @@ jobs:
       - name: Run seeders
         run: ./vendor/bin/phinx seed:run -s MainSeeder
 
-      - uses: eslint/github-action@v0 -- --fix
+      - uses: eslint/github-action@v0
