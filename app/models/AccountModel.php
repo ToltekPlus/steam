@@ -16,8 +16,18 @@ class AccountModel extends Model {
      */
     public function find(int $id) : object
     {
-        $company = $this->getByIdFromTable($this->table, $id, 'user_id');
-        return array_shift($company);
+        $account = $this->getByIdFromTable($this->table, $id, 'user_id');
+        return array_shift($account);
+    }
+
+    /**
+     * @param $args
+     * @param $id
+     * @return void
+     */
+    public function update($args, $id)
+    {
+        return $this->updateForTable($this->table, $id, $args);
     }
 
     /**

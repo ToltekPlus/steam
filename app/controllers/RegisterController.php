@@ -85,7 +85,7 @@ class RegisterController{
             'user_id' => $user_id,
             'name' => 'Duke',
             'surname' => 'Nukem',
-            'about' => '',
+            'about' => 'Description',
             'userpic' => '/userpic/userpic.jpg',
             'birthday_at' => date('Y-m-d H:i:s')
         ];

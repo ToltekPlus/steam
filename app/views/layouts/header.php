@@ -73,6 +73,9 @@
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="/account/edit" class="dropdown-item">
+                                Профиль
+                            </a>
                             <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>

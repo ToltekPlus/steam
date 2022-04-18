@@ -13,6 +13,10 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
 
+/*=== РАБОТА С АККАУНТОМ ===*/
+$router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
+$router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
+
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
 $router->add('games/add', ['controller' => 'GameController', 'action' => 'show']);
