@@ -23,7 +23,7 @@ class UserModel extends Model{
      * @param $value
      * @return mixed|null
      */
-    public function findByAuthData($field, $value) : object
+    public function findByAuthData($field, $value)
     {
         $user = $this->getByFieldFromTable($this->table, $field, $value);
         return array_shift($user);

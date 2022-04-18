@@ -10,9 +10,7 @@ if (buttonAuth) {
       title: 'Войти в аккаунт',
       html:
         '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
-        '<div id="phoneErrDiv"></div>' +
-        '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
-        '<div id="passwordErrDiv"></div>',
+        '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
       preConfirm: () => {
         if (!auth_validate()) {
           Swal.showValidationMessage('Проверьте правильность введных данных');
@@ -38,7 +36,7 @@ if (buttonAuth) {
                 }, 500);
               } else {
                 Swal.showValidationMessage(
-                  'Проверьте правильность введных данных',
+                  'Такой пользователь ещё не зарегестрирован',
                 );
               }
             })
@@ -79,9 +77,7 @@ function registerForm() {
     title: 'Зарегестрироваться',
     html:
       '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
-      '<div id="phoneErrDiv"></div>' +
-      '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
-      '<div id="passwordErrDiv"></div>',
+      '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
     preConfirm: () => {
       if (!auth_validate()) {
         Swal.showValidationMessage('Проверьте правильность введных данных');
@@ -101,7 +97,15 @@ function registerForm() {
         const send = sendData(data_send, path, register.header);
         send(data_send, path, register.header)
           .then(response => {
-            console.log(response);
+            if (response != 0) {
+                window.setTimeout(function () {
+                  window.location = '/';
+                }, 500);
+              } else {
+                Swal.showValidationMessage(
+                  'Такой пользователь уже зарегестрирован',
+                );
+              }
           })
           .catch(error => {
             console.log(error);
@@ -115,9 +119,6 @@ function registerForm() {
   }).then(result => {
     if (result.isConfirmed && auth_validate()) {
       Swal.fire('Вы успешно зарегестрировались', '', 'success');
-      window.setTimeout(function () {
-        window.location = '/basket';
-      }, 500);
     }
   });
   new MaskInput(document.querySelector('.input-selector'), {

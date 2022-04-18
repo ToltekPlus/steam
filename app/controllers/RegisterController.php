@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\AccountModel;
 use App\Model\RegisterModel;
+use App\Model\UserModel;
 use App\Model\UserRoleModel;
 use App\Service\DataBuilder;
 
@@ -17,18 +18,25 @@ class RegisterController{
     {
         $register_data = $this->dataPreparation($_POST);
 
-        $args = $this->dataBuilder($register_data);
+        $user_check_phone = new UserModel();
+        $check_phone = $user_check_phone->findByAuthData('phone', strval($register_data['phone']));
 
-        $new_user = new RegisterModel();
-        $new_user_id = $new_user->store($args);
+        if ($check_phone) {
+            echo 0;
+        } else {
+            $args = $this->dataBuilder($register_data);
 
-        $this->auth($new_user_id);
+            $new_user = new RegisterModel();
+            $new_user_id = $new_user->store($args);
 
-        $this->addUserRole($new_user_id);
+            $this->auth($new_user_id);
 
-        $this->addAccount($new_user_id);
+            $this->addUserRole($new_user_id);
 
-        echo $new_user_id;
+            $this->addAccount($new_user_id);
+
+            echo $new_user_id;
+        }
     }
 
     /**
