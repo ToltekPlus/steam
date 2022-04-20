@@ -16,3 +16,14 @@ export function notification(message, type = "success") {
         text: message
     })
 }
+
+export function confirmWindow(message){
+    const Window = Swal.mixin({
+        confirmButtonText: 'Подтвердить',
+        icon: 'warning',
+        showCancelButton: true,
+        position: 'center'
+        });
+
+    Window.fire({text: message})
+}

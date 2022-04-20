@@ -7,7 +7,7 @@
 	        		<a href="main">Назад на главную</a>
 	                <h2>Баланс: </h2>
 	                <h1><?=$expense->balance?> RUB</h1>
-	            </div>       
+	            </div>
 	        	<form action="confirm" method="POST" id="sum" class="form" style="margin-left: 12%; width: 70%">
 		        	<div class="form-control">
 		                <input type="hidden" value="<?=$expense->id?>" name="id">
@@ -20,6 +20,7 @@
 		        </form>
 	        	<?endforeach;?>
 	    	</section>
+	    	<button class="confirm" type="submit">Проверка окна</button>
         </section>
     </section>
 <? Core\View::renderFooter();?>
