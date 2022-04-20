@@ -13,7 +13,7 @@ class AccountController {
     use DeleteFile;
     use DataBuilder;
 
-    protected $userpic_path = 'userpic';
+    protected $userpic_path = 'userpic/';
 
     /**
      * @return void
@@ -35,7 +35,7 @@ class AccountController {
     }
 
     /**
-     * Обновление информации аккаунта
+     * Обновление информации аккаунта и юзерпика
      */
     public function update()
     {

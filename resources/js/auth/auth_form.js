@@ -98,14 +98,14 @@ function registerForm() {
         send(data_send, path, register.header)
           .then(response => {
             if (response != 0) {
-                window.setTimeout(function () {
-                  window.location = '/';
-                }, 500);
-              } else {
-                Swal.showValidationMessage(
-                  'Такой пользователь уже зарегестрирован',
-                );
-              }
+              window.setTimeout(function () {
+                window.location = '/';
+              }, 500);
+            } else {
+              Swal.showValidationMessage(
+                'Такой пользователь уже зарегестрирован',
+              );
+            }
           })
           .catch(error => {
             console.log(error);

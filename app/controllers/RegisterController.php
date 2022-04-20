@@ -12,6 +12,7 @@ class RegisterController{
     use DataBuilder;
 
     /**
+     * Создание нового пользователя
      * @return void
      */
     public function store() : void
@@ -40,6 +41,7 @@ class RegisterController{
     }
 
     /**
+     * Парсинг массива с данными(номер и пароль) в формате json
      * @param $data
      * @return array
      */
@@ -67,6 +69,7 @@ class RegisterController{
     }
 
     /**
+     * Добавление уровня доступа пользователю
      * @param $user_id
      * @return void
      */
@@ -84,6 +87,7 @@ class RegisterController{
     }
 
     /**
+     * Добавление аккаунта пользователю
      * @param $user_id
      * @return void
      */
