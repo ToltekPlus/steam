@@ -89,10 +89,16 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
+                            <a href="/account/edit" class="dropdown-item">
+                                <strong><?php (\App\Controller\HomeController::accountName()) ?></strong>
+                            </a>
                             <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
                         <?php break; case 3: ?>
+                            <a href="/account/edit" class="dropdown-item">
+                                <strong><?php (\App\Controller\HomeController::accountName()) ?></strong>
+                            </a>
                             <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>
