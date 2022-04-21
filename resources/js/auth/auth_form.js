@@ -2,7 +2,6 @@ import MaskInput from 'mask-input';
 import { auth_validate } from '../content/auth_validate';
 import { sendData } from '../db/send';
 
-// TODO декомпозировать код, убрать ненужные блоки
 const buttonAuth = document.querySelector('#enterToAccount');
 if (buttonAuth) {
   buttonAuth.addEventListener('click', function () {
@@ -15,34 +14,7 @@ if (buttonAuth) {
         if (!auth_validate()) {
           Swal.showValidationMessage('Проверьте правильность введных данных');
         } else {
-          const auth = {
-            header: 'application/x-www-form-urlencoded',
-          };
-
-          const path = 'auth';
-
-          const data = {
-            phone: document.querySelector('#phone').value,
-            password: document.querySelector('#password').value,
-          };
-
-          const data_send = JSON.stringify(data);
-          const send = sendData(data_send, path, auth.header);
-          send(data_send, path, auth.header)
-            .then(response => {
-              if (response == 1) {
-                window.setTimeout(function () {
-                  window.location = '/';
-                }, 500);
-              } else {
-                Swal.showValidationMessage(
-                  'Такой пользователь ещё не зарегестрирован',
-                );
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            });
+          send_data('auth', 'Такой пользователь ещё не зарегестрирован');
         }
       },
       backdrop: `
@@ -82,34 +54,7 @@ function registerForm() {
       if (!auth_validate()) {
         Swal.showValidationMessage('Проверьте правильность введных данных');
       } else {
-        const register = {
-          header: 'application/x-www-form-urlencoded',
-        };
-
-        const path = 'register';
-
-        const data = {
-          phone: document.querySelector('#phone').value,
-          password: document.querySelector('#password').value,
-        };
-
-        const data_send = JSON.stringify(data);
-        const send = sendData(data_send, path, register.header);
-        send(data_send, path, register.header)
-          .then(response => {
-            if (response != 0) {
-              window.setTimeout(function () {
-                window.location = '/';
-              }, 500);
-            } else {
-              Swal.showValidationMessage(
-                'Такой пользователь уже зарегестрирован',
-              );
-            }
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        send_data('register', 'Такой пользователь уже зарегестрирован');
       }
     },
     showConfirmButton: true,
@@ -126,4 +71,32 @@ function registerForm() {
     alwaysShowMask: true,
     maskChar: '_',
   });
+}
+
+function send_data(path, message) {
+  console.log(message);
+  const header = {
+    header: 'application/x-www-form-urlencoded',
+  };
+
+  const data = {
+    phone: document.querySelector('#phone').value,
+    password: document.querySelector('#password').value,
+  };
+
+  const data_send = JSON.stringify(data);
+  const send = sendData(data_send, path, header.header);
+  send(data_send, path, header.header)
+    .then(response => {
+      if (response != 0) {
+        window.setTimeout(function () {
+          window.location = '/';
+        }, 500);
+      } else {
+        Swal.showValidationMessage(message);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }

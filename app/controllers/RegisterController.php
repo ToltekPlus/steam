@@ -98,7 +98,7 @@ class RegisterController{
             'name' => 'Duke',
             'surname' => 'Nukem',
             'about' => 'Description',
-            'userpic' => '/userpic/userpic.jpg',
+            'userpic' => '/userpic_default/userpic.jpg',
             'birthday_at' => date('Y-m-d H:i:s')
         ];
 
