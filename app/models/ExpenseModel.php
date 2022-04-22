@@ -6,9 +6,11 @@ use Core\Model;
 use Core\DataBuilder;
 
 class ExpenseModel extends Model{
-    
+    /**
+     * @var string
+     */
     protected $table = 'expenses';
-	
+
     /**
      * Сбор всех данных из таблицы баланса
      * @return array
@@ -28,7 +30,7 @@ class ExpenseModel extends Model{
     }
 
     /**
-     * Сбор всех данных из таблицы баланса
+     * Сбор всех юзеров из таблицы
      * @return array
      */
     public function getUsers() : array
@@ -58,9 +60,9 @@ class ExpenseModel extends Model{
     public function findUserBalance($id)
     {
         $expense = $this->getByIdFromTable($this->table, (int)$id, 'user_id');
-        return $expense; 
+        return $expense;
     }
-	
+
 	/**
      * Обновление данных из таблицы по id
      * @param $id int
@@ -70,7 +72,7 @@ class ExpenseModel extends Model{
     {
         $this->updateForTable($this->table, $id, $args);
     }
-	
+
 	/**
      * Удаление данных из таблицы по id
      * @param $id int
@@ -80,5 +82,4 @@ class ExpenseModel extends Model{
         $args = ['id' => $id];
         return $this->deleteFromTable($this->table, $args);
     }
-
 }

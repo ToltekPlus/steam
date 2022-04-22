@@ -38,7 +38,7 @@
 
                 echo '<tr>' .
                 '<td>' . $num  . '</td>' .
-                '<td>' . $expense->sum . '</td>' .
+                '<td>' . $expense->balance . '</td>' .
                 '<td>' . $expense->type_operation_id . '</td>' .
                 '<td>' . $expense->status . '</td>' .
                 '<td>' . $expense->date_of_enrollment . '</td>' .

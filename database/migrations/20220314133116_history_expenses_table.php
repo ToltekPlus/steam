@@ -30,7 +30,7 @@ final class HistoryExpensesTable extends AbstractMigration
     public function change(): void
     {
         $table = $this->table('history_expenses');
-        $table->addColumn( 'sum', 'float')
+        $table->addColumn( 'balance', 'float')
             ->addColumn( 'status', 'boolean' )
             ->addColumn( 'date_of_enrollment', 'datetime' )
             ->addColumn( 'created_at', 'datetime' )

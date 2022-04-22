@@ -41,12 +41,14 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод временного окна подтверждения
-     * @throws /Exception
+     *
+     * @return void
+     * @throws \Exception
      */
     public function confirm()
     {
         if($this->check()){
-            View::render('administrator/expenses/confirm.php', ['sum' => $_POST['sum']]);
+            View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
             View::render('errors/400.php');
         }
@@ -54,6 +56,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Получение баланса
+     * 
      * @return array
      */
     public function get()
@@ -64,7 +67,9 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Изменение баланса для снятия или пополнения
+     * 
      * @param $action '+' or '-'
+     * @throws \Exception
      */
     public function changeBalance($action, $sum)
     {
@@ -91,6 +96,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод формы пополнения
+     * 
      * @throws /Exception
      */
     public function showStore()
@@ -104,6 +110,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод истории баланса
+     * 
      * @throws /Exception
      */
     public function showHistory()
@@ -126,18 +133,20 @@ class ExpenseController extends ExpensePolicy{
        View::render('administrator/expenses/history.php', ['expenses' => $result]);
     }
 
-    /*
+    /**
      * Пополнение счета
+     *
+     * @return void
      */
     public function replenish() : void
     {
         $expense = $this->get();
 
-        $sum = $_POST['sum'];
         $userId = $expense->user_id;
-        $data = $this->changeBalance('+', $sum);
+        $data = $this->changeBalance('+', $_POST['balance']);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
-        $args = array_slice($all, 4, 6, true);
+        //$args = array_slice($all, 3, 6, true);
+        $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
 
         if($this->check()){
             $this->storeToHistory();
@@ -146,8 +155,11 @@ class ExpenseController extends ExpensePolicy{
         }
     }
 
-    /*
+
+    /**
      * Добавление данных в таблицу истории баланса
+     *
+     * @return void
      */
     public function storeToHistory()
     {
@@ -170,7 +182,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function check()
     {
-        $sum = $_POST['sum'];
+        $sum = $_POST['balance'];
 
         if(!is_null($sum)){
             if(is_numeric($sum)){
@@ -195,7 +207,9 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Обновление данных таблицы
-     * @param $args array
+     *
+     * @param $args
+     * @return void
      */
     public function update($args)
     {
@@ -203,8 +217,11 @@ class ExpenseController extends ExpensePolicy{
         $expense->update($_POST['id'], $args);
     }
 
-    /*
+
+    /**
      * Удаление данных из таблицы
+     *
+     * @return void
      */
     public function delete()
     {

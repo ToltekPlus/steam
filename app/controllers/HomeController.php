@@ -90,10 +90,15 @@ class HomeController extends HomePolicy
      */
     static function accountRole()
     {
+        /*
+         * Неактуально, т.к. в сессию теперь записываем уровень доступа
         $role = new UserRoleModel();
-        $role = $role->find($_SESSION['sid']);
+        $role = $role->find($_SESSION['sid_role']);
 
         return $role->role_id;
+        */
+
+        return $_SESSION['sid_role'];
     }
 
     /**

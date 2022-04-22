@@ -17,7 +17,7 @@ class HistoryExepenseSeeder extends AbstractSeed
     {
         $data = [
             [
-                'sum' => 700,
+                'balance' => 700,
                 'expense_id' => 1,
                 'type_operation_id' => 1,
                 'status' => 1,
@@ -26,7 +26,7 @@ class HistoryExepenseSeeder extends AbstractSeed
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'sum' => 500.50,
+                'balance' => 500.50,
                 'expense_id' => 1,
                 'status' => 0,
                 'type_operation_id' => 2,

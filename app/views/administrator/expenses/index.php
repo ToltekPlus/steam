@@ -6,11 +6,11 @@
                 <div style="display:flex;">
                     <div class="select is-rounded is-small">
                         <select name="user">
-                            <?foreach ($users as $user):?>
+                            <?php foreach ($users as $user):?>
                             <option value="<?=$user;?>" name="user">
                                 <?=$user?>
                             </option>
-                            <?endforeach;?>
+                            <?php endforeach;?>
                         </select>
                     </div>
                     <div class="buttons" style="margin-left: 5%;">
@@ -19,7 +19,7 @@
                 </div>
             </form>
              <section style='display:flex; margin: 8% 19% 0% 19%'>
-                <? foreach($expenses as $expense):?>
+                <?php foreach($expenses as $expense):?>
                 <div style='margin-right: 25%;'>
                       <h2>Баланс: </h2>
                       <h1><?=$expense->balance?> RUB</h1>
@@ -35,7 +35,7 @@
                         <a href="history" class="button is-success is-light">История пополнений</a>
                     </div>
                 </div>
-                <?endforeach;?>
+                <?php endforeach;?>
             </section>
         </section>
 </section>

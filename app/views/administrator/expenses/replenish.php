@@ -2,7 +2,7 @@
 	<section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
 			<section style='display:flex; margin: auto 0'>
-				<? foreach($expenses as $expense):?>
+				<?php foreach($expenses as $expense):?>
 	        	<div style='display:block; margin-top: 4%'>
 	        		<a href="main">Назад на главную</a>
 	                <h2>Баланс: </h2>
@@ -12,15 +12,14 @@
 		        	<div class="form-control">
 		                <input type="hidden" value="<?=$expense->id?>" name="id">
 		                <input type="hidden" value="<?=$expense->user_id?>" name="user">
-		                <input type="text" name="sum" id="sum">
+		                <input type="text" name="balance" id="balance">
 				        <div style="display: flex; justify-content: center;" class="buttons">
 				            <button class="button is-success is-light" type="submit">Пополнить</button>
 				        </div>
 		            </div>
 		        </form>
-	        	<?endforeach;?>
+	        	<?php endforeach;?>
 	    	</section>
-	    	<button class="confirm" type="submit">Проверка окна</button>
         </section>
     </section>
-<? Core\View::renderFooter();?>
+<?php Core\View::renderFooter();?>
