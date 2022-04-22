@@ -29,6 +29,7 @@ class ExpenseModel extends Model{
 	    return $this->storeToTable($this->table, $args);
     }
 
+
     /**
      * Сбор всех юзеров из таблицы
      * @return array

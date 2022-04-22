@@ -41,7 +41,6 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод временного окна подтверждения
-     *
      * @return void
      * @throws \Exception
      */
@@ -155,7 +154,6 @@ class ExpenseController extends ExpensePolicy{
         }
     }
 
-
     /**
      * Добавление данных в таблицу истории баланса
      *
@@ -216,7 +214,6 @@ class ExpenseController extends ExpensePolicy{
         $expense = new ExpenseModel();
         $expense->update($_POST['id'], $args);
     }
-
 
     /**
      * Удаление данных из таблицы
