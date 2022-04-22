@@ -88,7 +88,7 @@ class HomeController extends HomePolicy
     /**
      * Пишет имя и фамилию аккаунта юзера
      */
-    static function accountName() {
+    static function accountData() {
         $account = new AccountModel();
         $account = $account->find($_SESSION['sid']);
 

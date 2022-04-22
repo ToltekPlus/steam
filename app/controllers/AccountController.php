@@ -39,12 +39,17 @@ class AccountController {
      */
     public function update()
     {
-        if ($_FILES['userpic']['size'] != 0) {
-            $this->deleteImageFromDirectory($_SESSION['sid']);
-            $userpic = $this->upload($_FILES['userpic'], $this->userpic_path);
-        }else {
-            $account = $this->get($_SESSION['sid']);
-            $userpic = $account->userpic;
+        if (isset($_POST['delete_img'])) {
+            $userpic = "/userpic_default/userpic.jpg";
+            array_pop($_POST);
+        } else {
+            if ($_FILES['userpic']['size'] != 0) {
+                //$this->deleteImageFromDirectory($_SESSION['sid']);
+                $userpic = $this->upload($_FILES['userpic'], $this->userpic_path);
+            } else {
+                $account = $this->get($_SESSION['sid']);
+                $userpic = $account->userpic;
+            }
         }
 
         $args = $this->dataBuilder($_POST, ['userpic' => $userpic]);

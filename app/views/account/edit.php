@@ -29,6 +29,13 @@
                             <input type="date" name="birthday_at" id="birthday_at" placeholder="Дата рождения" value="<?=$account->birthday_at?>">
                         </div>
 
+                        <p>Фото профиля:</p>
+
+                        <div class="form-control">
+                            <label for="delete_img">Удалить фото</label>
+                            <input type="checkbox" name="delete_img" id="delete_img" value="1">
+                        </div>
+
                         <div class="form-control">
                             <div class="file is-info is-small has-name"  id="file-js-example">
                                 <label class="file-label">
@@ -38,7 +45,7 @@
                                                 <i class="fas fa-upload"></i>
                                               </span>
                                               <span class="file-label">
-                                                Выбрать файл
+                                                Изменить фото
                                               </span>
                                             </span>
                                     <span class="file-name">
