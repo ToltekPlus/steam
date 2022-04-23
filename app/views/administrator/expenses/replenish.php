@@ -5,7 +5,7 @@
 			<section style='display:flex; margin: auto 0'>
 				<?php foreach($expenses as $expense):?>
 	        	<div style='display:block; margin-top: 4%'>
-	        		<a href="main">Назад на главную</a>
+            		<a href="main?id=<?=$_POST['user'];?>">Назад на главную</a>
 	                <h2>Баланс: </h2>
 	                <h1><?=$expense->balance?> RUB</h1>
 	            </div>

@@ -3,7 +3,7 @@
     <section class="column is-8 filter">
         <h1>История пополнений</h1>
         <div>
-            <a href="main">Назад на главную</a>
+            <a href="main?id=<?=$_POST['user'];?>">Назад на главную</a>
         </div>
         <table class="table">
             <tr>

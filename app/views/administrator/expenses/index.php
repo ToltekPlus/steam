@@ -31,9 +31,12 @@
                             <button class="button is-success is-light">Пополнить</button>
                         </div>
                     </form>
-                    <div style="margin-top: 10%;">
-                        <a href="history" class="button is-success is-light">История пополнений</a>
-                    </div>
+                    <form method="POST" action="history" style="margin-top: 10%">
+                        <div>
+                            <input type="hidden" value="<?=$expense->user_id?>" name="user">
+                            <button class="button is-success is-light">История пополнений</button>
+                        </div>
+                    </form>
                 </div>
                 <?php endforeach;?>
             </section>

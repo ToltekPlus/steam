@@ -34,8 +34,13 @@ class ExpenseController extends ExpensePolicy{
         if($this->checkUser($_POST['user'])){
             $result = $expense->findUserBalance($_POST['user']);
         } else {
-            $result = $expense->findUserBalance($_SESSION['sid']);
+            if($this->checkUser($_GET['id'])){
+                $result = $expense->findUserBalance($_GET['id']);
+            } else {
+                $result = $expense->findUserBalance($_SESSION['sid']);
+            } 
         }
+        
         View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users]);
     }
 
