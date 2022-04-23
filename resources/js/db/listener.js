@@ -36,8 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.trim() == '') {
               // запускаем всплывающее окно с сообщением, что все ок
               // увеличиваем значение в статистике значений
-              // addNewValueToCountContent();
               notification(operation.message);
+              window.setTimeout(function () {
+                window.location = '/account/edit';
+              }, 500);
             } else {
               // запускаем всплывающее окно с сообщением, что произошла ошибка
               notification(operation.message_error, 'error');
