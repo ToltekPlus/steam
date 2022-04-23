@@ -17,6 +17,6 @@ export function sendData(formData, action, header = '') {
         `Ошибка по адресу ${url}, статус ошибки ${fetchResp.status}`,
       );
     }
-    return await fetchResponse.text();
+    return fetchResponse.text();
   };
 }

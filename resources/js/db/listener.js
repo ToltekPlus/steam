@@ -4,7 +4,6 @@ import { validate } from '../content/validate';
 import { notification } from '../notification/swal';
 import { redirect } from './redirect';
 import { clearForm } from './clear_form';
-import { addNewValueToCountContent } from '../content/statistics_for_table';
 import { identity_route } from '../cart/identity_route';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(response => {
             if (response.trim() === '') {
               // запускаем всплывающее окно с сообщением, что все ок
-              // увеличиваем значение в статистике значений
-              // addNewValueToCountContent();
+              // увеличиваем значение в статистике значений;
               notification(operation.message);
             } else {
               // запускаем всплывающее окно с сообщением, что произошла ошибка
