@@ -17,8 +17,8 @@
                 </thead>
             </tr>
             <tbody>
-            <?
-                $num = 0;
+            <?php
+            $num = 0;
             foreach($expenses as $expense):
                 $num += 1;
                 switch($expense->type_operation_id){

@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </form>
-             <section style='display:flex; margin: 13% 19% 0% 19%'>
+            <section style='display:flex; margin: 13% 19% 0% 19%'>
                 <?php foreach($expenses as $expense):?>
                 <div style='margin-right: 25%;'>
                       <h2>Баланс: </h2>

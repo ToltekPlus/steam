@@ -32,7 +32,6 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = new ExpenseModel();
         $accounts = new AccountModel();
-
         $users = $expense->getUsers();
 
         if($this->checkUser($_POST['user'])){
@@ -52,15 +51,16 @@ class ExpenseController extends ExpensePolicy{
     }
 
     /**
-     * Вывод временного окна подтверждения
+     * Вывод окна подтверждения
      * @return void
      * @throws \Exception
      */
     public function confirm()
     {
-        if($this->check($_POST['balance'])){
+        if($this->checkSum($_POST['balance'])){
             View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
+            var_dump($_POST['balance']);
             View::render('errors/400.php');
         }
     }
@@ -79,14 +79,14 @@ class ExpenseController extends ExpensePolicy{
     /**
      * Изменение баланса для снятия или пополнения
      * 
-     * @param $action '+' or '-'
+     * @param '+' or '-' $action 
      * @throws \Exception
      */
     public function changeBalance($action, $sum)
     {
         $balance = $this->get()->balance;
 
-        if($this->check($sum)){
+        if($this->checkSum($sum)){
             switch ($action) {
                 case '+':
                     return $balance + $sum;
@@ -159,7 +159,7 @@ class ExpenseController extends ExpensePolicy{
      * 
      * @param int $sum 
      * @param '+' or '-' $action 
-     * @param 1-3 $type_operation 
+     * @param int(1-3) $type_operation 
      * @return void
      * @throws /Exception
      */
@@ -168,13 +168,15 @@ class ExpenseController extends ExpensePolicy{
         $expense = $this->get();
 
         $userId = $expense->user_id;
+        $id = $expense->id;
         $data = $this->changeBalance($action, $sum);
+
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
         $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
 
-        if($this->check($sum)){
+        if($this->checkSum($sum)){
             $this->storeToHistory($type_operation);
-            $this->update($args);
+            $this->update($args, $id);
             $this->index();
         }
     }
@@ -193,8 +195,7 @@ class ExpenseController extends ExpensePolicy{
         $id = $expense->id;
 
         $all = $this->dataBuilder($_POST, ['status' => 1, 'date_of_enrollment' => $date, 'expense_id' => $id]);
-        $args = ['balance' => all['balance'], 'status' => all['status'], 'date_of_enrollment' => all['date_of_enrollment'], 'expense_id' => all['expense_id'], 'created_at' => all['created_at'], 'updated_at' => all['updated_at'], 'type_operation_id' => $type_operation_id];
-        //$args = array_slice($all, 0, 1, true) + array_slice($all, 3, 6, true);
+        $args = ['balance' => $all['balance'], 'status' => $all['status'], 'date_of_enrollment' => $all['date_of_enrollment'], 'expense_id' => $all['expense_id'], 'created_at' => $all['created_at'], 'updated_at' => $all['updated_at'], 'type_operation_id' => $type_operation_id];
 
         $history = new HistoryExpenseModel();
         $history->store($args);
@@ -205,7 +206,7 @@ class ExpenseController extends ExpensePolicy{
      * @return bool
      * @param int $sum
      */
-    public function check($sum)
+    public function checkSum($sum)
     {
         if(!is_null($sum)){
             if(is_numeric($sum)){
@@ -213,7 +214,7 @@ class ExpenseController extends ExpensePolicy{
                 {
                     return true;
                 }
-            }
+            } 
         } return false;
     }
 
@@ -232,22 +233,24 @@ class ExpenseController extends ExpensePolicy{
      * Обновление данных таблицы
      *
      * @param $args
+     * @param int $id
      * @return void
      */
-    public function update($args)
+    public function update($args, $id)
     {
         $expense = new ExpenseModel();
-        $expense->update($_POST['id'], $args);
+        $expense->update($id, $args);
     }
 
     /**
      * Удаление данных из таблицы
-     *
+     * 
+     * @param int $id
      * @return void
      */
-    public function delete()
+    public function delete($id)
     {
         $expense = new ExpenseModel;
-        $expense->delete($_POST['id']);
+        $expense->delete($id);
     }
 }
