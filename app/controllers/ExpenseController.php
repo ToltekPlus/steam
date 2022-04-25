@@ -7,6 +7,7 @@ use App\Policy\ExpensePolicy;
 use Core\View;
 use App\Service\DataBuilder;
 use App\Model\HistoryExpenseModel;
+use App\Model\AccountModel;
 
 class ExpenseController extends ExpensePolicy{
     use DataBuilder;
@@ -30,18 +31,24 @@ class ExpenseController extends ExpensePolicy{
     public function index()
     {
         $expense = new ExpenseModel();
+        $accounts = new AccountModel();
+
         $users = $expense->getUsers();
+
         if($this->checkUser($_POST['user'])){
             $result = $expense->findUserBalance($_POST['user']);
+            $account = $accounts->getFullName($_POST['user']);
         } else {
             if($this->checkUser($_GET['id'])){
                 $result = $expense->findUserBalance($_GET['id']);
+                $account = $accounts->getFullName($_GET['id']);
             } else {
                 $result = $expense->findUserBalance($_SESSION['sid']);
+                $account = $accounts->getFullName($_SESSION['sid']);
             } 
         }
         
-        View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users]);
+        View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users, 'account' => $account]);
     }
 
     /**
@@ -51,7 +58,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function confirm()
     {
-        if($this->check()){
+        if($this->check($_POST['balance'])){
             View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
             View::render('errors/400.php');
@@ -79,7 +86,7 @@ class ExpenseController extends ExpensePolicy{
     {
         $balance = $this->get()->balance;
 
-        if($this->check()){
+        if($this->check($sum)){
             switch ($action) {
                 case '+':
                     return $balance + $sum;
@@ -131,29 +138,42 @@ class ExpenseController extends ExpensePolicy{
                     $expense->status = 'Невыполнено';
                     break;
             };
-
         endforeach;
 
        View::render('administrator/expenses/history.php', ['expenses' => $result]);
     }
 
-    /**
-     * Пополнение счета
-     *
+    /** 
+     * Пополнение счёта(оболочка)
+     * 
      * @return void
+     * @throws /Exception
      */
-    public function replenish() : void
+    public function replenish()
+    {
+        $this->dataPreparation($_POST['balance'], '+', 1);
+    }
+
+    /** 
+     * Изменение счёта
+     * 
+     * @param int $sum 
+     * @param '+' or '-' $action 
+     * @param 1-3 $type_operation 
+     * @return void
+     * @throws /Exception
+     */
+    public function dataPreparation($sum, $action, $type_operation)
     {
         $expense = $this->get();
 
         $userId = $expense->user_id;
-        $data = $this->changeBalance('+', $_POST['balance']);
+        $data = $this->changeBalance($action, $sum);
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
-        //$args = array_slice($all, 3, 6, true);
         $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
 
-        if($this->check()){
-            $this->storeToHistory();
+        if($this->check($sum)){
+            $this->storeToHistory($type_operation);
             $this->update($args);
             $this->index();
         }
@@ -164,7 +184,7 @@ class ExpenseController extends ExpensePolicy{
      *
      * @return void
      */
-    public function storeToHistory()
+    public function storeToHistory($type_operation_id)
     {
         $expense = $this->get();
 
@@ -173,7 +193,8 @@ class ExpenseController extends ExpensePolicy{
         $id = $expense->id;
 
         $all = $this->dataBuilder($_POST, ['status' => 1, 'date_of_enrollment' => $date, 'expense_id' => $id]);
-        $args = array_slice($all, 0, 1, true) + array_slice($all, 3, 6, true);
+        $args = ['balance' => all['balance'], 'status' => all['status'], 'date_of_enrollment' => all['date_of_enrollment'], 'expense_id' => all['expense_id'], 'created_at' => all['created_at'], 'updated_at' => all['updated_at'], 'type_operation_id' => $type_operation_id];
+        //$args = array_slice($all, 0, 1, true) + array_slice($all, 3, 6, true);
 
         $history = new HistoryExpenseModel();
         $history->store($args);
@@ -182,11 +203,10 @@ class ExpenseController extends ExpensePolicy{
     /**
      * Проверка данных введённых в форму
      * @return bool
+     * @param int $sum
      */
-    public function check()
+    public function check($sum)
     {
-        $sum = $_POST['balance'];
-
         if(!is_null($sum)){
             if(is_numeric($sum)){
                 if((int)$sum <= $this->max_sum && (int)$sum >= $this->min_sum)

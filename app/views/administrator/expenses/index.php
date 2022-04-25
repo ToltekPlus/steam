@@ -2,8 +2,12 @@
 <section class="columns is-full is-centered is-vertical catalog">
         <section class="column is-8 filter">
             <form style="position: absolute; margin-left: 12%;" action="main" method="POST" id="user">
-                <h4>Пользователь: </h4>
-                <div style="display:flex;">
+                <div style="position:absolute; margin-left: 105%;">
+                    <h4><? echo $account[0]?></h4>
+                    <h4><? echo $account[1]?></h4>
+                </div>
+                <h4>Пользователь: </h4>                   
+                <div style="display:flex; margin-top: 8%;">
                     <div class="select is-rounded is-small">
                         <select name="user">
                             <?php foreach ($users as $user):?>
@@ -18,7 +22,7 @@
                     </div>
                 </div>
             </form>
-             <section style='display:flex; margin: 10% 19% 0% 19%'>
+             <section style='display:flex; margin: 13% 19% 0% 19%'>
                 <?php foreach($expenses as $expense):?>
                 <div style='margin-right: 25%;'>
                       <h2>Баланс: </h2>

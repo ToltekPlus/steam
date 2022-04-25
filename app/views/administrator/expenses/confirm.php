@@ -8,7 +8,6 @@
                      <input type="hidden" name="balance" value="<?=$_POST['balance']?>">
                      <input type="hidden" name="id" value="<?=$_POST['id']?>">
                      <input type="hidden" name="user" value="<?=$_POST['user']?>">
-                     <input type="hidden" name="type_operation_id" value="<?=1?>">
         		<button class="button is-success is-light">Да</button>
         	</form>
         	<form action="main" id='confirm'>
