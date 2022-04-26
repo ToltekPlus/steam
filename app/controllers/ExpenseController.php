@@ -34,6 +34,7 @@ class ExpenseController extends ExpensePolicy{
         $accounts = new AccountModel();
         $users = $expense->getUsers();
 
+        //TODO: сократить или переместить этот if в другую функцию
         if($this->checkUser($_POST['user'])){
             $result = $expense->findUserBalance($_POST['user']);
             $account = $accounts->getFullName($_POST['user']);
@@ -60,7 +61,6 @@ class ExpenseController extends ExpensePolicy{
         if($this->checkSum($_POST['balance'])){
             View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
-            var_dump($_POST['balance']);
             View::render('errors/400.php');
         }
     }
@@ -166,6 +166,7 @@ class ExpenseController extends ExpensePolicy{
     public function dataPreparation($sum, $action, $type_operation)
     {
         $expense = $this->get();
+        //TODO: Адаптировать методы dataPreparation и storeToHistory для использования извне
 
         $userId = $expense->user_id;
         $id = $expense->id;
