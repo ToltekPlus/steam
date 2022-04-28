@@ -8,6 +8,7 @@ use Core\View;
 use App\Service\DataBuilder;
 use App\Model\HistoryExpenseModel;
 use App\Model\AccountModel;
+use App\Model\UserRoleModel;
 
 class ExpenseController extends ExpensePolicy{
     use DataBuilder;
@@ -32,14 +33,16 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = new ExpenseModel();
         $accounts = new AccountModel();
+        $roles = new UserRoleModel();
+
+        $role = $roles->getByAuthId();
         $users = $expense->getUsers();
 
-        //TODO: сократить или переместить этот if в другую функцию
-        if($this->checkUser($_POST['user'])){
+        if(!is_null($_POST['user'])){ 
             $result = $expense->findUserBalance($_POST['user']);
             $account = $accounts->getFullName($_POST['user']);
         } else {
-            if($this->checkUser($_GET['id'])){
+            if(!is_null($_GET['id'])){
                 $result = $expense->findUserBalance($_GET['id']);
                 $account = $accounts->getFullName($_GET['id']);
             } else {
@@ -48,7 +51,7 @@ class ExpenseController extends ExpensePolicy{
             } 
         }
         
-        View::render('administrator/expenses/index.php', ['expenses' => $result, 'users' => $users, 'account' => $account]);
+        View::render('expenses/index.php', ['expenses' => $result, 'users' => $users, 'account' => $account, 'role' => $role]);
     }
 
     /**
@@ -59,7 +62,7 @@ class ExpenseController extends ExpensePolicy{
     public function confirm()
     {
         if($this->checkSum($_POST['balance'])){
-            View::render('administrator/expenses/confirm.php', ['balance' => $_POST['balance']]);
+            View::render('expenses/confirm.php', ['balance' => $_POST['balance']]);
         } else {
             View::render('errors/400.php');
         }
@@ -68,12 +71,13 @@ class ExpenseController extends ExpensePolicy{
     /**
      * Получение баланса
      * 
+     * @param int $user_id
      * @return array
      */
-    public function get()
+    public function get($user_id)
     {
         $expense = new ExpenseModel();
-        return $expense->find($_POST['id']);
+        return $expense->findUserBalance($user_id)[0];
     }
 
     /**
@@ -82,9 +86,9 @@ class ExpenseController extends ExpensePolicy{
      * @param '+' or '-' $action 
      * @throws \Exception
      */
-    public function changeBalance($action, $sum)
+    public function changeBalance($action, $sum, $user_id)
     {
-        $balance = $this->get()->balance;
+        $balance = $this->get($user_id)->balance;
 
         if($this->checkSum($sum)){
             switch ($action) {
@@ -116,7 +120,7 @@ class ExpenseController extends ExpensePolicy{
         $result = $expense->findUserBalance($_POST['user']);
         $users = $expense->getUsers();
 
-        View::render('administrator/expenses/replenish.php', ['expenses' => $result, 'users' => $users]);
+        View::render('expenses/replenish.php', ['expenses' => $result, 'users' => $users]);
     }
 
     /**
@@ -140,7 +144,7 @@ class ExpenseController extends ExpensePolicy{
             };
         endforeach;
 
-       View::render('administrator/expenses/history.php', ['expenses' => $result]);
+       View::render('expenses/history.php', ['expenses' => $result]);
     }
 
     /** 
@@ -151,7 +155,7 @@ class ExpenseController extends ExpensePolicy{
      */
     public function replenish()
     {
-        $this->dataPreparation($_POST['balance'], '+', 1);
+        $this->dataPreparation($_POST['balance'], '+', 1, $_POST['user']);
     }
 
     /** 
@@ -160,23 +164,26 @@ class ExpenseController extends ExpensePolicy{
      * @param int $sum 
      * @param '+' or '-' $action 
      * @param int(1-3) $type_operation 
+     * @param int $user_id 
      * @return void
      * @throws /Exception
      */
-    public function dataPreparation($sum, $action, $type_operation)
+    public function dataPreparation($sum, $action, $type_operation, $user_id)
     {
-        $expense = $this->get();
+        (is_null($user_id)) ? $user_id = $_SESSION['sid'] : $user_id = $user_id;
+        $expense = $this->get($user_id);
         //TODO: Адаптировать методы dataPreparation и storeToHistory для использования извне
 
-        $userId = $expense->user_id;
+        $userId = $user_id;
         $id = $expense->id;
-        $data = $this->changeBalance($action, $sum);
+        $data = $this->changeBalance($action, $sum, $user_id);
+        
 
         $all = $this->dataBuilder($_POST, ['balance' => $data, 'user_id' => $userId]);
         $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
 
         if($this->checkSum($sum)){
-            $this->storeToHistory($type_operation);
+            $this->storeToHistory($type_operation, $user_id);
             $this->update($args, $id);
             $this->index();
         }
@@ -187,9 +194,9 @@ class ExpenseController extends ExpensePolicy{
      *
      * @return void
      */
-    public function storeToHistory($type_operation_id)
+    public function storeToHistory($type_operation_id, $user_id)
     {
-        $expense = $this->get();
+        $expense = $this->get($user_id);
 
         $balance = $expense->balance;
         $date = date('Y-m-d H:i:s', time());
@@ -216,17 +223,6 @@ class ExpenseController extends ExpensePolicy{
                     return true;
                 }
             } 
-        } return false;
-    }
-
-    /**
-     * Проверка user_id
-     * @return bool
-     */
-    public function checkUser($userId)
-    {
-        if(!is_null($userId)){
-            return true;
         } return false;
     }
 

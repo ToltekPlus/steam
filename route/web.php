@@ -64,5 +64,6 @@ $router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 
 $router->add('expenses/confirm', ['controller' => 'ExpenseController', 'action' => 'confirm']);
 $router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
 $router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
+$router->add('expenses/test', ['controller' => 'ExpenseController', 'action' => 'withdrawal']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);
