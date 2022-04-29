@@ -79,7 +79,7 @@
                             <a href="#" class="dropdown-item">
                                 Мои игры
                             </a>
-                            <a href="/expenses/test" class="dropdown-item">
+                            <a href="#" class="dropdown-item">
                                 Архив
                             </a>
                             <a href="/logout" class="dropdown-item">

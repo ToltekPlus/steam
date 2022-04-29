@@ -19,31 +19,33 @@
             <tbody>
             <?php
             $num = 0;
-            foreach($expenses as $expense):
+            foreach($histories as $history):
                 $num += 1;
-                switch($expense->type_operation_id){
-                case '1':
-                    $expense->type_operation_id = 'Пополнение';
-                    break;
-
-                case '2':
-                    $expense->type_operation_id = 'Оплата';
-                    break;
-
-                case '3':
-                    $expense->type_operation_id = 'Возврат средств';
-                    break;
-
-                }
-
-                echo '<tr>' .
-                '<td>' . $num  . '</td>' .
-                '<td>' . $expense->balance . '</td>' .
-                '<td>' . $expense->type_operation_id . '</td>' .
-                '<td>' . $expense->status . '</td>' .
-                '<td>' . $expense->date_of_enrollment . '</td>' .
-                '<td>' . $expense->expense_id . '</td>' .
-                    '</tr>';
+                    if($role == 1){
+                        foreach($expenses as $expense):
+                        if($history->expense_id == $expense->id){
+                            if($expense->user_id == $_SESSION['sid']){
+                                echo '<tr>' .
+                                '<td>' . $num  . '</td>' .
+                                '<td>' . $history->balance . '</td>' .
+                                '<td>' . $history->type_operation_id . '</td>' .
+                                '<td>' . $history->status . '</td>' .
+                                '<td>' . $history->date_of_enrollment . '</td>' .
+                                '<td>' . $history->expense_id . '</td>' .
+                                '</tr>';
+                            }
+                        }
+                        endforeach;
+                    } else {
+                        echo '<tr>' .
+                        '<td>' . $num  . '</td>' .
+                        '<td>' . $history->balance . '</td>' .
+                        '<td>' . $history->type_operation_id . '</td>' .
+                        '<td>' . $history->status . '</td>' .
+                        '<td>' . $history->date_of_enrollment . '</td>' .
+                        '<td>' . $history->expense_id . '</td>' .
+                        '</tr>'; 
+                    }
             endforeach;
              ?>
             </tbody>
