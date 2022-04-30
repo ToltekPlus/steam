@@ -32,11 +32,7 @@
                         <li>Новости</li>
                         <li>Поддержка</li>
                         <li>Сообщество</li>
-                        <li>
-                            <a href="/auth">
-                                Псевдоаккаунт
-                            </a>
-                        </li>
+                        
                     </ul>
                 </nav>
             </div>
@@ -67,27 +63,69 @@
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
-                          <a href="#" class="dropdown-item">
-                            Мои игры
-                          </a>
-                          <a href="#" class="dropdown-item">
-                            Кошелек
-                          </a>
-                          <a href="#" class="dropdown-item">
-                            Архив
-                          </a>
-                            <a href="/roles" class="dropdown-item">
-                                Роли
+                          <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="/expenses/list" class="dropdown-item">
+                                Кошелек
                             </a>
-                            <a href="/companies" class="dropdown-item">
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 2: ?>
+                            <a href="/expenses/list">Пополнение кому-то</a>
+                             <a href="/expenses/list" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="/games/list" class="dropdown-item">
+                                Игры
+                           </a>
+
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                             <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php break; case 3: ?>
+                            <a href="/expenses/list" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Мои игры
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                Архив
+                            </a>
+                            <a href="/roles/list" class="dropdown-item">
+                                Пользователи
+                            </a>
+                            <a href="/games/list" class="dropdown-item">
+                                Игры
+                            </a>
+                            <a href="/companies/list" class="dropdown-item">
                                 Компании
                             </a>
-                            <a href="/genres" class="dropdown-item">
+                            <a href="/genres/list" class="dropdown-item">
                                 Жанры
                             </a>
-                          <a href="/logout" class="dropdown-item">
-                            Выход
-                          </a>
+                            <a href="/symlinks" class="dropdown-item">
+                                Сгенерировать псевдосылки
+                            </a>
+                            <a href="/logs" class="dropdown-item">
+                                Логи
+                            </a>
+                            <a href="/logout" class="dropdown-item">
+                                Выход
+                            </a>
+                        <?php endswitch; ?>
                         </div>
                       </div>
                     </div>
