@@ -55,9 +55,28 @@ nav ul
         background: none !important
         color: $discount !important
 
-.userpic
-  img
+.userpic img
     width: 35px
     border: 1px solid $bg-color-header
     border-radius: 50%
     cursor: pointer
+    position: relative
+
+.sel {
+  display: none
+  border: 2px solid #fefefe
+  border-radius: 20px
+}
+.images:hover .sel {
+  cursor: pointer
+  position: absolute
+  right: 0
+  top: 0
+  width: 30px
+  height: 30px
+  text-align: center
+  line-height: 30px
+  color: #fefefe
+  display: block
+  font-size: 30px
+}

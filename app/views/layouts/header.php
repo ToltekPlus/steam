@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 <header class="columns is-full is-centered is-vertical">
@@ -69,7 +70,9 @@
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
                           <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <div class="sel">X</div> 
                       </div>
+
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>

@@ -66,7 +66,7 @@ class RegisterController{
     {
         $data = [
             'user_id' => $user_id,
-            'role_id' => 1
+            'role_id' => $role_id
         ];
 
         $args = $this->dataBuilder($data);
