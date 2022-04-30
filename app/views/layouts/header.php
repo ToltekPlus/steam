@@ -77,7 +77,7 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
-                            <a href="/expenses/list">Пополнение кому-то</a>
+                            <a href="/expenses/list" class="dropdown-item">Пополнение кому-то</a>
                              <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>
