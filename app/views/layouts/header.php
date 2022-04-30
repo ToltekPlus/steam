@@ -77,20 +77,10 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
-                            <a href="/expenses/list">Пополнение кому-то</a>
+                            <a href="/expenses/list" class="dropdown-item">Пополнение кому-то</a>
                              <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                Мои игры
-                            </a>
-                            <a href="/games/list" class="dropdown-item">
-                                Игры
-                           </a>
-
-                            <a href="/logout" class="dropdown-item">
-                                Выход
-                            </a>
+                            </a>                                              
                              <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
