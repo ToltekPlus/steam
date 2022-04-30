@@ -17,7 +17,7 @@ if (buttonAuth) {
             },
             backdrop: `
             rgba(18,97,199,0.4)
-            url("../public/images/nyan-cat.gif")
+            url("/images/nyan-cat.gif")
             left top
             no-repeat
           `,

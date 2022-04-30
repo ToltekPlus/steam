@@ -4,6 +4,7 @@ namespace Core;
 
 use PDO;
 use PDOException;
+use Core\Logger;
 
 class Database
 {
@@ -30,8 +31,12 @@ class Database
      */
     public function query(string $sql) : array
     {
-        $query = $this->connect->query($sql);
-        return $query->fetchAll(PDO::FETCH_CLASS);
+        try {
+            $query = $this->connect->query($sql);
+            return $query->fetchAll(PDO::FETCH_CLASS);
+        }catch (\Exception $e) {
+            Logger::getLogger()->log('db', $e->getMessage());
+        }
     }
 
     /**
@@ -39,12 +44,27 @@ class Database
      *
      * @param string $sql
      * @param array|null $arguments
-     * @return array
+     * @return bool
      */
-    public function execute(string $sql, ?array $arguments) : array
+    public function execute(string $sql, ?array $arguments) : bool
     {
         $query = $this->connect->prepare($sql);
-        $query->execute($arguments);
-        return $query->fetch(PDO::FETCH_ASSOC);
+
+        try {
+            $query->execute($arguments);
+
+            //return $query->fetch(PDO::FETCH_ASSOC);
+            return true;
+        }catch (\Exception $e) {
+            Logger::getLogger()->log('db', $e->getMessage());
+        }
+    }
+
+    /**
+     * @return false|string
+     */
+    public function lastId()
+    {
+        return $this->connect->lastInsertId();
     }
 }

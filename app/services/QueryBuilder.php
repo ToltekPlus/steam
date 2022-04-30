@@ -11,11 +11,10 @@ trait QueryBuilder {
      * @param int|null $id
      * @return string
      */
-    public function queryBuilder(array $tables, ?int $id) : string
+    public function queryBuilder(array $tables, ?int $id, $limit) : string
     {
-        //$selected_table = implode(", ", $tables);
-        // TODO переделать на спредах
         $selected_table = "";
+        $limit_data = "";
         foreach ($tables as $key => $table) {
             if ($key == array_key_last($tables)) {
                 $selected_table .= $table['table'];
@@ -25,7 +24,11 @@ trait QueryBuilder {
         }
         $where = $this->queryConditionWhereBuilder($tables, $id);
 
-        return "SELECT * FROM " . $selected_table . $where;
+        $table_key = $tables[0]['table'] . "." . $tables[0]['group_key']  ." as table_id";
+
+        if (!is_null($limit)) $limit_data = " LIMIT " . $limit;
+
+        return "SELECT *, " . $table_key . " FROM " . $selected_table . $where . $limit_data;
     }
 
     /**
@@ -37,7 +40,6 @@ trait QueryBuilder {
      */
     public function queryConditionWhereBuilder(array $tables, ?int $id) : ?string
     {
-        // TODO изменить условие для достоверной выборки
         $count = count($tables);
 
         if ($count > 1) {
@@ -69,6 +71,6 @@ trait QueryBuilder {
      */
     public function conditionForKey($tables, $id)
     {
-        if ($id != 0) return ' AND ' . $tables[0]['table']. '.id = ' . $id;
+        if ($id != null) return ' AND ' . $tables[0]['table']. '.id = ' . $id;
     }
 }

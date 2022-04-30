@@ -15,22 +15,13 @@ class UserRoleSeeder extends AbstractSeed
      */
     public function run()
     {
+        $foreignKeysRoles = $this->adapter->fetchAll("SELECT id FROM roles WHERE id = 3");
+        $foreignKeysUsers = $this->adapter->fetchAll("SELECT id FROM users WHERE id = 1");
+
         $data = [
             [
-                'user_id' => 1,
-                'role_id' => 3,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 2,
-                'role_id' => 1,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => 3,
-                'role_id' => 1,
+                'user_id' => $foreignKeysUsers[array_rand($foreignKeysUsers)]['id'],
+                'role_id' => $foreignKeysRoles[array_rand($foreignKeysRoles)]['id'],
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

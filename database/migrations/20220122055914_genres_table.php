@@ -6,6 +6,17 @@ use Phinx\Migration\AbstractMigration;
 final class GenresTable extends AbstractMigration
 {
     /**
+     * @return void
+     */
+    public function up() : void
+    {
+        $exists = $this->hasTable('genres');
+        if ($exists) {
+            $this->table('genres')->drop()->save();
+        }
+    }
+
+    /**
      * Change Method.
      *
      * Write your reversible migrations using this method.

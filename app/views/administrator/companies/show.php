@@ -9,19 +9,19 @@
                     <div class="column is-two-thirds form">
                         <form method="POST" action="store" enctype="multipart/form-data">
                             <div class="form-control">
-                                <label for="name_game">Название компании</label>
+                                <label for="name_company">Название компании</label>
                                 <input type="text" name="name_company" id="name_company" placeholder="Введите название" autocomplete="off">
                             </div>
 
                             <div class="form-control">
-                                <label for="description_game">Описание компании</label>
+                                <label for="description_company">Описание компании</label>
                                 <textarea type="text" name="description_company" id="description_company" placeholder="История компании"></textarea>
                             </div>
 
                             <div class="form-control">
                                 <div class="file is-info is-small has-name"  id="file-js-example">
                                     <label class="file-label">
-                                        <input class="file-input" type="file" name="logotype">
+                                        <input class="file-input" type="file" name="logotype" id="file">
                                         <span class="file-cta">
                                               <span class="file-icon">
                                                 <i class="fas fa-upload"></i>
@@ -39,7 +39,7 @@
 
                             <div class="form-control">
                                 <div class="buttons">
-                                    <button class="button is-success is-light">Добавить</button>
+                                    <button class="button is-success is-light" type="submit">Добавить</button>
                                 </div>
                             </div>
                         </form>
@@ -55,7 +55,7 @@
                                     <h3>Самая популярная</h3>
                                 </div>
                                 <div>
-                                    <?=$count->count;?><br>
+                                    <span id="count_values"><?=$count->count;?></span><br>
                                     Activision
                                 </div>
                             </div>

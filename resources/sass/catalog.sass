@@ -5,7 +5,7 @@
     position: absolute !important
     display: none
     margin: 150px 0
-    transform: translate(22%, 25%)
+    transform: translate(0, 25%)
     background-color: $bg-color-body
     padding: 5px 10px
     color: $font-color-preview
@@ -17,6 +17,8 @@
     border-radius: 3px
     box-shadow: 0 0 10px $bg-color-body
     transition: transform ease-in 0.1s, box-shadow ease-in 0.25s
+    left: 11%
+    right: 11%
     &:active
       background-color: $button
       box-shadow: 0 2px 25px $button
@@ -84,3 +86,11 @@
   font-size: 0.6em
   padding: 3px
   border-radius: 3px
+.game-basket
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  align-items:center
+.is-one-part
+  padding: 0.75rem
+  width: 25%

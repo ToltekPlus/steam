@@ -6,6 +6,9 @@ use App\Model\UserRoleModel;
 use Core\View;
 
 class CompanyPolicy {
+    /**
+     * @var array
+     */
     protected $role;
 
     /**

@@ -1,5 +1,5 @@
 var animateButton = function(e) {
-    e.preventDefault;
+    e.preventDefault();
     e.target.classList.remove('animate');
 
     e.target.classList.add('animate');

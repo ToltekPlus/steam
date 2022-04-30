@@ -3,18 +3,8 @@
 
 use Phinx\Seed\AbstractSeed;
 
-class DefaultSeeder extends AbstractSeed
+class ImageGameSeeder extends AbstractSeed
 {
-    public function getDependencies()
-    {
-        return [
-            'UserSeeder',
-            'RoleSeeder',
-            'UserRoleSeeder',
-            'CompanySeeder'
-        ];
-    }
-
     /**
      * Run Method.
      *
