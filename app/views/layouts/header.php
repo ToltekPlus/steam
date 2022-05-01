@@ -25,7 +25,7 @@
                 </span>
             </div>
 
-            <div class="column is-6">
+            <div class="column is-6 nav-navigation">
                 <nav>
                     <ul class="menu-list">
                         <li>
@@ -43,7 +43,7 @@
                 </nav>
             </div>
 
-            <div class="column is-3">
+            <div class="left-items">
                 <span class="icon-text">
                   <span class="icon">
                     <ion-icon name="search-outline"></ion-icon>
@@ -138,4 +138,17 @@
             </div>
         </div>
     </div>
+    <div class="hamburger-menu">
+  <input id="menu__toggle" type="checkbox" />
+  <label class="menu__btn" for="menu__toggle">
+    <span></span>
+  </label>
+  <ul class="menu__box">
+    <li><a class="menu__item" href="#">Магазин</a></li>
+    <li><a class="menu__item" href="#">Новости</a></li>
+    <li><a class="menu__item" href="#">Поддержка</a></li>
+    <li><a class="menu__item" href="#">Сообщество</a></li>
+    <li><a class="menu__item" href="#">Псевдоаккаунт</a></li>
+  </ul>
+</div>
 </header>

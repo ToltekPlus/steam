@@ -28,3 +28,4 @@
 [db][Wed Mar 02 07:58:24 2022] [SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'steam.taxes_game.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by] 
 [db][Wed Mar 30 11:08:06 2022] [SQLSTATE[42S02]: Base table or view not found: 1146 Table 'steam.library' doesn't exist] 
 [db][Wed Mar 30 12:26:35 2022] [SQLSTATE[42S02]: Base table or view not found: 1146 Table 'steam.library' doesn't exist] 
+[db][Sun May 01 04:22:51 2022] [SQLSTATE[42S02]: Base table or view not found: 1146 Table 'steam.taxes_game' doesn't exist] 
