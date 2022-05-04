@@ -67,6 +67,7 @@ class HomeController extends HomePolicy
             $result[$key]->genre = $genre;
 
             $company = new CompanyModel();
+            ($game->company_id == NULL) ? $game->company_id = 1 : $game->company_id = $game->company_id;
             $company = $company->find($game->company_id);
             $result[$key]->company = $company;
         }
