@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Model\CompanyModel;
 use App\Policy\CompanyPolicy;
-use App\Model\GameModel;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
 use App\Service\DeleteFile;
@@ -97,16 +96,6 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     public function delete() : void
     {
         $this->deleteImageFromDirectory($_POST['id']);
-
-
-        $games = new GameModel();
-
-        $date = date('Y-m-d H:i:s', time());
-        $args = ['company_id' => NULL, 'updated_at' => $date];
-        $game_id = $games->findByCompany($_POST['id'])->id;
-        var_dump($games->findByCompany($_POST['id']));
-
-        $games->update($args, $game_id);
 
         $company = new CompanyModel();
         $company->delete($_POST['id']);
