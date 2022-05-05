@@ -28,4 +28,15 @@ class AccountModel extends Model {
     {
         return $this->storeToTable($this->table, $args);
     }
+
+    /**
+     * @param int $user_id 
+     * @return array
+     */
+    public function getFullName($user_id)
+    {
+        $account = $this->find($user_id);
+        $fullName = [$account->name, $account->surname ];
+        return $fullName;
+    }
 }
