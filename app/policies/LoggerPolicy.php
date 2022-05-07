@@ -5,14 +5,13 @@ namespace App\Policy;
 use App\Model\UserRoleModel;
 use Core\View;
 
-class CompanyPolicy {
+class LoggerPolicy {
     /**
      * @var array
      */
     protected $role;
 
     /**
-     * UserRolePolicy constructor.
      * @throws \Exception
      */
     public function __construct()
