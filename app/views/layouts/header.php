@@ -5,7 +5,6 @@
     <title>Магазин игр Steam</title>
     <link rel='stylesheet' href='/styles/style.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
@@ -13,58 +12,67 @@
     <div class="column is-8">
         <div class="columns">
             <div class="column is-3">
-                        <span class="icon-text">
-                          <span class="icon logotype">
-                            <ion-icon name="logo-steam"></ion-icon>
-                          </span>
-                        <span class="steam">
-                            Steam
-                        </span>
-                        </span>
+                <span class="icon-text">
+                    <span class="icon logotype">
+                      <a href="/">
+                      <ion-icon name="logo-steam"></ion-icon>
+                      </a>
+                    </span>
+                    <span class="steam">
+                        Steam
+                    </span>
+                </span>
             </div>
 
             <div class="column is-6">
                 <nav>
                     <ul class="menu-list">
                         <li>
-                            <a href="">Магазин</a>
+                        <a href="">Магазин</a>
                         </li>
                         <li>Новости</li>
                         <li>Поддержка</li>
                         <li>Сообщество</li>
-                        
                     </ul>
                 </nav>
             </div>
 
             <div class="column is-3">
-                        <span class="icon-text">
-                          <span class="icon">
-                            <ion-icon name="search-outline"></ion-icon>
-                          </span>
-                        </span>
-
                 <span class="icon-text">
-                          <span class="icon">
-                            <ion-icon name="heart-outline"></ion-icon>
-                          </span>
-                        </span>
+                  <span class="icon">
+                  <ion-icon name="search-outline"></ion-icon>
+                  </span>
+                </span>
 
-                <span class="icon-text">
-                          <span class="icon">
-                            <ion-icon name="basket-outline"></ion-icon>
-                          </span>
-                        </span>
+
+
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+               <span class="icon-text">
+                      <span class="icon" id="briefCart">
+                        <ion-icon name="basket-outline"></ion-icon>
+                      </span>
+                </span>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                        <div class="dropdown-content" id="cartContent">
+                            <center>
+                                <h4>Корзина</h4>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="../images/userpic/userpic.jpg" alt="Юзерпик" >
+                          <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
-                          <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
-                            <a href="/expenses/list" class="dropdown-item">
+                        <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                             <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">
@@ -77,10 +85,10 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
-                            <a href="/expenses/list" class="dropdown-item">Пополнение кому-то</a>
+                            <a href="/expenses/list" class="dropdown-item">Пополнение счета пользователю</a>
                              <a href="/expenses/list" class="dropdown-item">
                                 Кошелек
-                            </a>                                              
+                            </a>
                              <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
