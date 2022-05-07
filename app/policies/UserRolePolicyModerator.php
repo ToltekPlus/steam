@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Policy;
 
 use App\Model\UserRoleModel;
@@ -21,7 +22,7 @@ class UserRolePolicy {
 
         if ((int)$this->role === 2) {
             return true;
-        } else {
+        }else {
             die(View::render('errors/403.php'));
         }
     }
