@@ -22,7 +22,7 @@ class UserRolePolicy {
 
         if ((int)$this->role === 3) {
             return true;
-        }else {
+        } else {
             die(View::render('errors/403.php'));
         }
     }
