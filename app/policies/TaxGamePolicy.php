@@ -5,10 +5,7 @@ namespace App\Policy;
 use App\Model\UserRoleModel;
 use Core\View;
 
-class CompanyPolicy {
-    /**
-     * @var array
-     */
+class TaxGamePolicy {
     protected $role;
 
     /**

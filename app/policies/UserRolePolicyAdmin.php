@@ -5,7 +5,7 @@ namespace App\Policy;
 use App\Model\UserRoleModel;
 use Core\View;
 
-class CompanyPolicy {
+class UserRolePolicy {
     /**
      * @var array
      */
