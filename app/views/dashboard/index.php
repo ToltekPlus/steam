@@ -5,7 +5,7 @@
         <div class="select is-rounded is-small">
             <select id="selector-games">
                 <option>Отображать по</option>
-                <?php for ($i = 5 ; $i <= 20; $i = $i + 5): ?>
+                <?php for ($i = 4 ; $i <= 16; $i = $i + 4): ?>
                     <option value="<?=$i;?>" name="<?=$i;?>">
                         <?=$i;?>
                     </option>
@@ -34,30 +34,6 @@
                 <?php endforeach; ?>
             </select>
         </div>
-
-        <section class="catalog-sort-visible">
-            <nav class="columns">
-                <ul class="column is-12">
-                    <li class="sort-visible">
-                        Однопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        Многопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        ММОРПГ
-                        <span>&#x2715</span>
-                    </li>
-                    <li>
-                        <a href="">
-                            Очистить все
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </section>
     </section>
 </section>
 
