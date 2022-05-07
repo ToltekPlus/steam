@@ -96,6 +96,7 @@
   width: 25%
 body
   width: 100vw
+  height: 100vh
 .columns
   display: flex
 .left-items 
@@ -104,99 +105,108 @@ body
   margin-left: auto
 
 
-
-/* скрываем чекбокс */
 #menu__toggle
   opacity: 0
+  display: none
 
-/* стилизуем кнопку */
+
 .menu__btn
-  display: flex; /* используем flex для центрирования содержимого */
-  align-items: center;  /* центрируем содержимое кнопки */
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  z-index: 1;
+  display: flex
+  align-items: center
+  position: fixed
+  top: 15px
+  left: 20px
+  width: 26px
+  height: 26px
+  cursor: pointer
+  z-index: 1
 
-/* добавляем "гамбургер" */
+
 .menu__btn > span,
 .menu__btn > span::before,
 .menu__btn > span::after
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: #616161;
+  display: block
+  position: absolute
+  width: 100%
+  height: 2px
+  background-color: #616161
 
 .menu__btn > span::before
-  content: '';
-  top: -8px;
+  content: ''
+  top: -8px
 
 .menu__btn > span::after
-  content: '';
-  top: 8px;
+  content: ''
+  top: 8px
 
-
-
-/* контейнер меню */
 .menu__box
-  display: block;
-  position: fixed;
-  visibility: hidden;
-  top: 0;
-  left: -100%;
-  width: 300px;
-  height: 100%;
-  margin: 0;
-  padding: 80px 0;
-  list-style: none;
-  text-align: center;
-  background-color: #ECEFF1;
-  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+  display: block
+  position: fixed
+  visibility: hidden
+  top: 0
+  left: -100%
+  width: 300px
+  height: 100%
+  margin: 0
+  padding: 80px 0
+  list-style: none
+  text-align: center
+  background-color: #13151D
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .2)
 
-/* элементы меню */
 .menu__item
-  display: block;
-  padding: 12px 24px;
-  color: #333;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  text-decoration: none;
+  display: block
+  padding: 12px 24px
+  color: #ffffff !important
+  font-family: 'Roboto', sans-serif
+  font-size: 20px
+  font-weight: 600
+  text-decoration: none
 
 .menu__item:hover
-  background-color: #CFD8DC;
+  background-color: #303440
 
 
 #menu__toggle:checked ~ .menu__btn > span
-  transform: rotate(45deg);
+  transform: rotate(45deg)
 
 #menu__toggle:checked ~ .menu__btn > span::before
-  top: 0;
-  transform: rotate(0);
+  top: 0
+  transform: rotate(0)
 
 #menu__toggle:checked ~ .menu__btn > span::after
-  top: 0;
-  transform: rotate(90deg);
+  top: 0
+  transform: rotate(90deg)
 
 #menu__toggle:checked ~ .menu__box
-  visibility: visible;
-  left: 0;
+  visibility: visible
+  left: 0
 
 
 .menu__btn > span,
 .menu__btn > span::before,
 .menu__btn > span::after
-  transition-duration: .25s;
+  transition-duration: .25s
 
 .menu__box
-  transition-duration: .25s;
+  transition-duration: .25s
 
 .menu__item
-  transition-duration: .25s;
+  transition-duration: .25s
 .hamburger-menu
   display: none
   z-index: 999999999
+body
+  height: 100vh
+footer
+  position: absolute
+  width: 100vw
+  bottom: 0
+.foter__item
+  color: #B0B6C1
+  font-size: 0.8em
+.game-cover
+  overflow: hidden
+  border-radius: 10px
+.select
+  margin-top: 10px
