@@ -44,13 +44,14 @@ class LoginController {
 
     /**
      * @param $id
+     * @param $role
      * @return void
      */
-    public function authNewUser($id)
+    public function authNewUser($id, $role)
     {
         $this->checkSession();
         $_SESSION['sid'] = (int)$id;
-        $_SESSION['sid_role'] = 1;
+        $_SESSION['sid_role'] = (int)$role;
     }
 
     /**
@@ -63,6 +64,7 @@ class LoginController {
         $this->checkSession();
         $_SESSION['sid'] = (int)$id;
         $_SESSION['sid_role'] = (int)$role;
+
     }
 
     /**
