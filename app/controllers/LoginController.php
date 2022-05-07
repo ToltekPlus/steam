@@ -47,7 +47,7 @@ class LoginController {
      * @param $role
      * @return void
      */
-    public function authNewUser($id, $role)
+    public function authNewUser($id)
     {
         $this->checkSession();
         $_SESSION['sid'] = (int)$id;
