@@ -29,15 +29,16 @@
                 <nav>
                     <ul class="menu-list">
                         <li>
-                            <a href="">Магазин</a>
+                            <a href="/">Магазин</a>
                         </li>
-                        <li>Новости</li>
-                        <li>Поддержка</li>
-                        <li>Сообщество</li>
                         <li>
-                            <a href="/auth">
-                                Псевдоаккаунт
-                            </a>
+                            <a href="">Новости</a>
+                        </li>
+                        <li>
+                            <a href="">Поддержка</a>
+                        </li>
+                        <li>
+                            <a href="">Сообщество</a>
                         </li>
                     </ul>
                 </nav>
@@ -78,7 +79,7 @@
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
-                            <a href="#" class="dropdown-item">
+                            <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">
@@ -95,10 +96,10 @@
                                 Выход
                             </a>
                         <?php break; case 3: ?>
-                            <a href="#" class="dropdown-item">
+                            <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
-                            <a href="/library/list" class="dropdown-item">
+                            <a href="#" class="dropdown-item">
                                 Мои игры
                             </a>
                             <a href="#" class="dropdown-item">
@@ -144,11 +145,12 @@
     <span></span>
   </label>
   <ul class="menu__box">
-    <li><a class="menu__item" href="#">Магазин</a></li>
+    <li><a class="menu__item" href="/">Магазин</a></li>
     <li><a class="menu__item" href="#">Новости</a></li>
     <li><a class="menu__item" href="#">Поддержка</a></li>
     <li><a class="menu__item" href="#">Сообщество</a></li>
-    <li><a class="menu__item" href="#">Псевдоаккаунт</a></li>
+    <li class="phone__footer"><a class="foter__item" href="#">Что такое  Steam</a></li>
+    <li class="phone__footer"><a class="foter__item" href="#">Пресс-релизы</a></li>
   </ul>
 </div>
 </header>
