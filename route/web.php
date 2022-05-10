@@ -16,7 +16,7 @@ $router->add('register', ['controller' => 'RegisterController', 'action' => 'sto
 /*=== РАБОТА С АККАУНТОМ ===*/
 $router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
 $router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
-$router->add('account/delete_userpic', ['controller' => 'AccountController', 'action' => 'delete_userpic']);
+$router->add('account/delete_userpic', ['controller' => 'AccountController', 'action' => 'deleteUserpic']);
 
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
