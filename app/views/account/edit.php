@@ -32,11 +32,6 @@
                         <p>Фото профиля:</p>
 
                         <div class="form-control">
-                            <label for="delete_img">Удалить фото</label>
-                            <input type="checkbox" name="delete_img" id="delete_img" value="1">
-                        </div>
-
-                        <div class="form-control">
                             <div class="file is-info is-small has-name"  id="file-js-example">
                                 <label class="file-label">
                                     <input class="file-input" type="file" name="userpic" value="<?=$account->userpic?>">
@@ -53,6 +48,10 @@
                                             </span>
                                 </label>
                             </div>
+                        </div>
+
+                        <div class="form-control">
+                            <button type="button" class="button is-small is-danger" id="deleteUserpic">Удалить фото</button>
                         </div>
 
                         <div class="form-control">

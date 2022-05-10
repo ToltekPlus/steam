@@ -39,23 +39,38 @@ class AccountController {
      */
     public function update()
     {
-        if (isset($_POST['delete_img'])) {
-            $userpic = "/userpic_default/userpic.jpg";
-            array_pop($_POST);
+        if ($_FILES['userpic']['size'] != 0) {
+            // TODO при удалении может удалиться дефолтный юзерпик
+            //$this->deleteImageFromDirectory($_SESSION['sid']);
+            $userpic = $this->upload($_FILES['userpic'], $this->userpic_path);
         } else {
-            if ($_FILES['userpic']['size'] != 0) {
-                //$this->deleteImageFromDirectory($_SESSION['sid']);
-                $userpic = $this->upload($_FILES['userpic'], $this->userpic_path);
-            } else {
-                $account = $this->get($_SESSION['sid']);
-                $userpic = $account->userpic;
-            }
+            $account = $this->get($_SESSION['sid']);
+            $userpic = $account->userpic;
         }
 
         $args = $this->dataBuilder($_POST, ['userpic' => $userpic]);
 
         $account = new AccountModel();
         $account->update($args, $_POST['id']);
+    }
+
+    /**
+     * Удаление пользовательского и установка дефолтного юзерпика
+     */
+    public function delete_userpic()
+    {
+        $data = [];
+        foreach ($_POST as $key => $value)
+        {
+            $data = json_decode($key, true);
+        }
+
+        $userpic = "/userpic_default/userpic.jpg";
+
+        $args = $this->dataBuilder($data, ['userpic' => $userpic]);
+
+        $account = new AccountModel();
+        $account->update($args, $data['id']);
     }
 
     /**

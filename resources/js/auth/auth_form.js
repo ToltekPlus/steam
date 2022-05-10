@@ -74,7 +74,6 @@ function registerForm() {
 }
 
 function send_data(path, message) {
-  console.log(message);
   const header = {
     header: 'application/x-www-form-urlencoded',
   };
