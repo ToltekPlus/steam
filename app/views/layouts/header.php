@@ -76,7 +76,7 @@
                             <a href="/account/edit" class="dropdown-item">
                                 <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
                             </a>
-                            <a href="/expenses/list" class="dropdown-item">
+                            <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">
@@ -99,7 +99,7 @@
                             <a href="/account/edit" class="dropdown-item">
                                 <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
                             </a>
-                            <a href="/expenses/list" class="dropdown-item">
+                            <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
                             <a href="#" class="dropdown-item">

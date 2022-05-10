@@ -17,6 +17,13 @@ class CompanySeeder extends AbstractSeed
     {
         $data = [
             [
+                'name_company' => 'Неизвестно',
+                'description_company' => '',
+                'logotype_company' => '',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
                 'name_company' => 'EA',
                 'description_company' => 'Все о еа',
                 'logotype_company' => '',
