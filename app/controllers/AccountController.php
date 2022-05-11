@@ -60,16 +60,13 @@ class AccountController {
     {
         $this->deleteImageFromDirectory($_SESSION['sid']);
 
-        $data = [];
-        foreach ($_POST as $key => $value)
-        {
-            // TODO из за json формата, в переменных типа string появляются _
-            $data = json_decode($key, true);
-        }
+        $account = $this->get($_SESSION['sid']);
 
-        $userpic = "/userpic_default/userpic.jpg";
+        $account->userpic = "/userpic_default/userpic.jpg";
 
-        $args = $this->dataBuilder($data, ['userpic' => $userpic]);
+        $data = (array) $account;
+
+        $args = $this->dataBuilder($data);
 
         $account = new AccountModel();
         $account->update($args, $data['id']);
