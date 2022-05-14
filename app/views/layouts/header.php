@@ -5,6 +5,7 @@
     <title>Магазин игр Steam</title>
     <link rel='stylesheet' href='/styles/style.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
@@ -15,7 +16,7 @@
                 <span class="icon-text">
                     <span class="icon logotype">
                       <a href="/">
-                      <ion-icon name="logo-steam"></ion-icon>
+                          <ion-icon name="logo-steam"></ion-icon>
                       </a>
                     </span>
                     <span class="steam">
@@ -28,7 +29,7 @@
                 <nav>
                     <ul class="menu-list">
                         <li>
-                        <a href="">Магазин</a>
+                            <a href="">Магазин</a>
                         </li>
                         <li>Новости</li>
                         <li>Поддержка</li>
@@ -40,7 +41,7 @@
             <div class="column is-3">
                 <span class="icon-text">
                   <span class="icon">
-                  <ion-icon name="search-outline"></ion-icon>
+                    <ion-icon name="search-outline"></ion-icon>
                   </span>
                 </span>
 
@@ -62,6 +63,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
