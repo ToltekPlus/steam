@@ -67,14 +67,13 @@ class RegisterController{
 
     /**
      * @param $user_id
-     * @param $role_id
      * @return void
      */
-    public function addUserRole($user_id, $role_id)
+    public function addUserRole($user_id)
     {
         $data = [
             'user_id' => $user_id,
-            'role_id' => $role_id;
+            'role_id' => 1;
         ];
 
         $args = $this->dataBuilder($data);
