@@ -39,12 +39,6 @@ class GameModel extends Model implements ModelInterface {
         return $genre;
     }
 
-    public function findByCompany(int $id) : array
-    {
-        $company = $this->getByIdFromTable($this->table, $id, 'company_id');
-        return $company;
-    }
-
     /**
      * @param $args
      * @return false|string
