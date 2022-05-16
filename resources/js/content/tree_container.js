@@ -1,19 +1,19 @@
 export function tree_container(response, dashboard) {
-    let result = JSON.parse(response);
-    // удаляем все дочерние элементы с играми
-    while (dashboard.firstChild) {
-        dashboard.firstChild.remove();
-    }
+  const result = JSON.parse(response);
+  // удаляем все дочерние элементы с играми
+  while (dashboard.firstChild) {
+    dashboard.firstChild.remove();
+  }
 
-    for (let i = 0; i < result.length; i++) {
-        let tree = document.createElement('div');
-        tree.classList.add("column");
-        tree.classList.add("is-one-quarter");
-        tree.classList.add("game");
+  for (const element of result) {
+    const tree = document.createElement('div');
+    tree.classList.add('column');
+    tree.classList.add('is-one-quarter');
+    tree.classList.add('game');
 
-        tree.innerHTML += `
+    tree.innerHTML += `
                     <div class="game-cover">
-                        <div class="buy" id="` + result[i].id + `">
+                        <div class="buy" id="${element.id}">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
@@ -25,17 +25,17 @@ export function tree_container(response, dashboard) {
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            ` + result[i].name_game + `
+                            ${element.name_game}
                         </div>
                         <div class="game-company">
-                            ` + result[i].company.name_company + `
+                            ${element.company.name_company}
                         </div>
                         <div class="game-price">
-                            ` + result[i].base_price + ` &#x20bd
-                            <span class="discount">-` + result[i].tax + `%</span>
+                            ${element.base_price} &#x20bd
+                            <span class="discount">-${element.tax}%</span>
                         </div>
-                    </div>`
+                    </div>`;
 
-        dashboard.append(tree);
-    }
+    dashboard.append(tree);
+  }
 }

@@ -12,6 +12,7 @@ $router->add('selector-companies', ['controller' => 'HomeController', 'action' =
 $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']);
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
+$router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
 
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
@@ -57,5 +58,12 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
+
+/*=== РАБОТА С БАЛАНСОМ ===*/
+$router->add('expenses/main?{id}', ['controller' => 'ExpenseController', 'action' => 'index']);
+$router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 'showStore']);
+$router->add('expenses/confirm', ['controller' => 'ExpenseController', 'action' => 'confirm']);
+$router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
+$router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);
