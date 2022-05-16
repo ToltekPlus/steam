@@ -4,6 +4,7 @@ import './db/listener';
 import './auth/dropdown_auth_menu';
 import './content/selector_games_for_dashboard';
 import './content/selector_games_for_dashboard_by_genres';
+import './content/selector_games_for_dashboard_by_companies';
 import './auth/auth_form';
 import './cart/add_to_cart';
 import './cart/products_in_cart';

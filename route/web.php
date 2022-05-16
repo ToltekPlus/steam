@@ -6,6 +6,7 @@ $router = new Router();
 $router->add('', ['controller' => 'HomeController', 'action' => 'index']);
 $router->add('selector', ['controller' => 'HomeController', 'action' => 'selectorGames']);
 $router->add('selector-genres', ['controller' => 'HomeController', 'action' => 'selectorGenres']);
+$router->add('selector-companies', ['controller' => 'HomeController', 'action' => 'selectorCompanies']);
 
 /*=== АВТОРИЗАЦИЯ, РЕГИСТРАЦИЯ, ВЫХОД ИЗ АККАУНТА ===*/
 $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
