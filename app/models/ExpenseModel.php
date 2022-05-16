@@ -29,6 +29,21 @@ class ExpenseModel extends Model{
 	    return $this->storeToTable($this->table, $args);
     }
 
+
+    /**
+     * Сбор всех юзеров из таблицы
+     * @return array
+     */
+    public function getUsers() : array
+    {
+        $all = $this->getAll($this->table);
+        $users = [];
+        for($i = 0;count($all) > $i;$i++){
+            array_push($users, $all[$i]->user_id);
+        };
+        return $users;
+    }
+	
 	/**
      * Забирает данные по id
      * @return array

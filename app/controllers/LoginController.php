@@ -7,6 +7,7 @@ use App\Model\UserRoleModel;
 
 class LoginController {
     /**
+     * Авторизация пользователя
      * @return false|void
      */
     public function auth()
@@ -31,6 +32,7 @@ class LoginController {
     }
 
     /**
+     * Проверка двух паролей на сходство
      * @param $password
      * @param $password_from_table
      * @return bool
@@ -44,13 +46,14 @@ class LoginController {
 
     /**
      * @param $id
+     * @param $role
      * @return void
      */
-    public function authNewUser($id)
+    public function authNewUser($id, $role)
     {
         $this->checkSession();
         $_SESSION['sid'] = (int)$id;
-        $_SESSION['sid_role'] = 1;
+        $_SESSION['sid_role'] = (int)$role;
     }
 
     /**
@@ -81,8 +84,8 @@ class LoginController {
         echo $_SESSION['sid'];
     }
 
-
     /**
+     * Парсинг массива с данными(номер и пароль) в формате json
      * @param $data
      * @return array
      */

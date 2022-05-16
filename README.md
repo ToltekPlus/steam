@@ -1,6 +1,6 @@
 # Редизайн Steam для группы web-разработки :rocket:
 
-[![Latest Version on Github](https://img.shields.io/badge/release-v.1.0.3-red)](https://github.com/ToltekPlus/steam/releases/tag/v1.0.3)
+[![Latest Version on Github](https://img.shields.io/badge/release-v1.2.4-red)](https://github.com/ToltekPlus/steam/releases/tag/v1.0.3)
 ![example workflow](https://github.com/ToltekPlus/steam/actions/workflows/main.yml/badge.svg)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 
