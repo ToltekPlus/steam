@@ -6,6 +6,7 @@ use App\Model\AccountModel;
 use App\Model\RegisterModel;
 use App\Model\UserRoleModel;
 use App\Service\DataBuilder;
+use App\Model\ExpenseModel;
 
 class RegisterController{
     use DataBuilder;
@@ -27,6 +28,12 @@ class RegisterController{
         $this->addUserRole($new_user_id);
 
         $this->addAccount($new_user_id);
+
+        $date = date('Y-m-d H:i:s', time());
+        $argsExpense = ['balance' => 0, 'created_at' => $date, 'updated_at' => $date, 'user_id' => $new_user_id];
+
+        $expense = new ExpenseModel();
+        $expense->store($argsExpense);
 
         echo $new_user_id;
     }
