@@ -86,6 +86,18 @@ class HomeController extends HomePolicy
     }
 
     /**
+     * Пишет имя и фамилию аккаунта юзера
+     */
+    static function accountData() {
+        $account = new AccountModel();
+        $account = $account->find($_SESSION['sid']);
+
+        $data = $account->name . " " . $account->surname;
+
+        echo $data;
+    }
+
+    /**
      * @return mixed
      */
     static function accountRole()

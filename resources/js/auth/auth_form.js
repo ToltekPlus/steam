@@ -2,7 +2,6 @@ import MaskInput from 'mask-input';
 import { auth_validate } from '../content/auth_validate';
 import { sendData } from '../db/send';
 
-// TODO декомпозировать код, убрать ненужные блоки
 const buttonAuth = document.querySelector('#enterToAccount');
 if (buttonAuth) {
   buttonAuth.addEventListener('click', function () {
@@ -10,41 +9,12 @@ if (buttonAuth) {
       title: 'Войти в аккаунт',
       html:
         '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
-        '<div id="phoneErrDiv"></div>' +
-        '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
-        '<div id="passwordErrDiv"></div>',
+        '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
       preConfirm: () => {
         if (!auth_validate()) {
           Swal.showValidationMessage('Проверьте правильность введных данных');
         } else {
-          const auth = {
-            header: 'application/x-www-form-urlencoded',
-          };
-
-          const path = 'auth';
-
-          const data = {
-            phone: document.querySelector('#phone').value,
-            password: document.querySelector('#password').value,
-          };
-
-          const data_send = JSON.stringify(data);
-          const send = sendData(data_send, path, auth.header);
-          send(data_send, path, auth.header)
-            .then(response => {
-              if (response == 1) {
-                window.setTimeout(function () {
-                  window.location = '/';
-                }, 500);
-              } else {
-                Swal.showValidationMessage(
-                  'Проверьте правильность введных данных',
-                );
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            });
+          send_data('auth', 'Такой пользователь ещё не зарегестрирован');
         }
       },
       backdrop: `
@@ -79,33 +49,12 @@ function registerForm() {
     title: 'Зарегестрироваться',
     html:
       '<input id="phone" type="tel" class="auth-field input-selector" placeholder="Номер телефона">' +
-      '<div id="phoneErrDiv"></div>' +
-      '<input id="password" type="password" class="auth-field" placeholder="Пароль">' +
-      '<div id="passwordErrDiv"></div>',
+      '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
     preConfirm: () => {
       if (!auth_validate()) {
         Swal.showValidationMessage('Проверьте правильность введных данных');
       } else {
-        const register = {
-          header: 'application/x-www-form-urlencoded',
-        };
-
-        const path = 'register';
-
-        const data = {
-          phone: document.querySelector('#phone').value,
-          password: document.querySelector('#password').value,
-        };
-
-        const data_send = JSON.stringify(data);
-        const send = sendData(data_send, path, register.header);
-        send(data_send, path, register.header)
-          .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        send_data('register', 'Такой пользователь уже зарегестрирован');
       }
     },
     showConfirmButton: true,
@@ -115,9 +64,6 @@ function registerForm() {
   }).then(result => {
     if (result.isConfirmed && auth_validate()) {
       Swal.fire('Вы успешно зарегестрировались', '', 'success');
-      window.setTimeout(function () {
-        window.location = '/basket';
-      }, 500);
     }
   });
   new MaskInput(document.querySelector('.input-selector'), {
@@ -125,4 +71,31 @@ function registerForm() {
     alwaysShowMask: true,
     maskChar: '_',
   });
+}
+
+function send_data(path, message) {
+  const header = {
+    header: 'application/x-www-form-urlencoded',
+  };
+
+  const data = {
+    phone: document.querySelector('#phone').value,
+    password: document.querySelector('#password').value,
+  };
+
+  const data_send = JSON.stringify(data);
+  const send = sendData(data_send, path, header.header);
+  send(data_send, path, header.header)
+    .then(response => {
+      if (response != 0) {
+        window.setTimeout(function () {
+          window.location = '/';
+        }, 500);
+      } else {
+        Swal.showValidationMessage(message);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
