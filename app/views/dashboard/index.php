@@ -34,30 +34,6 @@
                 <?php endforeach; ?>
             </select>
         </div>
-
-        <section class="catalog-sort-visible">
-            <nav class="columns">
-                <ul class="column is-12">
-                    <li class="sort-visible">
-                        Однопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        Многопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        ММОРПГ
-                        <span>&#x2715</span>
-                    </li>
-                    <li>
-                        <a href="">
-                            Очистить все
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </section>
     </section>
 </section>
 
