@@ -15,21 +15,21 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Максимальная сумма пополнения
-     * 
+     *
      * @var integer
      */
     private $max_balance = 5000;
 
     /**
      * Минимальная сумма пополнения
-     * 
+     *
      * @var integer
      */
     private $min_balance = 100;
 
     /**
      * Вывод главной страницы баланса
-     * 
+     *
      * @throws /Exception
      */
     public function index()
@@ -41,25 +41,25 @@ class ExpenseController extends ExpensePolicy{
         $role = $roles->getByAuthId();
         $users = $expense->getUsers();
 
-        if(!is_null($_POST['user'])){ 
+        if(@!is_null($_POST['user'])){
             $result = $expense->findUserBalance($_POST['user']);
             $account = $accounts->getFullName($_POST['user']);
         } else {
-            if(!is_null($_GET['id'])){
+            if(@!is_null($_GET['id'])){
                 $result = $expense->findUserBalance($_GET['id']);
                 $account = $accounts->getFullName($_GET['id']);
             } else {
                 $result = $expense->findUserBalance($_SESSION['sid']);
                 $account = $accounts->getFullName($_SESSION['sid']);
-            } 
+            }
         }
-        
+
         View::render('expenses/index.php', ['expenses' => $result, 'users' => $users, 'account' => $account, 'role' => $role]);
     }
 
     /**
      * Вывод окна подтверждения
-     * 
+     *
      * @return void
      * @throws \Exception
      */
@@ -74,7 +74,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Получение баланса
-     * 
+     *
      * @param int $user_id
      * @return array
      */
@@ -86,8 +86,8 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Изменение баланса для снятия или пополнения
-     * 
-     * @param '+' or '-' $action 
+     *
+     * @param '+' or '-' $action
      * @throws \Exception
      */
     public function changeBalance($action, $balance, $user_id)
@@ -111,7 +111,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод формы пополнения
-     * 
+     *
      * @throws /Exception
      */
     public function showStore()
@@ -125,7 +125,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Вывод истории баланса
-     * 
+     *
      * @throws /Exception
      */
     public function showHistory()
@@ -167,9 +167,9 @@ class ExpenseController extends ExpensePolicy{
         View::render('expenses/history.php', ['histories' => $result, 'expenses' => $expenses, 'role' => $role]);
     }
 
-    /** 
+    /**
      * Пополнение счёта(оболочка)
-     * 
+     *
      * @return void
      * @throws /Exception
      */
@@ -179,13 +179,13 @@ class ExpenseController extends ExpensePolicy{
         $this->index();
     }
 
-    /** 
+    /**
      * Изменение счёта
-     * 
-     * @param int $balance 
-     * @param '+' or '-' $action 
-     * @param int(1-3) $type_operation 
-     * @param int $user_id 
+     *
+     * @param int $balance
+     * @param '+' or '-' $action
+     * @param int(1-3) $type_operation
+     * @param int $user_id
      * @return void
      * @throws /Exception
      */
@@ -194,8 +194,8 @@ class ExpenseController extends ExpensePolicy{
         (is_null($user_id)) ? $user_id = $_SESSION['sid'] : $user_id = $user_id;
         $expense = $this->get($user_id);
 
-        $data = $this->changeBalance($action, $balance, $user_id); 
-        $expense_id = $expense->id; 
+        $data = $this->changeBalance($action, $balance, $user_id);
+        $expense_id = $expense->id;
 
         $all = $this->dataBuilder($_POST, ['id' => $expense_id, 'balance' => $data, 'user_id' => $user_id]);
         $args = ['balance' => $all['balance'], 'updated_at' => $all['updated_at'], 'user_id' => $all['user_id'], 'id' => $all['id']];
@@ -236,7 +236,7 @@ class ExpenseController extends ExpensePolicy{
                 {
                     return true;
                 }
-            } 
+            }
         } return false;
     }
 
@@ -255,7 +255,7 @@ class ExpenseController extends ExpensePolicy{
 
     /**
      * Удаление данных из таблицы
-     * 
+     *
      * @param int $id
      * @return void
      */
