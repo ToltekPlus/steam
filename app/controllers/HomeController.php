@@ -144,6 +144,25 @@ class HomeController extends HomePolicy
         echo json_encode($sortGames);
     }
 
+    public function selectorCompanies()
+    {
+        foreach ($_POST as $key => $item) {
+            $this->selector = $key;
+        }
+
+        $games = new GameModel();
+        $games = $games->findByCompany($this->selector);
+
+        $taxGames = $this->selectTaxGames($games);
+
+        // сортируем только игры, которые можно отображать
+        $sortGames = array_filter($taxGames, function ($key) use ($games) {
+            return $games[$key]->visibility;
+        }, ARRAY_FILTER_USE_KEY);
+
+        echo json_encode($sortGames);
+    }
+
     /**
      * @param $games
      * @return array
