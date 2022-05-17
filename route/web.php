@@ -6,12 +6,18 @@ $router = new Router();
 $router->add('', ['controller' => 'HomeController', 'action' => 'index']);
 $router->add('selector', ['controller' => 'HomeController', 'action' => 'selectorGames']);
 $router->add('selector-genres', ['controller' => 'HomeController', 'action' => 'selectorGenres']);
+$router->add('selector-companies', ['controller' => 'HomeController', 'action' => 'selectorCompanies']);
 
 /*=== АВТОРИЗАЦИЯ, РЕГИСТРАЦИЯ, ВЫХОД ИЗ АККАУНТА ===*/
 $router->add('auth', ['controller' => 'LoginController', 'action' => 'auth']);
 $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']);
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
+
+/*=== РАБОТА С АККАУНТОМ ===*/
+$router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
+$router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
+$router->add('account/delete_userpic', ['controller' => 'AccountController', 'action' => 'deleteUserpic']);
 
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);

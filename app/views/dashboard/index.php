@@ -25,7 +25,7 @@
         </div>
 
         <div class="select is-rounded is-small">
-            <select>
+            <select id="selector-companies">
                 <option>Компании</option>
                 <?php foreach ($companies as $company): ?>
                     <option value="<?=$company->id; ?>" name="<?=$company->name_company; ?>">
