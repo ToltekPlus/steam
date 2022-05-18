@@ -1,6 +1,6 @@
 <form style="position: absolute; margin-left: 12%;" action="main" method="POST" id="user">
     <div>
-        <h4>Пользователь: <?php echo $account[0] . " " . $account[1];?></h4>
+        <h4>Пользователь: <?php echo $account['name'] . " " . $account['surname'];?></h4>
     </div>
     <div style="display:flex; margin-top: 8%;">
         <div class="select is-rounded is-small">

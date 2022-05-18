@@ -118,9 +118,8 @@ class ExpenseController extends ExpensePolicy{
     {
         $expense = new ExpenseModel();
         $result = $expense->findUserBalance($_POST['user']);
-        $users = $expense->getUsers();
 
-        View::render('expenses/replenish.php', ['expenses' => $result, 'users' => $users]);
+        View::render('expenses/replenish.php', ['expenses' => $result]);
     }
 
     /**
@@ -133,10 +132,12 @@ class ExpenseController extends ExpensePolicy{
         $history = new HistoryExpenseModel();
         $roles = new UserRoleModel();
         $expense = new ExpenseModel();
+        $account = new AccountModel();
 
         $role = $roles->getByAuthId();
         $result = array_slice($history->all(), 0, 50, true);
         $expenses = $expense->all();
+        $fullnames = $account->getAllFullNames();
 
         foreach($result as $history):
             switch ($history->status) {
@@ -164,7 +165,7 @@ class ExpenseController extends ExpensePolicy{
                 }
         endforeach;
 
-        View::render('expenses/history.php', ['histories' => $result, 'expenses' => $expenses, 'role' => $role]);
+        View::render('expenses/history.php', ['histories' => $result, 'expenses' => $expenses, 'role' => $role, 'fullnames' => $fullnames]);
     }
 
     /**

@@ -42,7 +42,7 @@ class ExpenseModel extends Model{
         for($i = 0;count($all) > $i;$i++){
             //array_push($users, $all[$i]->user_id);
             $full_name = $account->getFullName($all[$i]->user_id);
-            $full_name = $full_name[0] . " " . $full_name[1];
+            $full_name = $full_name['name'] . " " . $full_name['surname'];
             $users[$i]['id'] = $all[$i]->user_id;
             $users[$i]['full_name'] = $full_name;
         }
