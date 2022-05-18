@@ -44,6 +44,7 @@ $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'edit']);
 $router->add('companies/update', ['controller' => 'CompanyController', 'action' => 'update']);
+$router->add('companies/visibility', ['controller' => 'CompanyController', 'action' => 'visibility']);
 $router->add('companies/delete', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/

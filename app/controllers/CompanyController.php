@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\CompanyModel;
+use App\Model\GameModel;
 use App\Policy\CompanyPolicy;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
@@ -83,7 +84,6 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
             $company = $this->get($_POST['id']);
             $logotype = $company->logotype_company;
         }
-  
         $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
 
         $company = new CompanyModel();
@@ -91,14 +91,56 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     }
 
     /**
+     * Меняем видимость для компании
+     *
+     * @return void
+     */
+    public function visibility()
+    {
+        $company = new CompanyModel();
+        $company_visibility = $company->find($_GET['id']);
+
+        $visibility = ["visibility" => (int)!$company_visibility->visibility];
+
+        $args = $this->dataBuilder($visibility);
+        $company->update($args, $_GET['id']);
+
+        $this->visibilityGame($_GET['id'], $visibility);
+
+        header('Location: /companies/list');
+    }
+
+    /**
+     * Меняем отображение для игр компании
+     *
+     * @param $company
+     * @param $visibility
+     * @return void
+     */
+    public function visibilityGame($company, $visibility)
+    {
+        $games = new GameModel();
+        $games = $games->findByCompany($company);
+
+        foreach ($games as $game) {
+            $game_visibility = new GameModel();
+            $args = $this->dataBuilder($visibility);
+
+            $game_visibility->update($args, $game->id);
+        }
+    }
+
+    /**
      * Удаление компании и изображения из таблицы
      */
+    // TODO дописать удаление игр вместе с компаниями
     public function delete() : void
     {
+        /*
         $this->deleteImageFromDirectory($_POST['id']);
 
         $company = new CompanyModel();
-        $company->delete($_POST['id']);
+        $company->delete($_POST['id']);*/
     }
 
     /**
