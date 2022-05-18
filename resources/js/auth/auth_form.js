@@ -27,7 +27,7 @@ if (buttonAuth) {
         });
 
         new MaskInput(document.querySelector('.input-selector'), {
-            mask: '+(000)-00-00-000',
+            mask: '+7(000)-00-00-000',
             alwaysShowMask: true,
             maskChar: '_',
         });
