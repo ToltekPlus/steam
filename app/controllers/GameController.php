@@ -113,6 +113,7 @@ class GameController implements ControllerInterface {
     /**
      * @return void
      */
+    // TODO правильное сокрытие игры: если компания скрыта, то запретить отображение игры в любом случае
     public function update()
     {
         if ($_FILES['cover_game']['size'] != 0) {
