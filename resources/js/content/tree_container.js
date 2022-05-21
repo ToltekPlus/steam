@@ -20,7 +20,7 @@ export function tree_container(response, dashboard) {
                             Добавить в корзину
                         </div>
                         <figure class='image is-full'>
-                            <img src="images/administrator/${element.cover_game}" alt="<?=$game->name_game;?>">
+                            <img src="images/administrator/` + result[i].cover_game + `" alt=`+ result[i].name_game +`>
                         </figure>
                     </div>
                     <div class="game-description">
