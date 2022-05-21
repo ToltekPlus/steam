@@ -149,8 +149,71 @@
     <li><a class="menu__item" href="#">Новости</a></li>
     <li><a class="menu__item" href="#">Поддержка</a></li>
     <li><a class="menu__item" href="#">Сообщество</a></li>
-    <li class="phone__footer"><a class="foter__item" href="#">Что такое  Steam</a></li>
-    <li class="phone__footer"><a class="foter__item" href="#">Пресс-релизы</a></li>
+<hr>
+    <?php if (isset($_SESSION['sid'])):?>
+                        <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="/expenses/main" class="menu__item">
+                                Кошелек
+                            </a>
+                            <a href="#" class="menu__item_adm">
+                                Мои игры
+                            </a>
+                            <a href="#" class="menu__item_adm">
+                                Архив
+                            </a>
+                            <a href="/logout" class="menu__item_adm">
+                                Выход
+                            </a>
+                        <?php break; case 2: ?>
+                            <a href="/logout" class="menu__item_adm">
+                                Выход
+                            </a>
+                        <?php break; case 3: ?>
+                            <a href="/expenses/main" class="menu__item_adm">
+                                Кошелек
+                            </a>
+                            <a href="#" class="menu__item_adm">
+                                Мои игры
+                            </a>
+                            <a href="#" class="menu__item_adm">
+                                Архив
+                            </a>
+                            <a href="/roles/list" class="menu__item_adm">
+                                Пользователи
+                            </a>
+                            <a href="/games/list" class="menu__item_adm">
+                                Игры
+                            </a>
+                            <a href="/companies/list" class="menu__item_adm">
+                                Компании
+                            </a>
+                            <a href="/genres/list" class="menu__item_adm">
+                                Жанры
+                            </a>
+                            <a href="/symlinks" class="menu__item_adm">
+                                Сгенерировать псевдосылки
+                            </a>
+                            <a href="/logs" class="menu__item_adm">
+                                Логи
+                            </a>
+                            <a href="/logout" class="menu__item_adm">
+                                Выход
+                            </a>
+                            
+                        <?php endswitch; ?>
+                        <hr class="foter__item">
+                <li class="phone__footer"><a class="foter__item" href="#">Что такое  Steam</a></li>
+                <li class="phone__footer"><a class="foter__item" href="#">Пресс-релизы</a></li>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </span>
+                <?php else:?>
+                <span class="login">
+                    <button class="button is-small" id="enterToAccount">Войти</button>
+                </span>
+                <?php endif;?>
   </ul>
 </div>
 </header>
