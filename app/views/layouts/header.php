@@ -74,7 +74,7 @@
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <img src="../images<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
@@ -161,6 +161,9 @@
 <hr>
     <?php if (isset($_SESSION['sid'])):?>
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
+                            <a href="/account/edit" class="menu__item_adm">
+                                <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
+                            </a>
                             <a href="/expenses/main" class="menu__item_adm">
                                 Кошелек
                             </a>
@@ -174,10 +177,16 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
+                            <a href="/account/edit" class="menu__item_adm">
+                                <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
+                            </a>
                             <a href="/logout" class="menu__item_adm">
                                 Выход
                             </a>
                         <?php break; case 3: ?>
+                            <a href="/account/edit" class="menu__item_adm">
+                                <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
+                            </a>
                             <a href="/expenses/main" class="menu__item_adm">
                                 Кошелек
                             </a>

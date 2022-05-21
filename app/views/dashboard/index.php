@@ -41,21 +41,24 @@
     <div class="column is-8">
         <div class="columns is-multiline" id="dashboard">
             <?php foreach ($games as $game) : ?>
-                <div class="column is-one-quarter game">
+                <div class=" is-one-part game">
                     <div class="game-cover">
+                        <div class="buu">
                         <div class="buy" id="<?=$game->id?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
                             Добавить в корзину
                         </div>
+                        </div>
                         <figure class='image is-full'>
-                            <img src="images/administrator/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
+                            <img src="images/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
                         </figure>
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            <?=$game->name_game;?>
+                            
+                            <a href="#" class="game-name"><?=$game->name_game;?></a>
                         </div>
                         <div class="game-company">
                             <?=$game->company->name_company;?>
