@@ -152,7 +152,7 @@
 <hr>
     <?php if (isset($_SESSION['sid'])):?>
                         <?php switch (\App\Controller\HomeController::accountRole()): ?><?php case 1: ?>
-                            <a href="/expenses/main" class="menu__item">
+                            <a href="/expenses/main" class="menu__item_adm">
                                 Кошелек
                             </a>
                             <a href="#" class="menu__item_adm">
