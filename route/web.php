@@ -14,6 +14,11 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
 
+/*=== РАБОТА С АККАУНТОМ ===*/
+$router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
+$router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
+$router->add('account/delete_userpic', ['controller' => 'AccountController', 'action' => 'deleteUserpic']);
+
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
 $router->add('games/add', ['controller' => 'GameController', 'action' => 'show']);
@@ -39,6 +44,7 @@ $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'edit']);
 $router->add('companies/update', ['controller' => 'CompanyController', 'action' => 'update']);
+$router->add('companies/visibility', ['controller' => 'CompanyController', 'action' => 'visibility']);
 $router->add('companies/delete', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/

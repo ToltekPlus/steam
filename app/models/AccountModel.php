@@ -10,14 +10,33 @@ class AccountModel extends Model {
      */
     protected $table = 'accounts';
 
+     /**
+     * @return object
+     */
+    public function all()
+    {
+        $account = $this->getAll($this->table);
+        return $account;
+    }
+
     /**
      * @param int $id
      * @return object
      */
-    public function find(int $id) : object
+    public function find(int $id)
     {
-        $company = $this->getByIdFromTable($this->table, $id, 'user_id');
-        return array_shift($company);
+        $account = $this->getByIdFromTable($this->table, $id, 'user_id');
+        return array_shift($account);
+    }
+
+    /**
+     * @param $args
+     * @param $id
+     * @return void
+     */
+    public function update($args, $id)
+    {
+        return $this->updateForTable($this->table, $id, $args);
     }
 
     /**
@@ -36,7 +55,20 @@ class AccountModel extends Model {
     public function getFullName($user_id)
     {
         $account = $this->find($user_id);
-        $fullName = [$account->name, $account->surname ];
+        $fullName = ['name' => $account->name, 'surname' => $account->surname];
         return $fullName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllFullNames()
+    {
+        $accounts = $this->all();
+        $fullnames = [];
+        foreach($accounts as $account){
+            array_push($fullnames, ['name' => $account->name, 'surname' => $account->surname]);
+        }
+        return $fullnames;
     }
 }

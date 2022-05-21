@@ -16,6 +16,7 @@ class AccountSeeder extends AbstractSeed
     public function run()
     {
         $foreignKeysUsers = $this->adapter->fetchAll("SELECT id FROM users WHERE id = 1");
+        $foreignKeysUsersTwo = $this->adapter->fetchAll("SELECT id FROM users WHERE id = 2");
 
         $data = [
             [
@@ -24,7 +25,17 @@ class AccountSeeder extends AbstractSeed
                 'surname' => 'Иванов',
                 'about' => 'Люблю деградировать',
                 'birthday_at' => date('Y-m-d H:i:s'),
-                'userpic' => '/userpic/userpic.jpg',
+                'userpic' => '/userpic_default/userpic.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'user_id' => $foreignKeysUsers[array_rand($foreignKeysUsersTwo)]['id'],
+                'name' => 'Петр',
+                'surname' => 'Петров',
+                'about' => 'Люблю не деградировать',
+                'birthday_at' => date('Y-m-d H:i:s'),
+                'userpic' => '/userpic_default/userpic.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
