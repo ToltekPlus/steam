@@ -26,6 +26,7 @@ $router->add('games/store', ['controller' => 'GameController', 'action' => 'stor
 $router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => 'edit']);
 $router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
 $router->add('games/visibility?{id}', ['controller' => 'GameController', 'action' => 'visibility']);
+$router->add('game', ['controller' => 'GameController', 'action' => 'showGame']);
 
 /*=== РАБОТА С КОРЗИНОЙ ===*/
 $router->add('cart/brief', ['controller' => 'CartController', 'action' => 'brief']);
