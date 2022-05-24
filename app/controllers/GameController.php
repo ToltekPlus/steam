@@ -144,4 +144,15 @@ class GameController implements ControllerInterface {
         $game = $this->get($id);
         $this->deleteImage($game->cover_game);
     }
+
+    /**
+     * @return void
+     * @throws \Exception
+     */
+    public function showGame()
+    {
+        $game = GameModel::summaryInformation($_GET['id']);
+
+        View::render('games/index.php', ["game" => $game]);
+    }
 }

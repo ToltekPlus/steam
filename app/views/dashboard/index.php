@@ -57,8 +57,9 @@
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            
-                            <a href="#" class="game-name"><?=$game->name_game;?></a>
+                            <a href="/game?id=<?=$game->id;?>">
+                                <?=$game->name_game;?>
+                            </a>
                         </div>
                         <div class="game-company">
                             <?=$game->company->name_company;?>
