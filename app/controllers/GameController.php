@@ -32,6 +32,34 @@ class GameController implements ControllerInterface {
     }
 
     /**
+     * Получаем список игр для поиска
+     */
+    public function all()
+    {
+        $games = new GameModel();
+        $games = $games->all();
+
+        $result = $this->toObject($games);
+
+        echo json_encode($result);
+    }
+
+    /**
+     * @param $games
+     * @return array
+     */
+    protected function toObject($games)
+    {
+        $result = [];
+        foreach ($games as $k => $game) {
+            $result[$k]['game_id'] = $game->id;
+            $result[$k]['game_name'] = $game->name_game;
+        }
+
+        return $result;
+    }
+
+    /**
      * @param $id
      * @return object
      */
@@ -146,13 +174,15 @@ class GameController implements ControllerInterface {
     }
 
     /**
-     * @return void
      * @throws \Exception
      */
     public function showGame()
     {
         $game = GameModel::summaryInformation($_GET['id']);
 
-        View::render('games/index.php', ["game" => $game]);
+        $tax = new TaxGameModel();
+        $tax = $tax->find($_GET['id']);
+
+        View::render('games/index.php', ["game" => $game, "tax" => $tax]);
     }
 }

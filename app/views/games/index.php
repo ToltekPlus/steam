@@ -39,7 +39,11 @@
                     </div>
 
                     <div class="product-price">
-                        1675 &#x20bd <span class="discount-price">2800 &#x20bd</span><span class="discount">55 %</span>
+                        <?=($tax->tax == 0) ? $game->base_price : ($game->base_price - ($game->base_price*($tax->tax/100))); ?> &#x20bd
+
+                        <?php if ($tax->tax != 0): ?>
+                            <span class="discount-price"><?=$game->base_price;?> &#x20bd</span><span class="discount"><?=$tax->tax;?> %</span>
+                        <?php endif;?>
                     </div>
 
                     <div class="to-cart buy" id="<?=$game->id;?>">

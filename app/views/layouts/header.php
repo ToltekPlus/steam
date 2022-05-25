@@ -26,7 +26,7 @@
             </div>
 
             <div class="column is-6 nav-navigation">
-                <nav>
+                <nav id="navigation">
                     <ul class="menu-list">
                         <li>
                             <a href="/">Магазин</a>
@@ -42,16 +42,20 @@
                         </li>
                     </ul>
                 </nav>
+
+                <div class="column is-12 search is-hidden">
+                    <input type="text" id="searchBlock" class="search-block">
+
+                    <div class="search-field" id="searchField"></div>
+                </div>
             </div>
 
             <div class="left-items">
                 <span class="icon-text">
-                  <span class="icon">
+                  <span class="icon" id="search">
                     <ion-icon name="search-outline"></ion-icon>
                   </span>
                 </span>
-
-
 
                 <div class="dropdown">
                     <div class="dropdown-trigger">
@@ -217,7 +221,7 @@
                             <a href="/logout" class="menu__item_adm">
                                 Выход
                             </a>
-                            
+
                         <?php endswitch; ?>
                         <hr class="foter__item">
                 <li class="phone__footer"><a class="foter__item" href="#">Что такое  Steam</a></li>
@@ -225,7 +229,7 @@
                         </div>
                       </div>
                     </div>
-                    
+
                 </span>
                 <?php else:?>
                 <span class="login">

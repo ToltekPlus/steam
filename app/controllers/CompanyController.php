@@ -56,7 +56,7 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     public function store() : void
     {
         $logotype = $this->upload($_FILES['logotype'], $this->logotype_path);
-        $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype]);
+        $args = $this->dataBuilder($_POST, ['logotype_company' => $logotype, 'visibility' => 1]);
 
         $company = new CompanyModel();
         $company->store($args);

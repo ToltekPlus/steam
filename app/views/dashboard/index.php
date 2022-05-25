@@ -52,7 +52,7 @@
                         </div>
                         </div>
                         <figure class='image is-full'>
-                            <img src="images/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
+                            <img src="images/administrator/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
                         </figure>
                     </div>
                     <div class="game-description">
