@@ -12,7 +12,7 @@
                         <input type="hidden" name="id" id="id" value="<?=$game->id?>">
                         <div class="select is-rounded is-small">
                             <select name="tax" id="tax">
-                                <?php for($i = 0; $i < 90; $i= $i + 10) : ?>
+                                <?php for($i = 0; $i < 100; $i= $i + 10) : ?>
 
                                     <option  name="tax"
                                         <?php if ($game->tax == $i) : ?> selected="selected" <?php endif;?>>

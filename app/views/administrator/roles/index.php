@@ -34,3 +34,4 @@
         </table>
     </section>
 </section>
+<?php \Core\View::renderFooter(); ?>

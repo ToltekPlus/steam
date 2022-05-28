@@ -1,7 +1,13 @@
 header
   background-color: $bg-color-header
   padding: 15px 0 5px 0 !important
-
+  height: 76.38px
+.nav-navigation
+  height: 58.38px
+  padding: 0 !important
+  display: flex !important
+  justify-content: center
+  align-items: center
 .logotype
   a
     ion-icon
@@ -61,3 +67,112 @@ nav ul
     border: 1px solid $bg-color-header
     border-radius: 50%
     cursor: pointer
+
+.search
+    input
+        width: 100%
+        padding: 8px 10px
+        background-color: $bg-color-header
+        border: 1px solid $font-color
+        border-radius: 10px
+        color: $font-color
+    .search-field
+        margin: 10px 0
+        background-color: $font-color
+        color: $bg-color-header
+        div
+            padding: 5px
+.text-field__icon_search::before
+      width: 1rem
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bdbdbd' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E")
+      background-repeat: no-repeat
+      background-position: center
+
+.text-field__label
+  display: block;
+  margin-bottom: 0.25rem;
+.text-field__input
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+.text-field__input[type="search"]::-webkit-search-decoration,
+.text-field__input[type="search"]::-webkit-search-cancel-button,
+.text-field__input[type="search"]::-webkit-search-results-button,
+.text-field__input[type="search"]::-webkit-search-results-decoration
+  -webkit-appearance: none;
+.text-field__input::placeholder
+  color: #212529;
+  opacity: 0.4;
+.text-field__input:focus
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+.text-field__input:disabled,
+.text-field__input[readonly]
+  background-color: #f5f5f5;
+  opacity: 1;
+.text-field_floating
+  position: relative;
+.text-field_floating .text-field__input
+  height: 50px;
+  line-height: 1.25;
+  padding: 1rem 0.75rem;
+  width: 600px;
+  margin-top: 9px;
+  margin-bottom: 9px;
+.text-field_floating .text-field__label
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  padding: 1rem .75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+  display: flex;
+  align-items: center;
+  height: 50px
+  margin-top: 9px;
+  color: #fff
+.text-field_floating .text-field__input::-moz-placeholder
+  color: transparent;
+
+.text-field_floating .text-field__input::placeholder
+  color: transparent;
+.text-field_floating .text-field__input:focus,
+.text-field_floating .text-field__input:not(:placeholder-shown)
+  padding-top: 1.625rem;
+  padding-bottom: .625rem;
+
+.text-field_floating .text-field__input:focus~.text-field__label,
+.text-field_floating .text-field__input:not(:placeholder-shown)~.text-field__label
+  opacity: .65;
+  transform: scale(.85) translateY(-.75rem) translateX(.15rem);
+#searchBlock
+  height: 76px;
+  display: flex;
+  align-items: center;
+.text-field__input:focus
+  background: #000
+  color: #fff
+.search-field
+  position: absolute
+  width: 600px
+  z-index: 99999

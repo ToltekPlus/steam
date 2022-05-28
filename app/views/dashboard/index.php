@@ -25,7 +25,7 @@
         </div>
 
         <div class="select is-rounded is-small">
-            <select>
+            <select id="selector-companies">
                 <option>Компании</option>
                 <?php foreach ($companies as $company): ?>
                     <option value="<?=$company->id; ?>" name="<?=$company->name_company; ?>">
@@ -41,24 +41,26 @@
     <div class="column is-8">
         <div class="columns is-multiline" id="dashboard">
             <?php foreach ($games as $game) : ?>
-                <div class="is-one-part game">
+                <div class=" is-one-part game">
                     <div class="game-cover">
-                        
-                        <figure class='image is-full'>
-                            <div class="buy" id="<?=$game->id?>">
-                            <div class="game-basket">
+                        <div class="buu">
+                        <div class="buy" id="<?=$game->id?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
-                            <p>Добавить в корзину</p>
-                            </div>
+                            Добавить в корзину
                         </div>
+                        </div>
+                        <figure class='image is-full'>
                             <img src="images/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
                         </figure>
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            <?=$game->name_game;?>
+                            <h3 class="h1-game-name"><a href="/game?id=<?=$game->id;?>" class="game-name">
+                                <?=$game->name_game;?>
+                            </a>
+                            </h3>
                         </div>
                         <div class="game-company">
                             <?=$game->company->name_company;?>

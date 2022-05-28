@@ -123,4 +123,3 @@
         </div>
     </section>
 <?php \Core\View::renderFooter(); ?>
-

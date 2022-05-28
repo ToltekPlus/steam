@@ -6,14 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "eslint": "eslint resources/js/**",
+    "eslint:github-action": "eslint resources/js/**"
   },
   "author": "ToltekPlus Web Group",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.4.0",
+    "eslint": "^8.12.0",
     "mini-css-extract-plugin": "^2.4.2",
     "node-sass": "^6.0.1",
+    "prettier": "2.6.2",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.0",
     "webpack": "^5.58.2",
@@ -21,6 +25,10 @@
   },
   "dependencies": {
     "bulma": "^0.9.3",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unicorn": "^42.0.0",
     "mask-input": "^1.0.3",
     "sweetalert2": "^11.1.9"
   }

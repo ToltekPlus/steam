@@ -1,8 +1,9 @@
 .product
   .product-preview
+    text-align: center
+    width: 300px
     img
       width: 100%
-      border-radius: 5px
   .product-description
     div
       margin: 15px 0 0 0
@@ -61,8 +62,11 @@
     font-weight: $font-strong
     color: $font-color
     cursor: pointer
+    transition: .5s ease
     &:hover
       box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.75)
+      background-color: #0c41c7
+      transition: .5s ease
 .product-data-information
   display: flex
   justify-content: space-between
@@ -73,3 +77,16 @@
       margin: 15px 0
       font-size: 0.8em
       color: $font-color-preview
+.product-preview
+  overflow: hidden
+  display: inline-block
+  overflow: hidden
+  border-radius: 10px
+.scale img
+  transition: .5s
+  display: block
+.scale img:hover
+  transform: scale(1.2)
+.ctr
+  display: flex !important
+  justify-content: center
