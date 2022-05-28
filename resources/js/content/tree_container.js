@@ -27,9 +27,11 @@ export function tree_container(response, dashboard) {
                     </div >
             <div class="game-description">
                 <div class="game-title">
-                    <a href="/game?id=<?=$game->id;?>">
-                        ${element.name_game}
-                    </a>
+                    <h3 class="h1-game-name">
+                        <a href="/game?id=<?=$game->id;?>" class="game-name">
+                            ${element.name_game}
+                        </a>
+                    </h3>
                 </div>
                 <div class="game-company">
                     ${element.company.name_company}
