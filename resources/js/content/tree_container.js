@@ -40,11 +40,6 @@ export function tree_container(response, dashboard) {
                 </div>
             </div>`
 
-
-
-
-
-
         dashboard.append(tree);
     }
 }

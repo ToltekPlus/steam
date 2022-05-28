@@ -42,7 +42,6 @@
                         </li>
                     </ul>
                 </nav>
-
                 <div class="column is-12 search is-hidden text-field__icon_search">
                     <div id="searchBlock">
     <div class="text-field text-field_floating">

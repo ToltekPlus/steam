@@ -21,7 +21,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="column wer">
                 <aside class="product-data wer">
                     <div class="product-logo">
