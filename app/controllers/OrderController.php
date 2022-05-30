@@ -23,13 +23,12 @@ class OrderController {
     public function сomparisonPriceBalance($id, $count, $finalPrice) {
         $expense = new ExpenseController();
         $balance = $expense->get($_SESSION['sid']) -> balance;
-        var_dump($finalPrice);
         if((int)$balance < $finalPrice){
-            var_dump("Денег нема");
-            
+            View::render('basket/unsuccess.php');
         }else{ 
             $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);    
             $this -> store($id, $count, $finalPrice);
+            View::render('basket/success.php');
         }
     }
 
