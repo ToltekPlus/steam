@@ -4,45 +4,53 @@ namespace App\Controller;
 use Core\View;
 use App\Service\DataBuilder;
 use App\Model\OrderModel;
+use App\Model\TaxGameModel;
 
 class OrderController {
     use DataBuilder;
 
-    public $game_id = 0;
-    public $price = 0;
-    public $count = 0;
-   
     public function getOrder()
     {
-        $test = ['id' => 1, 'count' => 1, 'finalPrice' => 1];
-        $this->price = $test['finalPrice'];
-        $this->game_id = $test['id'];
-        $this->count = $test['count'];
+        $test = ['id' => 1, 'count' => 1, 'finalPrice' => 3499];
+        $price = $test['finalPrice'];
+        $id = $test['id'];
+        $count = $test['count'];
 
-        //return $this->сomparisonPriceBalance();
+        $taxPrice = $this -> get_taxPrice($id, $price);
+        $this -> сomparisonPriceBalance($id, $count, $taxPrice);
+    }
 
-        //echo json_encode(array_shift($result));
-        //echo json_encode($result);
+    public function сomparisonPriceBalance($id, $count, $finalPrice) {
+        $expense = new ExpenseController();
+        $balance = $expense->get($_SESSION['sid']) -> balance;
+        var_dump($finalPrice);
+        if((int)$balance < $finalPrice){
+            var_dump("Денег нема");
+            
+        }else{ 
+            $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);    
+            $this -> store($id, $count, $finalPrice);
+        }
+    }
+
+    public function get_taxPrice($id, $price)
+    {
+        $tax = new CartController;
+        $game_tax = 1 - $tax->game_tax($id);
+        $taxPrice = round($price * $game_tax);
+        return $taxPrice;
     }
 
 
-    /*public function сomparisonPriceBalance() {
-        $expense = new ExpenseController();
-        $balance = $expense->get($_SESSION['sid'])->balance;
-        var_dump($this->price);
-        if((int)$balance < $this->price){
-            var_dump("Денег нема");
-        }else{ return $expense->dataPreparation($this->price, '-', 2, $_POST['user'])};
-        
-    }*/
 
-    public function store()
+    public function store($id, $count, $finalPrice)
     {
-        $data = [['final_price' => $this->game_id,
-            'count' => $this->price,
+        $data = [
+            'final_price' => $finalPrice,
+            'count' => $count,
             'order_date' => date('Y-m-d H:i:s', time()),
             'user_id' => $_SESSION['sid'],
-            'game_id' => $this->game_id]
+            'game_id' => $id
         ];
 
         $args = $this->dataBuilder($data);
