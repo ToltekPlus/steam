@@ -56,7 +56,7 @@
             <?php foreach ($games as $game) : ?>
                 <div class="column is-one-quarter game">
                     <div class="game-cover">
-                        <div class="buy" id="<?=$game->id?>">
+                        <div class="buy" id="<?=$game->id?>" data-base_price="<?=$game->base_price?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
