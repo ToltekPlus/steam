@@ -10,7 +10,7 @@ export function list() {
     {
       page: 'edit',
       action: 'update',
-      redirect: '/account/edit',
+      redirect: '',
       message: 'Данные обновлены',
       message_error: 'Произошла ошибка',
     },
