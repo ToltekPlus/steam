@@ -1,15 +1,13 @@
 <form style="position: absolute; margin-left: 12%;" action="main" method="POST" id="user">
-    <div style="position:absolute; margin-left: 105%;">
-        <h4><? echo $account[0]?></h4>
-        <h4><? echo $account[1]?></h4>
+    <div>
+        <h4>Пользователь: <?php echo $account['name'] . " " . $account['surname'];?></h4>
     </div>
-    <h4>Пользователь: </h4>                   
     <div style="display:flex; margin-top: 8%;">
         <div class="select is-rounded is-small">
             <select name="user">
                 <?php foreach ($users as $user):?>
-                <option value="<?=$user;?>" name="user">
-                    <?=$user?>
+                <option value="<?=$user['id'];?>" name="user">
+                    <?=$user['full_name']?>
                 </option>
                 <?php endforeach;?>
             </select>

@@ -29,6 +29,8 @@ $router->add('games/store', ['controller' => 'GameController', 'action' => 'stor
 $router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => 'edit']);
 $router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
 $router->add('games/visibility?{id}', ['controller' => 'GameController', 'action' => 'visibility']);
+$router->add('game', ['controller' => 'GameController', 'action' => 'showGame']);
+$router->add('v1/games/all', ['controller' => 'GameController', 'action' => 'all']);
 
 /*=== РАБОТА С КОРЗИНОЙ ===*/
 $router->add('cart/brief', ['controller' => 'CartController', 'action' => 'brief']);
@@ -47,6 +49,7 @@ $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'edit']);
 $router->add('companies/update', ['controller' => 'CompanyController', 'action' => 'update']);
+$router->add('companies/visibility', ['controller' => 'CompanyController', 'action' => 'visibility']);
 $router->add('companies/delete', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/

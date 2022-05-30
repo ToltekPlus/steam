@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\GameModel;
+use App\Model\TaxGameModel;
 
 class CartController {
     /**
@@ -26,10 +27,23 @@ class CartController {
         foreach ($delimiter_keys as $key => $delimiter_key) {
             $game = new GameModel();
             $game = $game->find($delimiter_key);
+
+            $tax = $this->game_tax($delimiter_key);
+
             $result[$key]['name_game'] = $game->name_game;
-            $result[$key]['price'] = $game->base_price;
+            $result[$key]['price'] = $game->base_price - ($game->base_price*($tax));
         }
 
         echo json_encode($result);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    protected function game_tax($id)
+    {
+        $tax = new TaxGameModel();
+        return $tax->find($id)->tax/100;
     }
 }

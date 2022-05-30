@@ -5,7 +5,7 @@
         <div class="select is-rounded is-small">
             <select id="selector-games">
                 <option>Отображать по</option>
-                <?php for ($i = 5 ; $i <= 20; $i = $i + 5): ?>
+                <?php for ($i = 4 ; $i <= 16; $i = $i + 4): ?>
                     <option value="<?=$i;?>" name="<?=$i;?>">
                         <?=$i;?>
                     </option>
@@ -34,30 +34,6 @@
                 <?php endforeach; ?>
             </select>
         </div>
-
-        <section class="catalog-sort-visible">
-            <nav class="columns">
-                <ul class="column is-12">
-                    <li class="sort-visible">
-                        Однопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        Многопользовательская игра
-                        <span>&#x2715</span>
-                    </li>
-                    <li class="sort-visible">
-                        ММОРПГ
-                        <span>&#x2715</span>
-                    </li>
-                    <li>
-                        <a href="">
-                            Очистить все
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </section>
     </section>
 </section>
 
@@ -65,13 +41,15 @@
     <div class="column is-8">
         <div class="columns is-multiline" id="dashboard">
             <?php foreach ($games as $game) : ?>
-                <div class="column is-one-quarter game">
+                <div class=" is-one-part game">
                     <div class="game-cover">
+                        <div class="buu">
                         <div class="buy" id="<?=$game->id?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
                             Добавить в корзину
+                        </div>
                         </div>
                         <figure class='image is-full'>
                             <img src="images/administrator/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
@@ -79,7 +57,9 @@
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            <?=$game->name_game;?>
+                            <a href="/game?id=<?=$game->id;?>">
+                                <?=$game->name_game;?>
+                            </a>
                         </div>
                         <div class="game-company">
                             <?=$game->company->name_company;?>
