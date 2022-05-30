@@ -20,6 +20,7 @@ class CompanySeeder extends AbstractSeed
                 'name_company' => 'EA',
                 'description_company' => 'Все о еа',
                 'logotype_company' => '',
+                'visibility' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -27,6 +28,7 @@ class CompanySeeder extends AbstractSeed
                 'name_company' => 'Blizzard',
                 'description_company' => 'Все о близах',
                 'logotype_company' => '',
+                'visibility' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

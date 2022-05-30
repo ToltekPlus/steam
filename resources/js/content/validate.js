@@ -3,17 +3,16 @@
  *
  * @returns {boolean}
  */
-export function validate()
-{
-    let inputs = document.querySelectorAll('input[type="text"]');
-    let textareas = document.querySelectorAll('textarea');
+export function validate() {
+  const inputs = document.querySelectorAll('input[type="text"]:not(.search-block)');
+  const textareas = document.querySelectorAll('textarea');
 
-    let resultInputs = validateIterator(inputs, inputs.length);
-    let resultTextareas = validateIterator(textareas, textareas.length);
+  const resultInputs = validateIterator(inputs, inputs.length);
+  const resultTextareas = validateIterator(textareas, textareas.length);
 
-    if (!resultInputs || !resultTextareas) return false;
+  if (!resultInputs || !resultTextareas) return false;
 
-    return true;
+  return true;
 }
 
 /**
@@ -23,16 +22,15 @@ export function validate()
  * @param blocksLength
  * @returns {boolean}
  */
-function validateIterator(block, blocksLength)
-{
-    if (block.length === 0) return true;
+function validateIterator(block, blocksLength) {
+  if (block.length === 0) return true;
 
-    for (let i = 0; i < blocksLength; ++i) {
-        let v = block[i];
-        if (!v.value) {
-            return false;
-        }
+  for (let i = 0; i < blocksLength; ++i) {
+    const v = block[i];
+    if (!v.value) {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }

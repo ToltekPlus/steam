@@ -29,6 +29,17 @@ class UserRoleModel extends Model {
     }
 
     /**
+     * @param $field
+     * @param $value
+     * @return array
+     */
+    public function findByRole($field, $value)
+    {
+        $sql = "SELECT * FROM " . $this->table . " WHERE " . $field . " = " . $value . " GROUP BY id";
+        return $this->connect->query($sql);
+    }
+
+    /**
      * @param int $id
      * @return object
      */
@@ -47,5 +58,14 @@ class UserRoleModel extends Model {
     public function getByAuthId()
     {
         return $this->getAuthRole('role_id', $this->table, (int)$_SESSION['sid'])[0]->role_id;
+    }
+
+    /**
+     * @param $args
+     * @return void
+     */
+    public function store($args)
+    {
+        return $this->storeToTable($this->table, $args);
     }
 }

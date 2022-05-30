@@ -17,81 +17,97 @@
  *
  */
 
+import { sendData } from '../db/send';
+import { deleteFromLocaleStorage } from './delete_product_from_cart';
 
-import { sendData } from "../db/send";
-import { deleteFromLocaleStorage } from "./delete_product_from_cart";
-
-var linkBrief = document.getElementById("briefCart");
+const linkBrief = document.querySelector('#briefCart');
 
 // TODO при быстром тапе увеличивается количество элементов
-document.getElementById('briefCart').addEventListener('click', function (e) {
-    let elem = document.getElementsByClassName("cart-products")[0];
+document.querySelector('#briefCart').addEventListener('click', function (e) {
+  const elem = document.querySelectorAll('.cart-products')[0];
 
-    if (elem) { elem.parentNode.removeChild(elem) }
+  if (elem) {
+    elem.remove();
+  }
 
-    productInCart();
+  productInCart();
 });
 
 export function productInCart() {
-    if (linkBrief) {
-        // определяем поведение для работы с корзиной
-        let basket = {
-            "header": "application/x-www-form-urlencoded"
-        };
+  if (linkBrief) {
+    const cart = JSON.parse(localStorage.getItem('steamCart'));
 
-        let cartContent = document.getElementById("cartContent");
+    // определяем поведение для работы с корзиной
+    const basket = {
+      header: 'application/x-www-form-urlencoded',
+    };
 
-        let cartProducts = document.createElement('div');
-        cartProducts.classList.add("cart-products");
+    const cartContent = document.querySelector('#cartContent');
 
-        let product = document.createElement('div');
-        product.classList.add("product-in-cart");
+    const cartProducts = document.createElement('div');
+    cartProducts.classList.add('cart-products');
 
-        let finalPriceInCart = document.createElement('div');
-        finalPriceInCart.classList.add("product-in-cart__final-price");
+    const product = document.createElement('div');
+    product.classList.add('product-in-cart');
 
-        let finalPrice = 0;
+    const finalPriceInCart = document.createElement('div');
+    finalPriceInCart.classList.add('product-in-cart__final-price');
 
-        let path = "cart/brief";
+    if (cart.length === 0) {
+      // TODO если корзира уже была постая, то удлять этот блок
+      const emptyCart = document.createElement('div');
+      emptyCart.classList.add('empty-cart');
 
-        let cart = JSON.parse(localStorage.getItem('steamCart'));
-
-        let arrKeys = [];
-        cart.forEach((item) => {
-            arrKeys.push(parseInt(item.id));
-        })
-
-        const send = sendData(arrKeys, path, basket.header);
-
-        send(arrKeys)
-            .then(response => {
-                let result = JSON.parse(response)
-                result.forEach((item, key) => {
-                    finalPrice = finalPrice + cart[key].count * item.price;
-                    product.innerHTML += "<div class='product-in-cart__title'>"
-                        + item.name_game + "<span class='product-in-cart__count'>(x" + cart[key].count + ")</span>"
-                        + "<div class='product-in-cart__price'>" + item.price + "<label class='product-in-cart__delete' data-el='" + cart[key].id + "' game_id='" + cart[key].id + "'>удалить</label></div>"
-                        + "</div>";
-                    finalPriceInCart.innerHTML = "<div class='product-in-cart__price'>Финальная цена: " + finalPrice + "</div>" + "<div class='arange'><a href='/basket'>Оформить</a></div>";
-                    cartProducts.append(product);
-                    cartProducts.append(finalPriceInCart)
-                    cartContent.append(cartProducts);
-                })
-            })
-            .catch(error => {
-                console.log(error);
-            })
-
-        setTimeout(deleteFromCart, 1000);
+      emptyCart.innerHTML =
+        "<div style='text-align: center;'>Корзина пустая :(</div>";
+      cartContent.append(emptyCart);
     }
+
+    let finalPrice = 0;
+
+    const path = 'cart/brief';
+
+    const arrKeys = [];
+    for (const item of cart) {
+      arrKeys.push(Number.parseInt(item.id));
+    }
+
+    const send = sendData(arrKeys, path, basket.header);
+
+    send(arrKeys)
+      .then(response => {
+        const result = JSON.parse(response);
+        for (const [key, item] of result.entries()) {
+          finalPrice += cart[key].count * item.price;
+          product.innerHTML +=
+            `<div class='product-in-cart__title'>${item.name_game}<span class='product-in-cart__count'>(x${cart[key].count})</span>` +
+            `<div class='product-in-cart__price'>${item.price}<label class='product-in-cart__delete' data-el='${cart[key].id}' game_id='${cart[key].id}'>удалить</label></div>` +
+            `</div>`;
+          finalPriceInCart.innerHTML =
+            `<div class='product-in-cart__price'>Финальная цена: ${finalPrice}</div>` +
+            `<div class='arange'><a href='/basket'>Оформить</a></div>`;
+          cartProducts.append(product);
+          cartProducts.append(finalPriceInCart);
+          cartContent.append(cartProducts);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    setTimeout(deleteFromCart, 1000);
+  }
 }
 
 function deleteFromCart() {
-    [...document.getElementsByClassName("product-in-cart__delete")].forEach(el => el.addEventListener('click', event => {
-        deleteFromLocaleStorage(event.target.getAttribute("data-el"));
+  for (const el of document.querySelectorAll('.product-in-cart__delete'))
+    el.addEventListener('click', event => {
+      deleteFromLocaleStorage(event.target.dataset.el);
 
-        let elem = document.getElementsByClassName("cart-products")[0];
-        if (elem) { elem.parentNode.removeChild(elem) }
-        productInCart();
-    }))
+      const elem = document.querySelectorAll('.cart-products')[0];
+      if (elem) {
+        elem.remove();
+      }
+      productInCart();
+    });
 }

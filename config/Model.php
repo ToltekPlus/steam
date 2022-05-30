@@ -44,11 +44,13 @@ class Model {
 
     /**
      * @param array $tables
+     * @param $id
+     * @param $limit
      * @return array
      */
-    public function getAllPivot(array $tables, $id = null) : array
+    public function getAllPivot(array $tables, $id = null, $limit = null) : array
     {
-        $sql = $this->queryBuilder($tables, $id);
+        $sql = $this->queryBuilder($tables, $id, $limit);
         return $this->connect->query($sql);
     }
 
@@ -57,6 +59,7 @@ class Model {
      *
      * @param string $table
      * @param int $id
+     * @param string $table_id
      * @return array
      */
     public function getByIdFromTable(string $table, int $id, string $table_id = "id") : array
@@ -73,6 +76,19 @@ class Model {
     public function getById(array $tables, int $id) : array
     {
         $sql = $this->queryBuilder($tables, $id);
+        return $this->connect->query($sql);
+    }
+
+    /**
+     * @param $table
+     * @param $field
+     * @param $value
+     * @return array
+     */
+    public function getByFieldFromTable($table, $field, $value) : array
+    {
+        // TODO дать возможность передавать переменные разных типов
+        $sql = "SELECT * FROM " . $table . " WHERE " . $field . " = '" . $value . "' GROUP BY id";
         return $this->connect->query($sql);
     }
 

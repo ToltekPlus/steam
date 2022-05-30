@@ -14,10 +14,10 @@ jobs:
         #specify system properties
         environment:
           DB_ROOT_USER: root
-          DB_HOST: "127.0.0.1"
-          DB_NAME: "steam"
-          DB_USER: "root"
-          DB_PASSWORD: ""
+          DB_HOST: '127.0.0.1'
+          DB_NAME: 'steam'
+          DB_USER: 'root'
+          DB_PASSWORD: ''
           # Customize the JVM maximum heap limit
           MAVEN_OPTS: -Xmx3200m
           # Specify our database service here
@@ -26,10 +26,10 @@ jobs:
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
-          DB_HOST: "127.0.0.1"
-          DB_NAME: "steam"
-          DB_USER: "root"
-          DB_PASSWORD: ""
+          DB_HOST: '127.0.0.1'
+          DB_NAME: 'steam'
+          DB_USER: 'root'
+          DB_PASSWORD: ''
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/

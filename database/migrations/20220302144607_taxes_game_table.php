@@ -12,7 +12,7 @@ final class TaxesGameTable extends AbstractMigration
     {
         $exists = $this->hasTable('taxes_game');
         if ($exists) {
-            $this->table('games')->drop()->save();
+            $this->table('taxes_game')->drop()->save();
         }
     }
 

@@ -14,6 +14,7 @@
                         <th>О компании</th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -25,6 +26,11 @@
                         <td>
                             <a href="/companies/edit?id=<?=$company->id?>">
                                 <ion-icon name="pencil-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td style="width: 80px; text-align: center;">
+                            <a href="visibility?id=<?=$company->id?>">
+                                <?php echo $company->visibility == 1 ? "Скрыть" : "Показать";?>
                             </a>
                         </td>
                         <td style="width: 80px; text-align: center;">
