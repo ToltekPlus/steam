@@ -18,35 +18,26 @@ class OrderController {
         $id = $test['id'];
         $count = $test['count'];
 
-        $taxPrice = $this -> get_taxPrice($id, $price);
-        $this -> сomparisonPriceBalance($id, $count, $taxPrice);
+        $this -> сomparisonPriceBalance($id, $count, $price);
 
         echo json_encode ($this -> status);
+    }
+
+    public function index() {
+        View::render('basket/success.php');
     }
 
     public function сomparisonPriceBalance($id, $count, $finalPrice) {
         $expense = new ExpenseController();
         $balance = $expense->get($_SESSION['sid']) -> balance;
         if((int)$balance < $finalPrice){
-            View::render('basket/unsuccess.php');
-            $this -> status = true;
+            $this -> status = 0;
         }else{ 
+            $this -> status = 1;
             $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);    
-            $this -> store($id, $count, $finalPrice);
-            View::render('basket/success.php');
-            $this -> status = true;
+            $this -> store($id, $count, $finalPrice);     
         }
     }
-
-    public function get_taxPrice($id, $price)
-    {
-        $tax = new CartController;
-        $game_tax = 1 - $tax->game_tax($id);
-        $taxPrice = round($price * $game_tax);
-        return $taxPrice;
-    }
-
-
 
     public function store($id, $count, $finalPrice)
     {

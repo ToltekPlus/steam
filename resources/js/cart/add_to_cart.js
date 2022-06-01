@@ -28,7 +28,11 @@ function addGameToCart(id) {
 
     var base_price = document.getElementById(id);
     var price = base_price.dataset.base_price
-    console.log(price)
+
+    var tax = document.getElementById(id);
+    var game_tax = tax.dataset.tax
+
+    var tax_price = price * (1 - game_tax / 100)
 
     const cart = JSON.parse(localStorage.getItem('steamCart')) || [];
 
@@ -39,9 +43,9 @@ function addGameToCart(id) {
     // иначе добавляем новый продукт
     if (newProduct) {
       newProduct.count = newProduct.count + 1;
-      newProduct.finalPrice = price * newProduct.count;
+      newProduct.finalPrice = Math.round(tax_price * newProduct.count);
   }else {
-      newProduct = { 'id': id, 'game_id' : id, 'count': 1, 'finalPrice' : price };
+      newProduct = { 'id': id, 'game_id' : id, 'tax' : game_tax, 'count': 1, 'finalPrice' : Math.round(tax_price) };
       cart.push(newProduct);
   }
 

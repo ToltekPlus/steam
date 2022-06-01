@@ -30,10 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return false;
     }
 
-    let basket = {
-      header: 'application/x-www-form-urlencoded',
-    }
-
     const path = 'basket/getOrder';
 
     const cartToController = JSON.stringify(localStorage.getItem('steamCart'));
@@ -44,8 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     send(dataBasket, path, basket.header)
       .then(response => {
-        console.log(response);
-        //if (response.length > 0) redirect('order');
+        var test = response;
+        if (test == 1) {
+          redirect('basket/success');
+          localStorage.clear('steamCart');
+      } 
+        else {notification(`На счёте не достаточно средств для совершения покупки`, 'error');}
       })
       .catch(error => {
         console.log(error);

@@ -68,7 +68,7 @@ if (identityRoute.length > 0) {
     .then(response => {
       const result = JSON.parse(response);
       for (const [key, item] of result.entries()) {
-        finalPrice += cart[key].count * item.base_price;
+        finalPrice += cart[key].finalPrice;
         countProducts += cart[key].count;
         product.innerHTML +=
           `<div class='product-in-cart__image'><img src='images/administrator/${item.cover_game}' alt='${item.name_game}'></div>` +
