@@ -41,7 +41,7 @@ class CartController {
      * @param $id
      * @return mixed
      */
-    protected function game_tax($id)
+    public function game_tax($id)
     {
         $tax = new TaxGameModel();
         return $tax->find($id)->tax/100;

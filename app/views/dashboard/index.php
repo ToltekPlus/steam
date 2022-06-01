@@ -44,7 +44,7 @@
                 <div class=" is-one-part game">
                     <div class="game-cover">
                         <div class="buu">
-                        <div class="buy" id="<?=$game->id?>">
+                        <div class="buy" id="<?=$game->id?>" data-base_price="<?=$game->base_price?>" data-tax="<?=$game->tax?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>

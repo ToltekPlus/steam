@@ -75,6 +75,10 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
+/*=== РАБОТА С ЗАКАЗАМИ ===*/
+$router->add('basket/getOrder', ['controller' => 'OrderController', 'action' => 'getOrder']);
+$router->add('basket/success', ['controller' => 'OrderController', 'action' => 'index']);
+
 /*=== РАБОТА С БАЛАНСОМ ===*/
 $router->add('expenses/main?{id}', ['controller' => 'ExpenseController', 'action' => 'index']);
 $router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 'showStore']);

@@ -81,7 +81,7 @@ export function productInCart() {
           finalPrice += cart[key].count * item.price;
           product.innerHTML +=
             `<div class='product-in-cart__title'>${item.name_game}<span class='product-in-cart__count'>(x${cart[key].count})</span>` +
-            `<div class='product-in-cart__price'>${item.price}<label class='product-in-cart__delete' data-el='${cart[key].id}' id='${cart[key].id}'>удалить</label></div>` +
+            `<div class='product-in-cart__price'>${item.price}<label class='product-in-cart__delete' data-el='${cart[key].id}' game_id='${cart[key].id}'>удалить</label></div>` +
             `</div>`;
           finalPriceInCart.innerHTML =
             `<div class='product-in-cart__price'>Финальная цена: ${finalPrice}</div>` +

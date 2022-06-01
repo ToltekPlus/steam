@@ -23,7 +23,7 @@
                             <div id="cart-data"></div>
                         </div>
                         <div class="to-pay">
-                            <button>Оформить</button>
+                            <button id='order'>Оформить</button>
                         </div>
                     </aside>
                 </div>
