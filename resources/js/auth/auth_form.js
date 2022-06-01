@@ -12,9 +12,9 @@ if (buttonAuth) {
         '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
       preConfirm: () => {
         if (!auth_validate()) {
-          Swal.showValidationMessage('Проверьте правильность введных данных');
+          Swal.showValidationMessage('Не все данные введены!');
         } else {
-          send_data('auth', 'Такой пользователь ещё не зарегестрирован');
+          send_data('auth', 'Введён неверный логин или пароль');
         }
       },
       backdrop: `
@@ -52,7 +52,7 @@ function registerForm() {
       '<input id="password" type="password" class="auth-field" placeholder="Пароль">',
     preConfirm: () => {
       if (!auth_validate()) {
-        Swal.showValidationMessage('Проверьте правильность введных данных');
+        Swal.showValidationMessage('Не все данные введены!');
       } else {
         send_data('register', 'Такой пользователь уже зарегестрирован');
       }
@@ -92,7 +92,7 @@ function send_data(path, message) {
           window.location = '/';
         }, 500);
       } else {
-        Swal.showValidationMessage(message);
+        Swal.fire(message, '', 'error');
       }
     })
     .catch(error => {

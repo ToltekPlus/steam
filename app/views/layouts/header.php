@@ -74,11 +74,13 @@
                     </div>
                 </div>
 
+
                 <?php if (isset($_SESSION['sid'])):?>
+                <?php //TODO отображение юзерпика по умолчанию и с обновлением - ошибка при указании пути?>
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="../images<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">

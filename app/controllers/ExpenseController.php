@@ -244,11 +244,10 @@ class ExpenseController extends ExpensePolicy{
     /**
      * Обновление данных таблицы
      *
-     * @param $args
+     * param $args
      * @param int $id
      * @return void
-     */
-    public function update($args, $id)
+     */   public function update($args, $id)
     {
         $expense = new ExpenseModel();
         $expense->update($id, $args);

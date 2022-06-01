@@ -14,6 +14,9 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
 
+/*=== ИЗМЕНЕНИЕ ПАРОЛЯ ПОЛЬЗОВАТЕЛЮ ===*/
+$router->add('users/change_password?{id}', ['controller' => 'ResetPasswordController', 'action' => 'changePassword']);
+
 /*=== РАБОТА С АККАУНТОМ ===*/
 $router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
 $router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
