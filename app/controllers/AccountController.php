@@ -62,7 +62,7 @@ class AccountController {
 
         $account = $this->get($_SESSION['sid']);
 
-        $account->userpic = "/userpic_default/userpic.jpg";
+        $account->userpic = $this->userpic_path . "/userpic.jpg";
 
         $data = (array) $account;
 
@@ -79,7 +79,7 @@ class AccountController {
     public function deleteImageFromDirectory($id)
     {
         $account = $this->get($id);
-        if ($account->userpic != "/userpic_default/userpic.jpg") {
+        if ($account->userpic != $this->userpic_path . "/userpic.jpg") {
             $this->deleteImage($account->userpic);
         }
     }

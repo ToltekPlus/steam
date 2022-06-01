@@ -13,25 +13,29 @@ export function tree_container(response, dashboard) {
 
         tree.innerHTML += `
                     <div class="game-cover">
-                        <div class="buy" id="${element.id}">
+                        <div class="buy" id="${element.GameInfo.id}">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
                             Добавить в корзину
                         </div>
                         <figure class='image is-full'>
-                            <img src="images/administrator/${element.cover_game}" alt="${element.name_game}">
+                            <img src="images/administrator/${element.GameInfo.cover_game}" alt="${element.GameInfo.name_game}">
                         </figure>
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            ${element.name_game}
+                            <h3 class="h1-game-name">
+                                <a href="/game?id=<?=$game->id;?>" class="game-name">
+                                    ${element.GameInfo.name_game}
+                                </a>
+                            </h3>
                         </div>
                         <div class="game-company">
                             ${element.company.name_company}
                         </div>
                         <div class="game-price">
-                            ${element.base_price} &#x20bd
+                            ${element.GameInfo.base_price} &#x20bd
                             <span class="discount">-${element.tax}%</span>
                         </div>
                     </div>`

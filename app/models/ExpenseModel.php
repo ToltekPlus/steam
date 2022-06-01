@@ -39,7 +39,7 @@ class ExpenseModel extends Model{
         $all = $this->getAll($this->table);
         $account = new AccountModel();
         $users = [];
-        for($i = 0;count($all) > $i;$i++){
+        for($i = 0; count($all) > $i; $i++){
             //array_push($users, $all[$i]->user_id);
             $full_name = $account->getFullName($all[$i]->user_id);
             $full_name = $full_name['name'] . " " . $full_name['surname'];

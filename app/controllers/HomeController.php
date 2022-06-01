@@ -186,7 +186,7 @@ class HomeController extends HomePolicy
             $taxGame = new TaxGameModel();
             $taxGame = $taxGame->find($game->id);
             $result[$key] = $taxGame;
-            $result[$key] = $games[$key];
+            $result[$key]->GameInfo = $games[$key];
 
             $genre = new GenreModel();
             $genre = $genre->find($games[$key]->genre_id);
