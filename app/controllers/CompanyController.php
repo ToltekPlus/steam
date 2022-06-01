@@ -16,6 +16,9 @@ class CompanyController extends CompanyPolicy implements ControllerInterface {
     use DeleteFile;
     use DataBuilder;
 
+    /**
+     * @var string
+     */
     protected $logotype_path = 'administrator/companies/';
 
     /**

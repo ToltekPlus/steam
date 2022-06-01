@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\CompanyModel;
 use App\Model\GameModel;
 use App\Model\GenreModel;
+use App\Model\ImageGameModel;
 use App\Model\TaxGameModel;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
@@ -183,6 +184,9 @@ class GameController implements ControllerInterface {
         $tax = new TaxGameModel();
         $tax = $tax->find($_GET['id']);
 
-        View::render('games/index.php', ["game" => $game, "tax" => $tax]);
+        $images = new ImageGameModel();
+        $images = $images->find($_GET['id']);
+
+        View::render('games/index.php', ["game" => $game, "tax" => $tax, "images" => $images]);
     }
 }

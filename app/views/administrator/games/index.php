@@ -15,6 +15,7 @@
                     <th>Скидка</th>
                     <th>Видимость</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
 
@@ -36,6 +37,11 @@
                         <td>
                             <a href="/games/edit?id=<?=$game->id?>">
                                 <ion-icon name="pencil-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/game/images?id=<?=$game->id?>">
+                                Добавить изображения
                             </a>
                         </td>
                     </tr>

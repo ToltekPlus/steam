@@ -49,12 +49,12 @@ class AccountModel extends Model {
     }
 
     /**
-     * @param int $user_id 
+     * @param int $user_id
      * @return array
      */
     public function getFullName($user_id)
     {
-        $account = $this->find($user_id);
+        $account = $this->find((int)$user_id);
         $fullName = ['name' => $account->name, 'surname' => $account->surname];
         return $fullName;
     }

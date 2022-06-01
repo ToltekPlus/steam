@@ -36,6 +36,7 @@ class ExpenseModel extends Model{
      */
     public function getUsers() : array
     {
+        // TODO ошибка с формированием кошелька и выборки пользователей
         $all = $this->getAll($this->table);
         $account = new AccountModel();
         $users = [];

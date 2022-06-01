@@ -32,6 +32,11 @@ $router->add('games/visibility?{id}', ['controller' => 'GameController', 'action
 $router->add('game', ['controller' => 'GameController', 'action' => 'showGame']);
 $router->add('v1/games/all', ['controller' => 'GameController', 'action' => 'all']);
 
+/*=== РАБОТА С ИЗОБРАЖЕНИЕМ ДЛЯ ИГР ===*/
+$router->add('game/images?{id}', ['controller' => 'ImageGameController', 'action' => 'index']);
+$router->add('game/store', ['controller' => 'ImageGameController', 'action' => 'store']);
+$router->add('game/delete?{id}', ['controller' => 'ImageGameController', 'action' => 'delete']);
+
 /*=== РАБОТА С КОРЗИНОЙ ===*/
 $router->add('cart/brief', ['controller' => 'CartController', 'action' => 'brief']);
 

@@ -10,13 +10,15 @@
             <div class="column is-two-thirds">
                 <div class="product">
                     <div class="product-preview">
-                        <img src="images/administrator/<?=$game->cover_game;?>" alt="<?=$game->name_game;?>">
+                        <? foreach ($images as $image) : ?>
+                            <img src="images/administrator/<?=$image->path;?>" alt="Изображение">
+                        <? endforeach;?>
                     </div>
 
                     <div class="product-description">
                         <h2>Об игре</h2>
                         <div>
-                            <?=$game->description_game;?>
+                            <?=nl2br($game->description_game);?>
                         </div>
                     </div>
                 </div>

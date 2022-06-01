@@ -67,7 +67,7 @@
                         <div class="game-price">
                             <?=$game->base_price;?> &#x20bd
                             <span class="discount">
-                                <?=$game->tax === 0 ? "" : "-" ?><?=$game->tax;?>%
+                                <?=$game->tax == 0 ? "" : "-" ?><?=$game->tax;?>%
                             </span>
                         </div>
                     </div>
