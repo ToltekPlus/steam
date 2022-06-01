@@ -83,7 +83,7 @@
                                 Архив
                             </a>
                             <a href="/logout" class="dropdown-item">
-                                Выход
+                               Выход
                             </a>
                         <?php break; case 2: ?>
                             <a href="/logout" class="dropdown-item">
