@@ -86,6 +86,12 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
+                              <a href="/expenses/main" class="dropdown-item">
+                                Пополнение счета пользователю
+                            </a>
+                        <a href="/expenses/main" class="dropdown-item">
+                                Кошелек
+                            </a>
                             <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
