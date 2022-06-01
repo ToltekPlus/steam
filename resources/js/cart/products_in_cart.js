@@ -75,7 +75,7 @@ if (identityRoute.length > 0) {
           `<div class='product-in-cart__description'>` +
           `<h2 class='<h2'>${item.name_game}</h2>` +
           `<div class='product-in-cart__company-information'>${item.company.name_company}</div>` +
-          `<div class='product-in-cart__price-information'>${item.base_price} &#x20bd` +
+          `<div class='product-in-cart__price-information'>${cart[key].finalPrice} &#x20bd` +
           `<span>(x${cart[key].count})</span>` +
           `<span class='discount'>${item.tax.tax} %</span></div>` +
           `<div class='product-in-cart__product-categories'><ul class='column is-12'><li>${item.genre.name_genre}</li></ul></div>` +
