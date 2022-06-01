@@ -9,6 +9,8 @@ use App\Model\TaxGameModel;
 class OrderController {
     use DataBuilder;
 
+    public $status;
+
     public function getOrder()
     {
         $test = ['id' => 1, 'count' => 1, 'finalPrice' => 3499];
@@ -18,6 +20,8 @@ class OrderController {
 
         $taxPrice = $this -> get_taxPrice($id, $price);
         $this -> сomparisonPriceBalance($id, $count, $taxPrice);
+
+        echo json_encode ($this -> status);
     }
 
     public function сomparisonPriceBalance($id, $count, $finalPrice) {
@@ -25,10 +29,12 @@ class OrderController {
         $balance = $expense->get($_SESSION['sid']) -> balance;
         if((int)$balance < $finalPrice){
             View::render('basket/unsuccess.php');
+            $this -> status = true;
         }else{ 
             $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);    
             $this -> store($id, $count, $finalPrice);
             View::render('basket/success.php');
+            $this -> status = true;
         }
     }
 
