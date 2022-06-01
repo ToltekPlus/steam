@@ -5,7 +5,6 @@
     <title>Магазин игр Steam</title>
     <link rel='stylesheet' href='/styles/style.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
 </head>
 <body>
@@ -24,7 +23,6 @@
                     </span>
                 </span>
             </div>
-
             <div class="column is-6">
                 <nav>
                     <ul class="menu-list">
@@ -37,16 +35,12 @@
                     </ul>
                 </nav>
             </div>
-
             <div class="column is-3">
                 <span class="icon-text">
                   <span class="icon">
                     <ion-icon name="search-outline"></ion-icon>
                   </span>
                 </span>
-
-
-
                 <div class="dropdown">
                     <div class="dropdown-trigger">
                <span class="icon-text">
@@ -63,7 +57,6 @@
                         </div>
                     </div>
                 </div>
-
                 <?php if (isset($_SESSION['sid'])):?>
                 <span class="login">
                     <div class="dropdown">
@@ -86,6 +79,12 @@
                                 Выход
                             </a>
                         <?php break; case 2: ?>
+                             <a href="/expenses/main" class="dropdown-item">
+                                Пополнение счета пользователю
+                            </a>
+                        <a href="/expenses/main" class="dropdown-item">
+                                Кошелек
+                            </a>
                             <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
