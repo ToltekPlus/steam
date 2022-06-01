@@ -4,10 +4,9 @@ import { sendData } from '../db/send';
 import { redirect } from '../db/redirect';
 
 document.addEventListener('DOMContentLoaded', () => {
-  /*
-  const expenses = {
+  const basket = {
     header: 'application/x-www-form-urlencoded',
-  };*/
+  };
 
   let status;
 
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error(error));
   }
 
-  document.querySelector('#order').addEventListener('click', function (e) {
+  document.querySelector('#order').addEventListener('click', function () {
     get_session_id();
 
     if (status != undefined) {
@@ -32,9 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const path = 'basket/getOrder';
 
-    const cartToController = JSON.stringify(localStorage.getItem('steamCart'));
-    
-    let dataBasket = cartToController;
+    const cartToController = JSON.parse(localStorage.getItem('steamCart'));
+
+    let dataBasket = [];
+    for (const item of cartToController) {
+      dataBasket.push(JSON.stringify(item));
+    }
 
     const send = sendData(dataBasket, path, basket.header);
 
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (test == 1) {
           redirect('basket/success');
           localStorage.clear('steamCart');
-      } 
+      }
         else {notification(`На счёте не достаточно средств для совершения покупки`, 'error');}
       })
       .catch(error => {

@@ -29,6 +29,7 @@
                 </div>
             </div>
 
+            <!--
             <div class="other-products">
                 <h2>Будет интересно</h2>
                 <div class="recommend-games">
@@ -120,6 +121,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </section>
 <?php \Core\View::renderFooter(); ?>
