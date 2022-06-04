@@ -1,6 +1,6 @@
 export function get_games() {
     return async () => {
-        const fetchResponse = await fetch('http://steam.local/v1/games/all');
+        const fetchResponse = await fetch('/v1/games/all');
 
         if (!fetchResponse.ok) {
             throw new Error(
