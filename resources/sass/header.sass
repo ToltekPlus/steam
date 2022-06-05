@@ -1,6 +1,12 @@
 header
   background-color: $bg-color-header
   padding: 15px 0 5px 0 !important
+.nav-navigation
+    height: 58.38px
+    padding: 0 !important
+    display: flex !important
+    justify-content: center
+    align-items: center
 
 .logotype
   a
@@ -71,8 +77,10 @@ nav ul
         border-radius: 10px
         color: $font-color
     .search-field
+        position: absolute
         margin: 10px 0
         background-color: $font-color
         color: $bg-color-header
+        z-index: 999
         div
             padding: 5px

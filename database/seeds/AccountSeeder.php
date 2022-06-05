@@ -30,7 +30,7 @@ class AccountSeeder extends AbstractSeed
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'user_id' => $foreignKeysUsers[array_rand($foreignKeysUsersTwo)]['id'],
+                'user_id' => $foreignKeysUsersTwo[array_rand($foreignKeysUsersTwo)]['id'],
                 'name' => 'Петр',
                 'surname' => 'Петров',
                 'about' => 'Люблю не деградировать',

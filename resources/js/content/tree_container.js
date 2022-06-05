@@ -13,23 +13,23 @@ export function tree_container(response, dashboard) {
 
         tree.innerHTML += `
                     <div class="game-cover">
-                        <div class="buy" id="${element.GameInfo.id}">
-                            <span class="icon">
-                                <ion-icon name="cart-outline"></ion-icon>
-                            </span>
-                            Добавить в корзину
+                        <div class="buu">
+                            <div class="buy" id="${element.GameInfo.id}">
+                                <span class="icon">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </span>
+                                Добавить в корзину
+                            </div>
+                            <figure class='image is-full'>
+                                <img src="images/administrator/${element.GameInfo.cover_game}" alt="${element.GameInfo.name_game}">
+                            </figure>
                         </div>
-                        <figure class='image is-full'>
-                            <img src="images/administrator/${element.GameInfo.cover_game}" alt="${element.GameInfo.name_game}">
-                        </figure>
                     </div>
                     <div class="game-description">
                         <div class="game-title">
-                            <h3 class="h1-game-name">
-                                <a href="/game?id=<?=$game->id;?>" class="game-name">
-                                    ${element.GameInfo.name_game}
-                                </a>
-                            </h3>
+                            <a href="/game?id=<?=$game->id;?>" class="game-name">
+                                ${element.GameInfo.name_game}
+                            </a>
                         </div>
                         <div class="game-company">
                             ${element.company.name_company}
