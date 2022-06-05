@@ -45,7 +45,7 @@ function addGameToCart(id) {
       newProduct.count = newProduct.count + 1;
       newProduct.finalPrice = Math.round(tax_price * newProduct.count);
   }else {
-      newProduct = { 'id': id, 'game_id' : id, 'tax' : game_tax, 'count': 1, 'finalPrice' : Math.round(tax_price) };
+      newProduct = { 'id': id, 'game_id' : id, 'count': 1, 'finalPrice' : Math.round(tax_price) };
       cart.push(newProduct);
   }
 

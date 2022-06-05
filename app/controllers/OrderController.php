@@ -21,15 +21,30 @@ class OrderController {
     {
         $json = $this->formatStringToObject($_POST);
 
-        /*
-        $test = ['id' => 1, 'count' => 1, 'finalPrice' => 3499];
-        $price = $test['finalPrice'];
-        $id = $test['id'];
-        $count = $test['count'];
+        $fullPrice = 0;
 
-        $this->сomparisonPriceBalance($id, $count, $price);
+        foreach ($json as $order) {
+            $finalPrice = $order['finalPrice'];
+            $fullPrice = $fullPrice + $finalPrice;
+        }
 
-        echo json_encode ($this -> status);*/
+        $haveEnoughMoney = $this -> checkBlance($fullPrice);
+
+        if ($haveEnoughMoney == false) {
+            $this -> status = 0;
+            return;
+        }
+
+        $this -> status = 1;
+        
+         foreach ($json as $test) {
+            $price = $test["finalPrice"];
+            $id = $test["id"];
+            $count = $test["count"];
+            $this->сomparisonPriceBalance($id, $count, $price);
+        }
+
+        echo json_encode ($this -> status);
     }
 
     /**
@@ -46,15 +61,15 @@ class OrderController {
      * @throws \Exception
      */
     public function сomparisonPriceBalance($id, $count, $finalPrice) {
-        $expense = new ExpenseController();
-        $balance = $expense->get($_SESSION['sid']) -> balance;
-        if((int)$balance < $finalPrice){
-            $this -> status = 0;
-        }else{
-            $this -> status = 1;
+            $expense = new ExpenseController();
             $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);
             $this -> store($id, $count, $finalPrice);
-        }
+    }
+
+    public function checkBlance($fullPrice) {
+        $expense = new ExpenseController();
+        $balance = $expense->get($_SESSION['sid']) -> balance;
+        return (int)$balance >= $fullPrice;
     }
 
     /**
