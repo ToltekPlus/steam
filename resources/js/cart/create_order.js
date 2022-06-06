@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     send(dataBasket, path, basket.header)
       .then(response => {
-        var test = response;
-        if (test == 1) {
+        var status = response;
+        if (status == 1) {
           redirect('basket/success');
           localStorage.clear('steamCart');
       }
