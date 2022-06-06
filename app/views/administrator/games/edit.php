@@ -8,6 +8,7 @@
 
                 <div class="column is-two-thirds form">
                     <form method="POST" action="update" enctype="multipart/form-data">
+                        <input type="hidden" name="visibility" id="visibility" value="<?=$game->visibility?>">
                         <input type="hidden" name="id" id="id" value="<?=$game->id?>">
                         <div class="form-control">
                             <label for="name_genre">Название игры</label>

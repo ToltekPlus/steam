@@ -82,7 +82,20 @@ class HomeController extends HomePolicy
         $account = new AccountModel();
         $account = $account->find($_SESSION['sid']);
 
-        echo $account->userpic;
+        //echo $account->userpic;
+        return $account->userpic;
+    }
+
+    /**
+     * Пишет имя и фамилию аккаунта юзера
+     */
+    static function accountData() {
+        $account = new AccountModel();
+        $account = $account->find($_SESSION['sid']);
+
+        $data = $account->name . " " . $account->surname;
+
+        echo $data;
     }
 
     /**
@@ -174,7 +187,7 @@ class HomeController extends HomePolicy
             $taxGame = new TaxGameModel();
             $taxGame = $taxGame->find($game->id);
             $result[$key] = $taxGame;
-            $result[$key] = $games[$key];
+            $result[$key]->GameInfo = $games[$key];
 
             $genre = new GenreModel();
             $genre = $genre->find($games[$key]->genre_id);

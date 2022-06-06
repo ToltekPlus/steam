@@ -14,6 +14,14 @@ $router->add('logout', ['controller' => 'LoginController', 'action' => 'logout']
 $router->add('get_auth', ['controller' => 'LoginController', 'action' => 'getAuthId']);
 $router->add('register', ['controller' => 'RegisterController', 'action' => 'store']);
 
+/*=== ИЗМЕНЕНИЕ ПАРОЛЯ ПОЛЬЗОВАТЕЛЮ ===*/
+$router->add('users/change_password?{id}', ['controller' => 'ResetPasswordController', 'action' => 'changePassword']);
+
+/*=== РАБОТА С АККАУНТОМ ===*/
+$router->add('account/edit', ['controller' => 'AccountController', 'action' => 'edit']);
+$router->add('account/update', ['controller' => 'AccountController', 'action' => 'update']);
+$router->add('account/delete_userpic', ['controller' => 'AccountController', 'action' => 'deleteUserpic']);
+
 /*=== РАБОТА С ИГРАМИ ===*/
 $router->add('games/list', ['controller' => 'GameController', 'action' => 'index']);
 $router->add('games/add', ['controller' => 'GameController', 'action' => 'show']);
@@ -21,6 +29,13 @@ $router->add('games/store', ['controller' => 'GameController', 'action' => 'stor
 $router->add('games/edit?{id}', ['controller' => 'GameController', 'action' => 'edit']);
 $router->add('games/update', ['controller' => 'GameController', 'action' => 'update']);
 $router->add('games/visibility?{id}', ['controller' => 'GameController', 'action' => 'visibility']);
+$router->add('game', ['controller' => 'GameController', 'action' => 'showGame']);
+$router->add('v1/games/all', ['controller' => 'GameController', 'action' => 'all']);
+
+/*=== РАБОТА С ИЗОБРАЖЕНИЕМ ДЛЯ ИГР ===*/
+$router->add('game/images?{id}', ['controller' => 'ImageGameController', 'action' => 'index']);
+$router->add('game/store', ['controller' => 'ImageGameController', 'action' => 'store']);
+$router->add('game/delete?{id}', ['controller' => 'ImageGameController', 'action' => 'delete']);
 
 /*=== РАБОТА С КОРЗИНОЙ ===*/
 $router->add('cart/brief', ['controller' => 'CartController', 'action' => 'brief']);
@@ -39,6 +54,7 @@ $router->add('companies/add', ['controller' => 'CompanyController', 'action' => 
 $router->add('companies/store', ['controller' => 'CompanyController', 'action' => 'store']);
 $router->add('companies/edit?{id}', ['controller' => 'CompanyController', 'action' => 'edit']);
 $router->add('companies/update', ['controller' => 'CompanyController', 'action' => 'update']);
+$router->add('companies/visibility', ['controller' => 'CompanyController', 'action' => 'visibility']);
 $router->add('companies/delete', ['controller' => 'CompanyController', 'action' => 'delete']);
 
 /*=== РАБОТА С ЖАНРАМИ ===*/
@@ -59,11 +75,18 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
+/*=== РАБОТА С ЗАКАЗАМИ ===*/
+$router->add('basket/getOrder', ['controller' => 'OrderController', 'action' => 'getOrder']);
+$router->add('basket/success', ['controller' => 'OrderController', 'action' => 'index']);
+
 /*=== РАБОТА С БАЛАНСОМ ===*/
 $router->add('expenses/main?{id}', ['controller' => 'ExpenseController', 'action' => 'index']);
 $router->add('expenses/show', ['controller' => 'ExpenseController', 'action' => 'showStore']);
 $router->add('expenses/confirm', ['controller' => 'ExpenseController', 'action' => 'confirm']);
 $router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
 $router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
+
+/*=== РАБОТА ИГРАМИ ПОЛЬЗОВАТЕЛЯ ===*/
+$router->add('library', ['controller' => 'LibraryController', 'action' => 'index']);
 
 $router->dispatch($_SERVER['QUERY_STRING']);

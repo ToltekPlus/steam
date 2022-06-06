@@ -23,12 +23,13 @@
                             <div id="cart-data"></div>
                         </div>
                         <div class="to-pay">
-                            <button>Оформить</button>
+                            <button id='order'>Оформить</button>
                         </div>
                     </aside>
                 </div>
             </div>
 
+            <!--
             <div class="other-products">
                 <h2>Будет интересно</h2>
                 <div class="recommend-games">
@@ -120,6 +121,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </section>
 <?php \Core\View::renderFooter(); ?>

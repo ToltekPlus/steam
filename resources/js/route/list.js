@@ -8,6 +8,13 @@ export function list() {
       message_error: 'Произошла ошибка',
     },
     {
+      page: 'images',
+      action: 'store',
+      redirect: '',
+      message: 'Данные добавлены',
+      message_error: 'Произошла ошибка',
+    },
+    {
       page: 'edit',
       action: 'update',
       redirect: '',

@@ -29,21 +29,27 @@ class ExpenseModel extends Model{
 	    return $this->storeToTable($this->table, $args);
     }
 
-
     /**
      * Сбор всех юзеров из таблицы
+     *
      * @return array
      */
     public function getUsers() : array
     {
+        // TODO ошибка с формированием кошелька и выборки пользователей
         $all = $this->getAll($this->table);
+        $account = new AccountModel();
         $users = [];
-        for($i = 0;count($all) > $i;$i++){
-            array_push($users, $all[$i]->user_id);
-        };
+        for($i = 0; count($all) > $i; $i++){
+            //array_push($users, $all[$i]->user_id);
+            $full_name = $account->getFullName($all[$i]->user_id);
+            $full_name = $full_name['name'] . " " . $full_name['surname'];
+            $users[$i]['id'] = $all[$i]->user_id;
+            $users[$i]['full_name'] = $full_name;
+        }
         return $users;
     }
-	
+
 	/**
      * Забирает данные по id
      * @return array

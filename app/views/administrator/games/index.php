@@ -15,6 +15,7 @@
                     <th>Скидка</th>
                     <th>Видимость</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
 
@@ -30,12 +31,17 @@
                         </td>
                         <td>
                             <a href="/games/visibility?id=<?=$game->id?>">
-                                <ion-icon name="pricetag-outline"></ion-icon>
+                                <ion-icon name=<?php echo $game->visibility == 1 ? "eye-outline" : "eye-off-outline";?>></ion-icon>
                             </a>
                         </td>
                         <td>
                             <a href="/games/edit?id=<?=$game->id?>">
                                 <ion-icon name="pencil-outline"></ion-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/game/images?id=<?=$game->id?>">
+                                Добавить изображения
                             </a>
                         </td>
                     </tr>

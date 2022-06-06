@@ -4,7 +4,7 @@
  * @returns {boolean}
  */
 export function validate() {
-  const inputs = document.querySelectorAll('input[type="text"]');
+  const inputs = document.querySelectorAll('input[type="text"]:not(.search-block)');
   const textareas = document.querySelectorAll('textarea');
 
   const resultInputs = validateIterator(inputs, inputs.length);

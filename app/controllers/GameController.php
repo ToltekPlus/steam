@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\CompanyModel;
 use App\Model\GameModel;
 use App\Model\GenreModel;
+use App\Model\ImageGameModel;
 use App\Model\TaxGameModel;
 use App\Rule\ControllerInterface;
 use App\Service\DataBuilder;
@@ -29,6 +30,34 @@ class GameController implements ControllerInterface {
         $result = $games->all();
 
         View::render('administrator/games/index.php', ['games' => $result]);
+    }
+
+    /**
+     * Получаем список игр для поиска
+     */
+    public function all()
+    {
+        $games = new GameModel();
+        $games = $games->all();
+
+        $result = $this->toObject($games);
+
+        echo json_encode($result);
+    }
+
+    /**
+     * @param $games
+     * @return array
+     */
+    protected function toObject($games)
+    {
+        $result = [];
+        foreach ($games as $k => $game) {
+            $result[$k]['game_id'] = $game->id;
+            $result[$k]['game_name'] = $game->name_game;
+        }
+
+        return $result;
     }
 
     /**
@@ -113,6 +142,7 @@ class GameController implements ControllerInterface {
     /**
      * @return void
      */
+    // TODO правильное сокрытие игры: если компания скрыта, то запретить отображение игры в любом случае
     public function update()
     {
         if ($_FILES['cover_game']['size'] != 0) {
@@ -142,5 +172,21 @@ class GameController implements ControllerInterface {
     {
         $game = $this->get($id);
         $this->deleteImage($game->cover_game);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function showGame()
+    {
+        $game = GameModel::summaryInformation($_GET['id']);
+
+        $tax = new TaxGameModel();
+        $tax = $tax->find($_GET['id']);
+
+        $images = new ImageGameModel();
+        $images = $images->find($_GET['id']);
+
+        View::render('games/index.php', ["game" => $game, "tax" => $tax, "images" => $images]);
     }
 }
