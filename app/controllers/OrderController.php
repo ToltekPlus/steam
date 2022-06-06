@@ -21,10 +21,13 @@ class OrderController {
     {
         $json = $this->formatStringToObject($_POST);
 
+        //var_dump($json);
+
         $fullPrice = 0;
 
         foreach ($json as $order) {
-            $finalPrice = $order['finalPrice'];
+            $price = str_replace("_",".", $order['finalPrice']);
+            $finalPrice = floatval($price);
             $fullPrice = $fullPrice + $finalPrice;
         }
 
@@ -37,10 +40,10 @@ class OrderController {
 
         $this -> status = 1;
         
-         foreach ($json as $test) {
-            $price = $test["finalPrice"];
-            $id = $test["id"];
-            $count = $test["count"];
+         foreach ($json as $order) {
+            $price = str_replace("_",".", $order['finalPrice']);
+            $id = $order["id"];
+            $count = $order["count"];
             $this->сomparisonPriceBalance($id, $count, $price);
         }
 
@@ -62,7 +65,7 @@ class OrderController {
      */
     public function сomparisonPriceBalance($id, $count, $finalPrice) {
             $expense = new ExpenseController();
-            $expense->dataPreparation((int) $finalPrice, '-', 2, $_SESSION['sid']);
+            $expense->dataPreparation(floatval($finalPrice), '-', 2, $_SESSION['sid']);
             $this -> store($id, $count, $finalPrice);
     }
 
@@ -80,7 +83,7 @@ class OrderController {
     public function store($id, $count, $finalPrice)
     {
         $data = [
-            'final_price' => $finalPrice,
+            'final_price' => (float)$finalPrice,
             'count' => $count,
             'order_date' => date('Y-m-d H:i:s', time()),
             'user_id' => $_SESSION['sid'],

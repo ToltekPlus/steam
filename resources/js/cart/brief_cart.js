@@ -78,7 +78,7 @@ export function productInCart() {
       .then(response => {
         const result = JSON.parse(response);
         for (const [key, item] of result.entries()) {
-          finalPrice += cart[key].count * item.price;
+          finalPrice = cart[key].finalPrice;
           product.innerHTML +=
             `<div class='product-in-cart__title'>${item.name_game}<span class='product-in-cart__count'>(x${cart[key].count})</span>` +
             `<div class='product-in-cart__price'>${item.price}<label class='product-in-cart__delete' data-el='${cart[key].id}' game_id='${cart[key].id}'>удалить</label></div>` +
