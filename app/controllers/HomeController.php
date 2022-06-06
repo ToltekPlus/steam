@@ -82,7 +82,8 @@ class HomeController extends HomePolicy
         $account = new AccountModel();
         $account = $account->find($_SESSION['sid']);
 
-        echo $account->userpic;
+        //echo $account->userpic;
+        return $account->userpic;
     }
 
     /**
