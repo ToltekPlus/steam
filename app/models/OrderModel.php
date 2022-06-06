@@ -25,8 +25,18 @@ class OrderModel extends Model {
      */
     public function find(int $id) : object
     {
-        $genre = $this->getByIdFromTable($this->table, $id);
-        return array_shift($genre);
+        $order = $this->getByIdFromTable($this->table, $id);
+        return array_shift($order);
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function findByUser(int $id) : array
+    {
+        $orders = $this->getByIdFromTable($this->table, $id, "user_id");
+        return $orders;
     }
 
     /**

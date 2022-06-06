@@ -86,4 +86,7 @@ $router->add('expenses/confirm', ['controller' => 'ExpenseController', 'action' 
 $router->add('expenses/replenish', ['controller' => 'ExpenseController', 'action' => 'replenish']);
 $router->add('expenses/history', ['controller' => 'ExpenseController', 'action' => 'showHistory']);
 
+/*=== РАБОТА ИГРАМИ ПОЛЬЗОВАТЕЛЯ ===*/
+$router->add('library', ['controller' => 'LibraryController', 'action' => 'index']);
+
 $router->dispatch($_SERVER['QUERY_STRING']);

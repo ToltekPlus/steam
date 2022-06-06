@@ -76,11 +76,15 @@
 
 
                 <?php if (isset($_SESSION['sid'])):?>
-                <?php //TODO отображение юзерпика по умолчанию и с обновлением - ошибка при указании пути?>
                 <span class="login">
                     <div class="dropdown">
                       <div class="dropdown-trigger userpic">
-                          <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <?php
+                          if (\App\Controller\HomeController::accountUserpic() == 'userpic/userpic.jpg' && 'userpic//userpic.jpg') : ?>
+                            <img src="../images/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <?php else : ?>
+                            <img src="../images/administrator/<?=\App\Controller\HomeController::accountUserpic();?>" alt="Юзерпик" >
+                          <?php endif;?>
                       </div>
                       <div class="dropdown-menu" id="dropdown-ui-actions" role="menu">
                         <div class="dropdown-content">
@@ -91,11 +95,8 @@
                             <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
-                            <a href="#" class="dropdown-item">
+                            <a href="/library" class="dropdown-item">
                                 Мои игры
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                Архив
                             </a>
                             <a href="/logout" class="dropdown-item">
                                 Выход
@@ -114,11 +115,8 @@
                             <a href="/expenses/main" class="dropdown-item">
                                 Кошелек
                             </a>
-                            <a href="#" class="dropdown-item">
+                            <a href="/library" class="dropdown-item">
                                 Мои игры
-                            </a>
-                            <a href="#" class="dropdown-item">
-                                Архив
                             </a>
                             <a href="/roles/list" class="dropdown-item">
                                 Пользователи
