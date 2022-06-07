@@ -22,7 +22,7 @@ function get_session_id() {
 function addGameToCart(id) {
   get_session_id();
 
-  if (status !== undefined) {
+  if (status != undefined) {
     return false;
   }
 

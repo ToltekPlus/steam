@@ -14,12 +14,13 @@ class AccountModel extends Model {
      * @param int $id
      * @return object
      */
-    public function find(int $id) : object
+    public function find(int $id)   : object
     {
         $company = $this->getByIdFromTable($this->table, $id, 'user_id');
         return array_shift($company);
     }
 
+<<<<<<< HEAD
     /**
      * @param $args
      * @return void
@@ -29,3 +30,6 @@ class AccountModel extends Model {
         return $this->storeToTable($this->table, $args);
     }
 }
+=======
+}
+>>>>>>> parent of 081d758 (Merge branch 'dev' of https://github.com/f0l13N/steam into dev)
