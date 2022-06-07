@@ -105,6 +105,12 @@
                             <a href="/account/edit" class="dropdown-item">
                                 <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
                             </a>
+                            <a href="/expenses/main" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="/expenses/main" class="dropdown-item">
+                                Пополнение счета пользователю
+                             </a>
                             <a href="/logout" class="dropdown-item">
                                 Выход
                             </a>
@@ -184,6 +190,12 @@
                             <a href="/account/edit" class="menu__item_adm">
                                 <strong><?php (\App\Controller\HomeController::accountData()) ?></strong>
                             </a>
+                            <a href="/expenses/main" class="dropdown-item">
+                                Кошелек
+                            </a>
+                            <a href="/expenses/main" class="dropdown-item">
+                                Пополнение счета пользователю
+                             </a>
                             <a href="/logout" class="menu__item_adm">
                                 Выход
                             </a>
